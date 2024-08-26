@@ -6,11 +6,12 @@
 /*   By: mregrag <mregrag@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 18:21:10 by mregrag           #+#    #+#             */
-/*   Updated: 2024/08/25 23:56:08 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/08/26 10:12:20 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+#include <stdio.h>
 
 void	draw_map(void *ml)
 {
@@ -65,6 +66,9 @@ int	main(int argc, char **argv)
 
 	if (argc > 1)
 		parsing_map(argv[1], &map);
+
+
+	printf("hello");
 	start_the_game(&map);
 	return (EXIT_SUCCESS);
 }
