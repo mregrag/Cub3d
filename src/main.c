@@ -67,6 +67,7 @@ int	main(int argc, char **argv)
 		parsing_map(argv[1], &map);
 	printf("change");
 	printf("change 3");
+	printf("change 4");
 	start_the_game(&map);
 	return (EXIT_SUCCESS);
 }
