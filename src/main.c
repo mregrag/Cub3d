@@ -65,6 +65,8 @@ int	main(int argc, char **argv)
 
 	if (argc > 1)
 		parsing_map(argv[1], &map);
+
+	printf("change");
 	start_the_game(&map);
 	return (EXIT_SUCCESS);
 }
