@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mregrag <mregrag@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 18:21:10 by mregrag           #+#    #+#             */
-/*   Updated: 2024/08/26 10:19:12 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/08/26 10:28:01 by aait-bab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ int	main(int argc, char **argv)
 		parsing_map(argv[1], &map);
 
 	printf("change");
+
+	printf("change 2");
 	start_the_game(&map);
 	return (EXIT_SUCCESS);
 }
