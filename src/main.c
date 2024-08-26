@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 18:21:10 by mregrag           #+#    #+#             */
-/*   Updated: 2024/08/26 10:31:20 by aait-bab         ###   ########.fr       */
+/*   Updated: 2024/08/26 10:35:34 by aait-bab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ int	main(int argc, char **argv)
 
 	printf("change 2");
 	printf("change 3");
+	printf("akhir test");
 	start_the_game(&map);
 	return (EXIT_SUCCESS);
 }
