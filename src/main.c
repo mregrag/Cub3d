@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mregrag <mregrag@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 18:21:10 by mregrag           #+#    #+#             */
-/*   Updated: 2024/08/26 10:10:22 by aait-bab         ###   ########.fr       */
+/*   Updated: 2024/08/26 10:19:12 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ void	start_the_game(t_map *map)
 
 	mlx.map = map;
 
-	mlx.map->h_map = 12;
 	mlx.map->w_map = 12;
+	mlx.map->h_map = 7;
 	mlx.plyer = ft_calloc(sizeof(t_player), 1);
 	mlx.rays = ft_calloc(sizeof(t_ray), 1);
 	mlx.win = mlx_init(WIDTH, HEIGHT, "Cub3D", true);
@@ -66,7 +66,7 @@ int	main(int argc, char **argv)
 	if (argc > 1)
 		parsing_map(argv[1], &map);
 
-	printf("end parse\n");
+	printf("change");
 	start_the_game(&map);
 	return (EXIT_SUCCESS);
 }
