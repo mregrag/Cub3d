@@ -6,7 +6,7 @@
 /*   By: mregrag <mregrag@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 07:08:14 by mregrag           #+#    #+#             */
-/*   Updated: 2024/08/26 00:06:02 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/08/26 11:36:33 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	unit_circle(float angle, char c)
 	return (0);
 }
 
-int	is_hit_wall(double x, double y, t_mlx *mlx)
+int	is_hit_wall(double x, double y, t_cube *cube)
 {
 	int		x_m;
 	int		y_m;
@@ -36,10 +36,10 @@ int	is_hit_wall(double x, double y, t_mlx *mlx)
 		return (0);
 	x_m = floor (x / TILE_SIZE);
 	y_m = floor (y / TILE_SIZE);
-	if ((y_m >= mlx->map->h_map || x_m >= mlx->map->w_map))
+	if ((y_m >= cube->map->h_map || x_m >= cube->map->w_map))
 		return (0);
-	if (mlx->map->map2d[y_m] && x_m <= (int)ft_strlen(mlx->map->map2d[y_m]))
-		if (mlx->map->map2d[y_m][x_m] == '1')
+	if (cube->map->map2d[y_m] && x_m <= (int)ft_strlen(cube->map->map2d[y_m]))
+		if (cube->map->map2d[y_m][x_m] == '1')
 			return (0);
 	return (1);
 }
@@ -67,50 +67,49 @@ int	check_intersection(float angle, float *inter, float *step, int is_horizon)
 	return (1);
 }
 
-void	draw_floor_ceiling(t_mlx *mlx, int ray, int t_pix, int b_pix)
+void	draw_floor_ceiling(t_cube *cube, int ray, int t, int b)
 {
 	int		i;
 	int		c;
 
-	i = b_pix;
+	i = b;
 	c = ft_get_color(51, 255, 153, 255);
 	while (i < HEIGHT)
-		my_mlx_pixel_put(mlx, ray, i++, c);
+		my_mlx_pixel_put(cube, ray, i++, c);
 	c = ft_get_color(204, 0, 0, 255);
 	i = 0;
-	while (i < t_pix)
-		my_mlx_pixel_put(mlx, ray, i++, c);
+	while (i < t)
+		my_mlx_pixel_put(cube, ray, i++, c);
 }
 
-void	draw_wall(t_mlx *mlx, int ray, int t_pix, int b_pix)
+void	draw_wall(t_cube *cube, int ray, int t, int b)
 {
 	int color;
 
 	color = ft_get_color(51, 0, 25, 255);
-	while (t_pix < b_pix)
-		my_mlx_pixel_put(mlx, ray, t_pix++, color);
+	while (t < b)
+		my_mlx_pixel_put(cube, ray, t++, color);
 }
 
-void	render_wall(t_mlx *mlx, int ray)
+void	rendering(t_cube *cube, int ray)
 {
-	double wall_h;
-	double b_pix;
-	double t_pix;
+	double wall_height;
+	double b;
+	double t;
 
-	// mlx->rays->distance *= cos(reset_angle(mlx->rays->ray_angl - mlx->plyer->derection));
-	wall_h = (TILE_SIZE / mlx->rays->distance) * ((WIDTH / 2) / tan(mlx->plyer->fov / 2));
-	b_pix = (HEIGHT / 2) + (wall_h / 2);
-	t_pix = (HEIGHT / 2) - (wall_h / 2);
-	if (b_pix > HEIGHT)
-		b_pix = HEIGHT;
-	if (t_pix < 0)
-		t_pix = 0;
-	mlx->rays->index = ray;
-	draw_wall(mlx, ray, t_pix, b_pix);
-	draw_floor_ceiling(mlx, ray, t_pix, b_pix);
+	wall_height = (TILE_SIZE / cube->rays->distance) * ((WIDTH / 2) / tan(cube->plyer->fov / 2));
+	b = (HEIGHT / 2) + (wall_height / 2);
+	t = (HEIGHT / 2) - (wall_height / 2);
+	if (b > HEIGHT)
+		b = HEIGHT;
+	if (t < 0)
+		t = 0;
+	cube->rays->index = ray;
+	draw_wall(cube, ray, t, b);
+	draw_floor_ceiling(cube, ray, t, b);
 }
 
-float	calcul_herizontal_inter(t_mlx *mlx, float angl)
+float	calcul_herizontal_inter(t_cube *cube, float angl)
 {
 	float	x;
 	float	y;
@@ -120,20 +119,20 @@ float	calcul_herizontal_inter(t_mlx *mlx, float angl)
 
 	deltay = TILE_SIZE;
 	deltax = TILE_SIZE / tan(angl);
-	y = floor(mlx->plyer->plyr_y / TILE_SIZE) * TILE_SIZE;
+	y = floor(cube->plyer->plyr_y / TILE_SIZE) * TILE_SIZE;
 	inter = check_intersection(angl, &y, &deltay, 1);
-	x = mlx->plyer->plyr_x + (y - mlx->plyer->plyr_y) / tan(angl);
+	x = cube->plyer->plyr_x + (y - cube->plyer->plyr_y) / tan(angl);
 	if ((unit_circle(angl, 'y') && deltax > 0) || (!unit_circle(angl, 'y') && deltax < 0))
 		deltax *= -1;
-	while (is_hit_wall(x, y - inter, mlx))
+	while (is_hit_wall(x, y - inter, cube))
 	{
 		x += deltax;
 		y += deltay;
 	}
-	return (sqrt(pow(x - mlx->plyer->plyr_x, 2) + pow(y - mlx->plyer->plyr_y, 2)));
+	return (sqrt(pow(x - cube->plyer->plyr_x, 2) + pow(y - cube->plyer->plyr_y, 2)));
 }
 
-float	calcul_vertical_inter(t_mlx *mlx, float angl)
+float	calcul_vertical_inter(t_cube *cube, float angl)
 {
 	float	x;
 	float	y;
@@ -143,39 +142,39 @@ float	calcul_vertical_inter(t_mlx *mlx, float angl)
 
 	deltax = TILE_SIZE;
 	deltay = TILE_SIZE * tan(angl);
-	x = floor(mlx->plyer->plyr_x / TILE_SIZE) * TILE_SIZE;
+	x = floor(cube->plyer->plyr_x / TILE_SIZE) * TILE_SIZE;
 	inter = check_intersection(angl, &x, &deltax, 0);
-	y = mlx->plyer->plyr_y + (x - mlx->plyer->plyr_x) * tan(angl);
+	y = cube->plyer->plyr_y + (x - cube->plyer->plyr_x) * tan(angl);
 	if ((unit_circle(angl, 'x') && deltay < 0) || (!unit_circle(angl, 'x') && deltay > 0))
 		deltay *= -1;
-	while (is_hit_wall(x - inter, y, mlx))
+	while (is_hit_wall(x - inter, y, cube))
 	{
 		x += deltax;
 		y += deltay;
 	}
-	return (sqrt(pow(x - mlx->plyer->plyr_x, 2) + pow(y - mlx->plyer->plyr_y, 2)));
+	return (sqrt(pow(x - cube->plyer->plyr_x, 2) + pow(y - cube->plyer->plyr_y, 2)));
 }
 
-void	raycasting(t_mlx *mlx)
+void	raycasting(t_cube *cube)
 {
 	double	h_inter;
 	double	v_inter;
 	int		ray;
 
 	ray = 0;
-	mlx->rays->ray_angl = mlx->plyer->derection - (mlx->plyer->fov / 2);
+	cube->rays->ray_angl = cube->plyer->derection - (cube->plyer->fov / 2);
 	while (ray < WIDTH)
 	{
-		mlx->rays->flag = 0;
-		h_inter = calcul_herizontal_inter(mlx, reset_angle(mlx->rays->ray_angl));
-		v_inter = calcul_vertical_inter(mlx, reset_angle(mlx->rays->ray_angl));
+		cube->rays->flag = 0;
+		h_inter = calcul_herizontal_inter(cube, reset_angle(cube->rays->ray_angl));
+		v_inter = calcul_vertical_inter(cube, reset_angle(cube->rays->ray_angl));
 		if (v_inter <= h_inter)
-			mlx->rays->distance = v_inter;
+			cube->rays->distance = v_inter;
 		else
-			mlx->rays->distance = h_inter;
-		render_wall(mlx, ray);
+			cube->rays->distance = h_inter;
+		rendering(cube, ray);
 		ray++;
-		mlx->rays->ray_angl += (mlx->plyer->fov / WIDTH);
+		cube->rays->ray_angl += (cube->plyer->fov / WIDTH);
 	}
 }
 
