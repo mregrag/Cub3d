@@ -6,7 +6,7 @@
 #    By: mregrag <mregrag@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/07 18:20:34 by mregrag           #+#    #+#              #
-#    Updated: 2024/08/26 11:37:00 by mregrag          ###   ########.fr        #
+#    Updated: 2024/08/26 12:47:33 by mregrag          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,6 @@ LIBFT		= libft.a
 LIBRAIRIE	= "lib/libft"
 CC		= cc
 CFLAGS		= -Wall -Wextra -Werror -fsanitize=address -g2
-HEADERCUB	= ./include/cub3d.h
 HEADERMLX	= ./MLX42/MLX42.h
 HEADERLIBFT	= ./lib/Libft/libft.h
 RM		= rm -rf
@@ -24,6 +23,10 @@ MLX		= ./MLX42/libmlx42.a
 FLAG_MLX	= -framework Cocoa -framework OpenGL -framework IOKit -lglfw
 INCLUDE		= -I/Users/${USER}/.brew/Cellar/glfw/3.4/include/GLFW
 LIB		= -L/Users/${USER}/.brew/Cellar/glfw/3.4/lib
+
+HEADERCUB	= ./include/cub3d.h \
+		  ./include/macros.h \
+		  ./include/objects.h
 
 PARSING		:=	src/parsing/parsing_map.c \
 
