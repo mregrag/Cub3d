@@ -6,7 +6,7 @@
 /*   By: mregrag <mregrag@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 18:20:49 by mregrag           #+#    #+#             */
-/*   Updated: 2024/08/26 11:34:47 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/08/28 06:00:20 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,10 @@ int	ft_get_color(int r, int g, int b, int a);
 void	my_mlx_pixel_put(t_cube *cube, int x, int y, int color);
 
 int	parsing_map(char *path, t_map *map);
-double	reset_angle(float angle);
+double	normalize_angle(float angle);
 void	raycasting(t_cube *cube);
 void	render_wall(t_cube *cube, int ray);
+double	calcul_distance(double x_inter, double y_inter, double p_x, double p_y);
 
 //-----------------------debug-------------------------
 
@@ -40,4 +41,6 @@ void	draw_player(t_cube *cube);
 void	draw_ray(t_cube *cube, double ray_angle);
 void	draw_rays(t_cube *cube);
 
+void	turnright(double *dererction);
+void	turnleft(double *dererction);
 #endif

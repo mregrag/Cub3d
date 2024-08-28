@@ -6,7 +6,7 @@
 /*   By: mregrag <mregrag@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 03:43:59 by mregrag           #+#    #+#             */
-/*   Updated: 2024/08/26 11:35:43 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/08/28 02:46:19 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ void	key_reles(mlx_key_data_t keydata, t_cube *cube)
 		cube->plyer->turn = STOP;
 }
 
-void	key_press(mlx_key_data_t keydata, void *ml)
+void	key_press(mlx_key_data_t keydata, void *param)
 {
 	t_cube	*cube;
 
-	cube = ml;
+	cube = param;
 	if (keydata.key == MLX_KEY_ESCAPE && (keydata.action == MLX_PRESS))
 		exit(EXIT_SUCCESS);
 	else if (keydata.key == MLX_KEY_A && (keydata.action == MLX_PRESS))

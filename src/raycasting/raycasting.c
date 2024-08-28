@@ -6,39 +6,24 @@
 /*   By: mregrag <mregrag@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 07:08:14 by mregrag           #+#    #+#             */
-/*   Updated: 2024/08/26 23:34:40 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/08/28 07:37:46 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-int	check_direction(float angle, char c)
+int	hit_wall(double x, double y, t_cube *cube)
 {
-	if (c == 'x')
-	{
-		if (angle > 0 && angle < M_PI)
-			return (1);
-	}
-	else if (c == 'y')
-	{
-		if (angle > (M_PI / 2) && angle < (3 * M_PI) / 2)
-			return (1);
-	}
-	return (0);
-}
-
-int	is_hit_wall(double x, double y, t_cube *cube)
-{
-	int		x_m;
-	int		y_m;
+	int		m_x;
+	int		m_y;
 
 	if (x < 0 || y < 0)
 		return (0);
-	x_m = floor (x / TILE_SIZE);
-	y_m = floor (y / TILE_SIZE);
-	if ((y_m >= cube->map->h_map || x_m >= cube->map->w_map))
+	m_x = floor (x / TILE_SIZE);
+	m_y = floor (y / TILE_SIZE);
+	if ((m_y >= cube->map->h_map || m_x >= cube->map->w_map))
 		return (0);
-	if (cube->map->map2d[y_m][x_m] == '1')
+	if (cube->map->map2d[m_y][m_x] == '1')
 			return (0);
 	return (1);
 }
@@ -73,100 +58,103 @@ void	rendering(t_cube *cube, int ray)
 	double b;
 	double t;
 
-	wall_height = (TILE_SIZE / cube->rays->distance) * ((WIDTH / 2) / tan(cube->plyer->fov / 2));
+	cube->ray->distance *= cos(normalize_angle(cube->ray->angl - cube->plyer->derection));
+	wall_height = (TILE_SIZE / cube->ray->distance) * ((WIDTH / 2) / tan(cube->plyer->fov / 2));
 	b = (HEIGHT / 2) + (wall_height / 2);
 	t = (HEIGHT / 2) - (wall_height / 2);
 	if (b > HEIGHT)
 		b = HEIGHT;
 	if (t < 0)
 		t = 0;
-	cube->rays->index = ray;
+	cube->ray->index = ray;
 	draw_wall(cube, ray, t, b);
 	draw_floor_ceiling(cube, ray, t, b);
 }
 
-
-float	calcul_vertical_inter(t_cube *cube, float angl)
+double	vertical_intersect(t_cube *cube, double angl)
 {
-	float	x;
-	float	y;
-	float	deltax;
-	float	deltay;
+	double	xinter;
+	double	yinter;
+	double	deltax;
+	double	deltay;
 
+	cube->ray->facingdown = angl > 0 && angl < M_PI;
+	cube->ray->facingup = !cube->ray->facingdown;
+	cube->ray->facingright = angl < (M_PI / 2) || angl > (3 * M_PI / 2);
+	cube->ray->facingleft = !cube->ray->facingright;
+	xinter = floor(cube->plyer->x / TILE_SIZE) * TILE_SIZE;
+	if (cube->ray->facingright)
+		xinter += TILE_SIZE;
+	yinter = cube->plyer->y + (xinter - cube->plyer->x) * tan(angl);
 	deltax = TILE_SIZE;
+	if (cube->ray->facingleft)
+		deltax *= -1;
 	deltay = TILE_SIZE * tan(angl);
-	x = floor(cube->plyer->plyr_x / TILE_SIZE) * TILE_SIZE;
-	if (!(angl > M_PI / 2 && angl < 3 * M_PI / 2))
-	{
-		x += TILE_SIZE;
-		x += 1;
-	}
-	else
-	{
-		deltax *= -1;
-		x -= 1;
-	}
-	y = cube->plyer->plyr_y + (x - cube->plyer->plyr_x) * tan(angl);
-	if ((check_direction(angl, 'x') && deltay < 0) || (!check_direction(angl, 'x') && deltay > 0))
+	if (cube->ray->facingup && deltay > 0)
 		deltay *= -1;
-	while (is_hit_wall(x , y, cube))
+	if (cube->ray->facingdown && deltay < 0)
+		deltay *= -1;
+	if (cube->ray->facingleft)
+		xinter--;
+	while (hit_wall(xinter, yinter, cube))
 	{
-		x += deltax;
-		y += deltay;
+		xinter += deltax;
+		yinter += deltay;
 	}
-	return (sqrt(pow(x - cube->plyer->plyr_x, 2) + pow(y - cube->plyer->plyr_y, 2)));
+	return (calcul_distance(xinter, yinter, cube->plyer->x, cube->plyer->y));
 }
-
-float	calcul_herizontal_inter(t_cube *cube, float angl)
+double	herizontal_intersect(t_cube *cube, double angl)
 {
-	float	x;
-	float	y;
-	float	deltax;
-	float	deltay;
+	double	xinter;
+	double	yinter;
+	double	deltax;
+	double	deltay;
 
+	cube->ray->facingdown = angl > 0 && angl < M_PI;
+	cube->ray->facingup = !cube->ray->facingdown;
+	cube->ray->facingright = angl < (M_PI / 2) || angl > (3 * M_PI / 2);
+	cube->ray->facingleft = !cube->ray->facingright;
+	yinter = floor(cube->plyer->y / TILE_SIZE) * TILE_SIZE;
+	if (cube->ray->facingdown)
+		yinter += TILE_SIZE;
+	xinter = cube->plyer->x + (yinter - cube->plyer->y) / tan(angl);
 	deltay = TILE_SIZE;
-	deltax = TILE_SIZE / tan(angl);
-	y = floor(cube->plyer->plyr_y / TILE_SIZE) * TILE_SIZE;
-	if (angl > 0 && angl < M_PI)
-	{
-		y += TILE_SIZE;
-		y += 1;
-	}
-	else
-	{
+	if (cube->ray->facingup)
 		deltay *= -1;
-		y -= 1;
-	}
-	x = cube->plyer->plyr_x + (y - cube->plyer->plyr_y) / tan(angl);
-	if ((check_direction(angl, 'y') && deltax > 0) || (!check_direction(angl, 'y') && deltax < 0))
+	deltax = TILE_SIZE / tan(angl);
+	if (cube->ray->facingleft && deltax > 0)
 		deltax *= -1;
-	while (is_hit_wall(x, y, cube))
+	if (cube->ray->facingright && deltax < 0)
+		deltax *= -1;
+	if (cube->ray->facingup)
+		yinter--;
+	while (hit_wall(xinter, yinter, cube))
 	{
-		x += deltax;
-		y += deltay;
+		xinter += deltax;
+		yinter += deltay;
 	}
-	return (sqrt(pow(x - cube->plyer->plyr_x, 2) + pow(y - cube->plyer->plyr_y, 2)));
+	return (calcul_distance(xinter, yinter, cube->plyer->x, cube->plyer->y));
 }
 
 void	raycasting(t_cube *cube)
 {
-	double	h_inter;
-	double	v_inter;
+	double	h_distance;
+	double	v_distance;
 	int		ray;
 
 	ray = 0;
-	cube->rays->ray_angl = cube->plyer->derection - (cube->plyer->fov / 2);
+	cube->ray->angl = cube->plyer->derection - (cube->plyer->fov / 2);
 	while (ray < WIDTH)
 	{
-		h_inter = calcul_herizontal_inter(cube, reset_angle(cube->rays->ray_angl));
-		v_inter = calcul_vertical_inter(cube, reset_angle(cube->rays->ray_angl));
-		if (v_inter <= h_inter)
-			cube->rays->distance = v_inter;
+		h_distance = herizontal_intersect(cube, normalize_angle(cube->ray->angl));
+		v_distance = vertical_intersect(cube, normalize_angle(cube->ray->angl));
+		if (v_distance <= h_distance)
+			cube->ray->distance = v_distance;
 		else
-			cube->rays->distance = h_inter;
+			cube->ray->distance = h_distance;
 		rendering(cube, ray);
+		cube->ray->angl += (cube->plyer->fov / WIDTH);
 		ray++;
-		cube->rays->ray_angl += (cube->plyer->fov / WIDTH);
 	}
 }
 
