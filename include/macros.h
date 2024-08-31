@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 10:19:54 by aait-bab          #+#    #+#             */
-/*   Updated: 2024/08/28 01:03:39 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/08/31 23:28:04 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,16 @@
 # include <limits.h>
 # include <fcntl.h>
 
-# define WIDTH 1400
-# define HEIGHT 1000
+# define WIDTH 1400.0
+# define HEIGHT 1000.0
 # define MINI_W 200
 # define MINI_H 200
-# define TILE_SIZE 32
+# define TILE_SIZE 30
 # define FOV 60
 # define HALFFOV 60 / 2
-# define ROTATION_SPEED 0.042
+# define ROTATION_SPEED 0.045
 # define MOVE_SPEED 2
 
+# define MINIMAP_SCALE 0.8
 #endif
 

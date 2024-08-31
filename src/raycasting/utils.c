@@ -6,7 +6,7 @@
 /*   By: mregrag <mregrag@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 03:49:51 by mregrag           #+#    #+#             */
-/*   Updated: 2024/08/28 06:00:04 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/08/31 22:31:27 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,6 @@ double	deg2rad(double degrees)
 	return (degrees * (M_PI / 180.0));
 }
 
-double	rad2deg(double radians)
-{
-	return (radians * (180.0 / M_PI));
-}
-
-
 int	ft_get_color(int r, int g, int b, int a)
 {
 	return (r << 24 | g << 16 | b << 8 | a << 0);
@@ -61,11 +55,11 @@ void	my_mlx_pixel_put(t_cube *cube, int x, int y, int color)
 {
 	if (x < 0)
 		return ;
-	else if (x >= WIDTH)
+	else if (x >= cube->window->width)
 		return ;
 	if (y < 0)
 		return ;
-	else if (y >= HEIGHT)
+	else if (y >= cube->window->height)
 		return ;
 	mlx_put_pixel(cube->img, x, y, color);
 }

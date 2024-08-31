@@ -6,7 +6,7 @@
 #    By: mregrag <mregrag@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/07 18:20:34 by mregrag           #+#    #+#              #
-#    Updated: 2024/08/26 12:47:33 by mregrag          ###   ########.fr        #
+#    Updated: 2024/08/29 22:31:51 by mregrag          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,10 @@ RAYCASTING	:=	src/raycasting/utils.c\
 			src/raycasting/hooks.c \
 			src/raycasting/raycasting.c \
 			src/raycasting/movement.c \
-			# src/raycasting/debug.c \
+			src/raycasting/utils1.c\
+			src/raycasting/drawing.c \
+			src/raycasting/minimap.c \
+			src/raycasting/debug.c \
 
 TEXTURS		:=	src/texturs/ \
 

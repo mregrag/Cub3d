@@ -6,7 +6,7 @@
 /*   By: mregrag <mregrag@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 18:20:49 by mregrag           #+#    #+#             */
-/*   Updated: 2024/08/28 06:00:20 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/08/31 21:33:21 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,27 @@ double	calcul_distance(double x_inter, double y_inter, double p_x, double p_y);
 
 //-----------------------debug-------------------------
 
-void	draw_grid(mlx_image_t *img, uint32_t color, int tile_size);
-void	draw_player(t_cube *cube);
-void	draw_ray(t_cube *cube, double ray_angle);
+void	render(t_cube *cube, double ray);
 void	draw_rays(t_cube *cube);
 
 void	turnright(double *dererction);
 void	turnleft(double *dererction);
+
+//-----------------------drawing-------------------------
+
+void	draw_ceiling(t_cube *cube, int ray, int ceiling_end);
+void	draw_wall(t_cube *cube, int ray, int wall_start, int wall_end);
+void	draw_floor(t_cube *cube, int ray, int floor_start);
+void	projected_wall(t_cube *cube, t_ray *ray, int index);
+
+//-----------------------drawing-------------------------
+void	adjust_step(t_ray *ray, double *dx, double *dy, int is_vertical);
+void	init_ray(t_ray *ray, double angle);
+int	hit_wall(double x, double y, t_cube *cube);
+
+void    draw_player(t_cube *cube);
+void	draw_minimap(t_cube *cube);
+void draw_line(t_cube *cube, int x0, int y0, int x1, int y1, uint32_t color);
+void draw_grid(t_cube *cube);
+void	draw_player_direction(t_cube *cube);
 #endif
