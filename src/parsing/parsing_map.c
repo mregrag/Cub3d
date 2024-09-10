@@ -6,7 +6,7 @@
 /*   By: mregrag <mregrag@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 01:22:01 by mregrag           #+#    #+#             */
-/*   Updated: 2024/08/25 20:59:06 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/08/29 03:59:04 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,10 @@ void	get_rows_cols_num(t_map *map)
 		j = 0;
 		while (map->map2d[i][j])
 			j++;
-		if (j > map->cols)
-			map->cols = j;
 		i++;
 	}
 	map->rows = i;
+	map->cols = j;
 }
 
 void	get_position_player(t_map *map)

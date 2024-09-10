@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 10:49:25 by mregrag           #+#    #+#             */
-/*   Updated: 2024/08/30 18:06:44 by aait-bab         ###   ########.fr       */
+/*   Updated: 2024/09/10 21:23:30 by aait-bab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ typedef enum e_walk
 
 typedef struct s_player
 {
-	int		plyr_x;
-	int		plyr_y;
+	int		x;
+	int		y;
 	double	derection;
 	float	fov;
 	int		turn;
@@ -52,25 +52,53 @@ typedef struct s_map
 	char	*map;
 }	t_map;
 
+typedef struct s_point
+{
+	double	x;
+	double	y;
+}	t_point;
+
+typedef struct s_textur
+{
+	mlx_texture_t	*no;
+	mlx_texture_t	*so;
+	mlx_texture_t	*we;
+	mlx_texture_t	*ea;
+}	t_textur;
+
+typedef struct s_txtr
+{
+	char			*key;
+	char			*value;
+	struct s_txtr	*next;
+}	t_txtr;
+
 typedef struct s_ray
 {
 	int		index;
-	double	ray_angl;
-	double	horiz_x;
-	double	horiz_y;
-	double	vert_x;
-	double	vert_y;
-	double	distance;
+	double		angl;
+	double		hwallhit_x;
+	double		hwallhit_y;
+	double		vwallhit_x;
+	double		vwallhit_y;
+	double		hit_x;
+	double		hit_y;
+	double		distance;
+	int		up;
+	int		down;
+	int		right;
+	int		left;
 	int		flag;
 }	t_ray;
 
 typedef struct s_cube
 {
 	mlx_image_t	*img;
-	mlx_t		*win;
+	mlx_t		*window;
 	t_map		*map;
 	t_player	*plyer;
 	t_ray		*rays;
+	t_textur	*textur;
 }	t_cube;
 
 #endif
