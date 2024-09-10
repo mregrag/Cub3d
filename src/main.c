@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 18:21:10 by mregrag           #+#    #+#             */
-/*   Updated: 2024/08/26 11:32:12 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/08/26 12:45:23 by aait-bab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,27 @@ void	start_the_game(t_map *map)
 	mlx_loop(cube.win);
 }
 
+t_cube	*get_cube(t_cube *cube)
+{
+	static t_cube	*s_cube;
+
+	if (cube)
+		s_cube = cube;
+	return (s_cube);
+}
+
 int	main(int argc, char **argv)
 {
-	t_map	map;
+	t_cube	cube;
+	// t_map	map;
 
-	if (argc > 1)
-		parsing_map(argv[1], &map);
-	start_the_game(&map);
+	if (argc != 2)
+		return (print_fd("Error\nmissing map file", 2), 1);
+	get_cube(&cube);
+	ft_parse_cube(argv[1], &cube);
+
+	// if (argc > 1)
+	// 	parsing_map(argv[1], &map);
+	// start_the_game(&map);
 	return (EXIT_SUCCESS);
 }

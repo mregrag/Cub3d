@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/30 21:38:59 by mregrag           #+#    #+#             */
-/*   Updated: 2024/08/26 13:20:16 by aait-bab         ###   ########.fr       */
+/*   Created: 2024/08/26 11:57:20 by aait-bab          #+#    #+#             */
+/*   Updated: 2024/08/26 12:16:20 by aait-bab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../include/cub3d.h"
 
-size_t	ft_strlen(const char *str)
+void	ft_error(char *msg)
 {
-	size_t	i;
+	t_cube	*cube;
 
-	i = 0;
-	if (!str)
-		return (0);
-	while (*str++)
-		i++;
-	return (i);
+	print_fd(msg, 2);
+	cube = get_cube(NULL);
+	exit(1);
 }

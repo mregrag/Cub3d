@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mregrag <mregrag@student.42.fr>            +#+  +:+       +#+         #
+#    By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/07 18:20:34 by mregrag           #+#    #+#              #
-#    Updated: 2024/08/26 11:37:00 by mregrag          ###   ########.fr        #
+#    Updated: 2024/08/30 18:12:35 by aait-bab         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,9 @@ FLAG_MLX	= -framework Cocoa -framework OpenGL -framework IOKit -lglfw
 INCLUDE		= -I/Users/${USER}/.brew/Cellar/glfw/3.4/include/GLFW
 LIB		= -L/Users/${USER}/.brew/Cellar/glfw/3.4/lib
 
-PARSING		:=	src/parsing/parsing_map.c \
+PARSING		:=	src/parsing/parsing_map.c src/parsing/ft_parse_cube.c \
+				src/parsing/ft_parse_clrs_txtrs.c src/parsing/ft_helpers.c  \
+				src/parsing/ft_parse_map.c \
 
 RAYCASTING	:=	src/raycasting/utils.c\
 			src/raycasting/hooks.c \
@@ -35,13 +37,14 @@ RAYCASTING	:=	src/raycasting/utils.c\
 
 TEXTURS		:=	src/texturs/ \
 
-UTILS		:=	src/utils/ \
+UTILS		:=	src/utils/ft_error.c src/utils/ft_print.c src/utils/ft_trim.c\
 
 MAIN		:=	src/main.c
 
 SRCS		:= $(MAIN) \
 		   $(RAYCASTING) \
 		   $(PARSING) \
+		   $(UTILS) \
 
 # SRCS		:=	$(PARSING)\
 # 			$(RAYCASTING)\

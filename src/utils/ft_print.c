@@ -1,21 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   ft_print.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/26 10:06:59 by aait-bab          #+#    #+#             */
-/*   Updated: 2024/08/26 10:07:19 by aait-bab         ###   ########.fr       */
+/*   Created: 2024/08/26 11:58:41 by aait-bab          #+#    #+#             */
+/*   Updated: 2024/08/26 12:18:10 by aait-bab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../../include/cub3d.h"
 
-#include <stdio.h>
-
-
-int main(int argc, char const *argv[])
+void	print_fd(char *msg, int fd)
 {
-    printf("Hello, World!\n");
-    return 0;
+	write(fd, msg, ft_strlen(msg));
+	write(fd, "\n", 1);
 }
