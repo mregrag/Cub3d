@@ -19,6 +19,5 @@ void	ft_error(char *msg)
 	print_fd(msg, 2);
 	cube = get_cube(NULL);
 	ft_malloc(0, 0);
-	while (1)
-		;
+	exit(1);
 }

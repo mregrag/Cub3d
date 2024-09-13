@@ -98,7 +98,6 @@ void	draw_minimap(t_cube *cube);
 // void draw_line(t_cube *cube, int x0, int y0, int x1, int y1, uint32_t color);
 void draw_line(t_cube *cube, int x0, int y0, int x1, int y1, uint32_t color);
 void draw_grid(t_cube *cube);
-void	adjust_step(t_ray *ray, double *dx, double *dy, int is_vertical);
 void	init_ray(t_ray *ray, double angle);
 int		hit_wall(double x, double y, t_cube *cube);
 

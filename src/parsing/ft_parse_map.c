@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/cub3d.h"
+#include "../../include/cub3d.h"
 
 static int	check_valid(char **map2d, int i, size_t j)
 {

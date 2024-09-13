@@ -53,6 +53,8 @@ typedef struct s_map
 	char	**map2d;
 	char	**textur2d;
 	t_ipoint	m;
+	int		p_x;
+	int		p_y;
 	int		w_map;
 	int		h_map;
 	int		cols;

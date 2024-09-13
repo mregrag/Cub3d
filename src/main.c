@@ -58,7 +58,7 @@ void	init_player(t_cube *cube)
 {
 	char c;
 
-	c = cube->map->map2d[cube->map->m.y][cube->map->m.x];
+	c = cube->map->map2d[cube->map->p_y][cube->map->p_x];
 	if (c == 'E')
 		cube->plyer->derection = 0;
 	if (c == 'N')
@@ -67,8 +67,8 @@ void	init_player(t_cube *cube)
 		cube->plyer->derection = M_PI;
 	if (c == 'S')
 		cube->plyer->derection = M_PI / 2;
-	cube->plyer->s.x = (cube->map->m.x * TILE_SIZE) + TILE_SIZE / 2;
-	cube->plyer->s.y = (cube->map->m.y * TILE_SIZE) + TILE_SIZE / 2;
+	cube->plyer->s.x = (cube->map->p_x * TILE_SIZE) + TILE_SIZE / 2;
+	cube->plyer->s.y = (cube->map->p_y * TILE_SIZE) + TILE_SIZE / 2;
 	cube->plyer->fov = deg2rad(FOV);
 }
 
@@ -90,31 +90,12 @@ void leak(void)
 int	main(int argc, char **argv)
 {
 	t_cube	cube;
-	int i = 0;
 
 	atexit(leak);
 	if (argc != 2)
 		return (print_fd("Error\nmissing map file", 2), 1);
 	get_cube(&cube);
 	ft_parse_cube(argv[1], &cube);
-
-	printf("textures\n");
-	for (i = 0; i < 4; i++)
-	{
-		printf("%s   %s\n",cube.txtrs[i]->key, cube.txtrs[i]->path);
-	}
-
-	printf("colors\n");
-	for (i = 0; i < 2; i++)
-	{
-		printf("%s   %d %d %d\n",cube.colors[i]->key, cube.colors[i]->r, cube.colors[i]->g, cube.colors[i]->b);
-	}
-
-	printf("map\n");
-	for (i = 0; i < cube.map->rows; i++)
-	{
-		printf("%s\n", cube.map->map2d[i]);
-	}
 
 	cube.plyer = malloc(sizeof(t_player));
 	cube.window = mlx_init(WIDTH, HEIGHT, "Cub3D", true);
@@ -126,7 +107,7 @@ int	main(int argc, char **argv)
 	mlx_loop_hook(cube.window, &rendered, &cube);
 	mlx_key_hook(cube.window, &key_press, &cube);
 	mlx_loop(cube.window);
-	
+
 	ft_malloc(0, 0);
 	return (EXIT_SUCCESS);
 }

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/cub3d.h"
+#include "../../include/cub3d.h"
 
 static void	create_lst_lines(int fd, t_list **head)
 {
