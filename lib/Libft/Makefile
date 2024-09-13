@@ -6,7 +6,7 @@
 #    By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/07 01:45:00 by mregrag           #+#    #+#              #
-#    Updated: 2024/09/10 21:24:43 by aait-bab         ###   ########.fr        #
+#    Updated: 2024/09/13 10:03:09 by aait-bab         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ SRCS =  ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c \
 		ft_lstnew.c ft_lstadd_front.c \
 		ft_lstsize.c ft_lstlast.c ft_lstmap.c \
 		ft_lstadd_back.c ft_lstdelone.c \
-		ft_lstclear.c ft_lstiter.c \
+		ft_lstclear.c ft_lstiter.c ft_malloc.c get_next_line_utils.c\
 
 OBJS = $(SRCS:.c=.o)
 NAME    = libft.a

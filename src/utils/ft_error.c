@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 11:57:20 by aait-bab          #+#    #+#             */
-/*   Updated: 2024/08/26 12:16:20 by aait-bab         ###   ########.fr       */
+/*   Updated: 2024/09/13 12:10:47 by aait-bab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,7 @@ void	ft_error(char *msg)
 
 	print_fd(msg, 2);
 	cube = get_cube(NULL);
-	exit(1);
+	ft_malloc(0, 0);
+	while (1)
+		;
 }

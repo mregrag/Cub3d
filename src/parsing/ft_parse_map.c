@@ -6,86 +6,13 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 18:05:26 by aait-bab          #+#    #+#             */
-/*   Updated: 2024/09/04 23:39:48 by aait-bab         ###   ########.fr       */
+/*   Updated: 2024/09/13 11:16:34 by aait-bab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./include/cub3d.h"
 
-static char	*rm_nl(char *line)
-{
-	int i;
-
-	i = 0;
-	while (line[i])
-	{
-		if (line[i] == '\n')
-		{
-			line[i] = '\0';
-			break ;
-		}
-		i++;
-	}
-	return (line);
-}
-
-static void	fill_map2d(char ***map2d, t_list *head)
-{
-	int	i;
-
-	i = 0;
-	while (head && empty_line(head->content))
-		head = head->next;
-	if (!head)
-		ft_error("Error\nno map");
-	while (head)
-	{
-		if (empty_line(head->content))
-			ft_error("Error\nempty line in the map");
-		(*map2d)[i] = rm_nl(head->content);
-		head = head->next;
-		i++;
-	}
-	(*map2d)[i] = NULL;
-}
-
-static void valid_caras_walls(char **map2d)
-{
-	size_t 	j;
-	char 	*set;
-	char 	*set2;
-	int 	i;
-	int 	player_exists;
-
-	i = 0;
-	set = " 012NSEW";
-	set2 = "NSEW";
-	player_exists = 0;
-	while (map2d[i])
-	{
-		j = 0;
-		while (map2d[i][j])
-		{
-			if (!ft_strchr(set, map2d[i][j]))
-				ft_error("Error\ninvalid character in the map");
-			if (i == 0 || i == strslen(map2d) - 1 || j == 0 \
-				|| j == ft_strlen(map2d[i]) - 1)
-			{
-				if (map2d[i][j] != '1' && map2d[i][j] != ' ')
-					ft_error("Error\nmap is not surrounded by walls");
-			}
-			if (ft_strchr(set2, map2d[i][j]))
-				player_exists = 1;
-			j++;
-		}
-		i++;
-	}
-	if (!player_exists)
-		ft_error("Error\nno player in the map");
-}
-
-
-static int check_valid(char **map2d, int i, size_t j)
+static int	check_valid(char **map2d, int i, size_t j)
 {
 	if (!map2d[i - 1][j] || !map2d[i + 1][j] \
 		|| !map2d[i][j - 1] || !map2d[i][j + 1])
@@ -98,8 +25,8 @@ static int check_valid(char **map2d, int i, size_t j)
 
 static void	valid_map(char **map2d)
 {
-	int i;
-	size_t j;
+	size_t	j;
+	int		i;
 
 	i = 0;
 	while (map2d[i])
@@ -112,7 +39,8 @@ static void	valid_map(char **map2d)
 				|| map2d[i][j] == 'W')
 			{
 				if (check_valid(map2d, i, j))
-					ft_error("Error\nplayer or 0 should not be surrounded by espaces");
+					ft_error("Error\nplayer or 0 should \
+					not be surrounded by espaces");
 			}
 			j++;
 		}
@@ -120,15 +48,42 @@ static void	valid_map(char **map2d)
 	}
 }
 
-// to remove
-static void print_map(char **map2d)
+static int	get_max_rows(t_list *head)
 {
-	int i;
+	int	max;
+	int	len;
+
+	max = 0;
+	while (head)
+	{
+		len = ft_strlen(head->content);
+		if (len > max)
+			max = len;
+		head = head->next;
+	}
+	return (max - 1);
+}
+
+static void	get_position_player(t_map *map)
+{
+	int	i;
+	int	j;
 
 	i = 0;
-	while (map2d[i])
+	while (map->map2d[i])
 	{
-		printf("%s\n", map2d[i]);
+		j = 0;
+		while (map->map2d[i][j])
+		{
+			if (map->map2d[i][j] == 'N' || map->map2d[i][j] == 'S' \
+			|| map->map2d[i][j] == 'W' || map->map2d[i][j] == 'E')
+			{
+				map->p_x = j;
+				map->p_y = i;
+				return ;
+			}
+			j++;
+		}
 		i++;
 	}
 }
@@ -137,11 +92,14 @@ int	ft_parse_map(t_list *head, t_cube *cube)
 {
 	char	**map2d;
 
-	(void)cube;
-	map2d = malloc(sizeof(char *) * (ft_lstsize(head) + 1));
-	fill_map2d(&map2d, head);
-	valid_caras_walls(map2d);
+	map2d = ft_malloc(sizeof(char *) * (ft_lstsize(head) + 1), 1);
+	ft_fill_map2d(&map2d, head, get_max_rows(head));
+	ft_valid_caras_walls(map2d);
 	valid_map(map2d);
-	print_map(map2d);
+	cube->map = ft_malloc(sizeof(t_map), 1);
+	cube->map->map2d = map2d;
+	get_position_player(cube->map);
+	cube->map->rows = strslen(map2d);
+	cube->map->cols = (int)ft_strlen(map2d[0]);
 	return (1);
 }

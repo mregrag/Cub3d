@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 10:49:25 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/10 21:23:30 by aait-bab         ###   ########.fr       */
+/*   Updated: 2024/09/11 20:44:00 by aait-bab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,21 +58,20 @@ typedef struct s_point
 	double	y;
 }	t_point;
 
-typedef struct s_textur
-{
-	mlx_texture_t	*no;
-	mlx_texture_t	*so;
-	mlx_texture_t	*we;
-	mlx_texture_t	*ea;
-}	t_textur;
 
 typedef struct s_txtr
 {
 	char			*key;
-	char			*value;
-	struct s_txtr	*next;
+	char			*path;
 }	t_txtr;
 
+typedef struct s_colors
+{
+	char			*key;
+	int				r;
+	int				g;
+	int				b;
+}	t_colors;
 typedef struct s_ray
 {
 	int		index;
@@ -98,7 +97,8 @@ typedef struct s_cube
 	t_map		*map;
 	t_player	*plyer;
 	t_ray		*rays;
-	t_textur	*textur;
+	t_txtr		*txtrs[4];
+	t_colors	*colors[2];
 }	t_cube;
 
 #endif

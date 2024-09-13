@@ -6,7 +6,7 @@
 #    By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/07 18:20:34 by mregrag           #+#    #+#              #
-#    Updated: 2024/09/10 21:28:38 by aait-bab         ###   ########.fr        #
+#    Updated: 2024/09/13 12:08:16 by aait-bab         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME		= cub3D
 LIBFT		= libft.a
 LIBRAIRIE	= "lib/libft"
 CC		= cc
-CFLAGS		= -Wall -Wextra -Werror -fsanitize=address -g2
+CFLAGS		= -Wall -Wextra -Werror #-fsanitize=address -g2
 HEADERMLX	= ./MLX42/MLX42.h
 HEADERLIBFT	= ./lib/Libft/libft.h
 RM		= rm -rf
@@ -24,9 +24,10 @@ FLAG_MLX	= -framework Cocoa -framework OpenGL -framework IOKit -lglfw
 INCLUDE		= -I/Users/${USER}/.brew/Cellar/glfw/3.4/include/GLFW
 LIB		= -L/Users/${USER}/.brew/Cellar/glfw/3.4/lib
 
-PARSING		:=	src/parsing/parsing_map.c src/parsing/ft_parse_cube.c \
+PARSING		:=	src/parsing/ft_parse_cube.c \
 				src/parsing/ft_parse_clrs_txtrs.c src/parsing/ft_helpers.c  \
-				src/parsing/ft_parse_map.c \
+				src/parsing/ft_parse_map.c src/parsing/ft_check_dbl_keys.c\
+				src/parsing/ft_fill_map2d.c src/parsing/ft_valid_caras_walls.c\
 				
 HEADERCUB	= ./include/cub3d.h \
 		  ./include/macros.h \
@@ -52,12 +53,7 @@ SRCS		:= $(MAIN) \
 		   $(PARSING) \
 		   $(UTILS) \
 
-# SRCS		:=	$(PARSING)\
-# 			$(RAYCASTING)\
-# 			$(TEXTURS)\
-# 			$(UTILS)\
-# 			$(MAIN)\
-#
+
 OBJS		:=	$(SRCS:.c=.o)
 
 all: $(NAME)

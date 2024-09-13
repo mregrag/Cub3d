@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mregrag <mregrag@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 22:27:49 by mregrag           #+#    #+#             */
-/*   Updated: 2024/08/31 23:34:17 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/11 22:30:54 by aait-bab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,6 +168,8 @@ void draw_minimap(t_cube *cube)
 
 			if (cube->map->map2d[y][x] == '1')
 				color = ft_get_color(0, 0, 0, 255);
+			else if (cube->map->map2d[y][x] == ' ')
+				color = ft_get_color(255, 0, 0, 255);
 			else
 				color = ft_get_color(255, 255, 255, 255);
 			draw_rectangle(cube, map_x, map_y, TILE_SIZE * MINIMAP_SCALE, color);

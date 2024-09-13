@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/23 16:31:26 by mregrag           #+#    #+#             */
-/*   Updated: 2024/08/28 18:32:50 by aait-bab         ###   ########.fr       */
+/*   Updated: 2024/09/13 09:58:13 by aait-bab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ static void	join_line(char **str, char **buff)
 	char	*tmp;
 
 	if (!*str)
-		*str = ft_strdup("");
+		*str = ft_strdup_gnl("");
 	tmp = *str;
-	*str = ft_strjoin(tmp, *buff);
+	*str = ft_strjoin_gnl(tmp, *buff);
 	free(tmp);
 	tmp = NULL;
 }
@@ -30,13 +30,13 @@ static char	*get_rest(char *str)
 	char	*rest;
 	int		len;
 
-	rest = ft_strchr(str, '\n');
+	rest = ft_strchr_gnl(str, '\n');
 	if (!rest)
 		return (free(str), str = NULL, NULL);
-	len = (ft_strlen(str) - ft_strlen(rest)) + 1;
+	len = (ft_strlen_gnl(str) - ft_strlen_gnl(rest)) + 1;
 	if (str[len] == '\0')
 		return (free(str), str = NULL, NULL);
-	new_str = ft_substr(str, len, ft_strlen(str) - len);
+	new_str = ft_substr_gnl(str, len, ft_strlen_gnl(str) - len);
 	free(str);
 	str = NULL;
 	if (!new_str)
@@ -50,9 +50,9 @@ static char	*get_line(char *str)
 	char	*ptr;
 	int		len;
 
-	ptr = ft_strchr(str, '\n');
-	len = ft_strlen(str) - ft_strlen(ptr);
-	line = ft_substr(str, 0, len + 1);
+	ptr = ft_strchr_gnl(str, '\n');
+	len = ft_strlen_gnl(str) - ft_strlen_gnl(ptr);
+	line = ft_substr_gnl(str, 0, len + 1);
 	return (line);
 }
 
@@ -66,7 +66,7 @@ static char	*read_from_file(int fd, char *str)
 	if (!buffer)
 		return (free(str), str = NULL, NULL);
 	buffer[0] = '\0';
-	while (bytes > 0 && !ft_strchr(buffer, '\n'))
+	while (bytes > 0 && !ft_strchr_gnl(buffer, '\n'))
 	{
 		bytes = read (fd, buffer, BUFFER_SIZE);
 		if (bytes > 0)

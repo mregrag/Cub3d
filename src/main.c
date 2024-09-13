@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 18:21:10 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/10 21:27:39 by aait-bab         ###   ########.fr       */
+/*   Updated: 2024/09/13 12:08:26 by aait-bab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,20 +75,6 @@ void	init_player(t_cube *cube)
 	cube->plyer->fov = deg2rad(FOV);
 }
 
-void	setup_the_game(t_map *map)
-{
-	t_cube cube;
-
-	cube.map = map;
-
-	cube.plyer = malloc(sizeof(t_player));
-	cube.window = mlx_init(WIDTH, HEIGHT, "Cub3D", true);
-	init_player(&cube);
-	mlx_loop_hook(cube.window, &rendered, &cube);
-	mlx_key_hook(cube.window, &key_press, &cube);
-	mlx_loop(cube.window);
-}
-
 t_cube	*get_cube(t_cube *cube)
 {
 	static t_cube	*s_cube;
@@ -98,23 +84,47 @@ t_cube	*get_cube(t_cube *cube)
 	return (s_cube);
 }
 
+
+void leak(void)
+{
+	system("leaks cub3D");
+}
+
 int	main(int argc, char **argv)
 {
 	t_cube	cube;
-	// t_map	map;
+	int i = 0;
 
+	atexit(leak);
 	if (argc != 2)
 		return (print_fd("Error\nmissing map file", 2), 1);
 	get_cube(&cube);
 	ft_parse_cube(argv[1], &cube);
 
-	// if (argc > 1)
-	// 	parsing_map(argv[1], &map);
-	// start_the_game(&map);
+	printf("textures\n");
+	for (i = 0; i < 4; i++)
+	{
+		printf("%s   %s\n",cube.txtrs[i]->key, cube.txtrs[i]->path);
+	}
 
-	// t_map map;
-	// if (argc > 1)
-	// 	parsing_map(argv[1], &map);
-	// setup_the_game(&map);
+	printf("colors\n");
+	for (i = 0; i < 2; i++)
+	{
+		printf("%s   %d %d %d\n",cube.colors[i]->key, cube.colors[i]->r, cube.colors[i]->g, cube.colors[i]->b);
+	}
+
+	printf("map\n");
+	for (i = 0; i < cube.map->rows; i++)
+	{
+		printf("%s\n", cube.map->map2d[i]);
+	}
+
+	// cube.plyer = malloc(sizeof(t_player));
+	// cube.window = mlx_init(WIDTH, HEIGHT, "Cub3D", true);
+	// init_player(&cube);
+	// mlx_loop_hook(cube.window, &rendered, &cube);
+	// mlx_key_hook(cube.window, &key_press, &cube);
+	// mlx_loop(cube.window);
+	ft_malloc(0, 0);
 	return (EXIT_SUCCESS);
 }

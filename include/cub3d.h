@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 18:20:49 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/10 21:23:13 by aait-bab         ###   ########.fr       */
+/*   Updated: 2024/09/13 11:34:17 by aait-bab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,19 @@ void	movement(t_cube *cube, double move_x, double move_y);
 
 //-------------------------------parsing-------------------------
 
-int	    parsing_map(char *path, t_map *map);
-
 void	ft_parse_cube(char *file, t_cube *cube);
 t_list	*ft_parse_clrs_textrs(t_list *head, t_cube *cube);
 int		ft_parse_map(t_list *head, t_cube *cube);
+void	ft_check_dbl_keys(t_cube *cube);
+void	ft_fill_map2d(char ***map2d, t_list *head, int max_rows);
+void	ft_valid_caras_walls(char **map2d);
+
 // helpers functions
 int		isnumbers(char **colors);
 int		strslen(char **strs);
 int		isranged(char **colors, int min, int max);
-int		in_txtrs_set(char *txtr);
-int     ft_isnumber(char *str);
-int     empty_line(char *line);
+int		ft_isnumber(char *str);
+int		empty_line(char *line);
 
 
 
@@ -47,7 +48,7 @@ int     empty_line(char *line);
 //-------------------------------raycasting----------------------
 
 double	reset_angle(float angle);
-int	    parsing_map(char *path, t_map *map);
+int		parsing_map(char *path, t_map *map);
 double	normalize_angle(float angle);
 void	raycasting(t_cube *cube);
 void	render_wall(t_cube *cube, int ray);
@@ -55,14 +56,13 @@ double	calcul_distance(double x_inter, double y_inter, double p_x, double p_y);
 
 // helper functions
 double	deg2rad(double degrees);
-int	    ft_get_color(int r, int g, int b, int a);
+int		ft_get_color(int r, int g, int b, int a);
 void	my_mlx_pixel_put(t_cube *cube, int x, int y, int color);
 
 //-------------------------------General utils--------------------
 void	ft_error(char *msg);
 void	print_fd(char *msg, int fd);
 char	*ft_trim(char *str);
-
 
 //-----------------------debug-------------------------
 
@@ -82,11 +82,11 @@ void	projected_wall(t_cube *cube, t_ray *ray, int index);
 //-----------------------drawing-------------------------
 void	adjust_step(t_ray *ray, double *dx, double *dy, int is_vertical);
 void	init_ray(t_ray *ray, double angle);
-int	hit_wall(double x, double y, t_cube *cube);
+int		hit_wall(double x, double y, t_cube *cube);
 
-void    draw_player(t_cube *cube);
+void	draw_player(t_cube *cube);
 void	draw_minimap(t_cube *cube);
-void draw_line(t_cube *cube, int x0, int y0, int x1, int y1, uint32_t color);
-void draw_grid(t_cube *cube);
+void	draw_line(t_cube *cube, int x0, int y0, int x1, int y1, uint32_t color);
+void	draw_grid(t_cube *cube);
 void	draw_player_direction(t_cube *cube);
 #endif

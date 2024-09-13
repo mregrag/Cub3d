@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mregrag <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:57:13 by mregrag           #+#    #+#             */
-/*   Updated: 2023/11/30 09:21:41 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/12 11:01:27 by aait-bab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*ft_itoa(int n)
 
 	nb = n;
 	len = count_numbers(nb);
-	result = malloc(sizeof(char) * len + 1);
+	result = ft_malloc(sizeof(char) * len + 1, 1);
 	if (!result)
 		return (NULL);
 	if (nb < 0)
