@@ -6,7 +6,7 @@
 /*   By: mregrag <mregrag@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 03:49:51 by mregrag           #+#    #+#             */
-/*   Updated: 2024/08/31 22:31:27 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/13 08:55:33 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,26 @@ double	normalize_angle(float angle)
 	return (angle);
 }
 
+int	reverse_bytes(int c)
+{
+	unsigned int	b;
 
+	b = 0;
+	b |= (c & 0xFF) << 24;
+	b |= (c & 0xFF00) << 8;
+	b |= (c & 0xFF0000) >> 8;
+	b |= (c & 0xFF000000) >> 24;
+	return (b);
+}
+
+// uint32_t reverse_bytes(uint32_t color)
+// {
+//     return ((color & 0xFF000000) >> 24) |
+//            ((color & 0x00FF0000) >> 8)  |
+//            ((color & 0x0000FF00) << 8)  |
+//            ((color & 0x000000FF) << 24);
+// }
+//
 double	calcul_distance(double x_inter, double y_inter, double p_x, double p_y)
 {
     return sqrt(pow(x_inter - p_x, 2) + pow(y_inter - p_y, 2));

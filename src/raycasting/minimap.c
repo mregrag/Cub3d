@@ -6,7 +6,7 @@
 /*   By: mregrag <mregrag@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 22:27:49 by mregrag           #+#    #+#             */
-/*   Updated: 2024/08/31 23:34:17 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/13 05:34:06 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,38 +51,34 @@ void	draw_line(t_cube *cube, int x0, int y0, int x1, int y1, uint32_t color)
 
 void	draw_player_direction(t_cube *cube)
 {
-	int start_x;
-	int start_y;
-	int end_x;
-	int end_y;
-	int color;
+	t_ipoint start;
+	t_ipoint end;
+	int	color;
 
-	start_x = cube->plyer->x * MINIMAP_SCALE;
-	start_y = cube->plyer->y * MINIMAP_SCALE;
-	end_x = start_x + cos(cube->plyer->derection) * (TILE_SIZE * MINIMAP_SCALE);
-	end_y = start_y + sin(cube->plyer->derection) * (TILE_SIZE * MINIMAP_SCALE);
+	start.x = cube->plyer->s.x * MINIMAP_SCALE;
+	start.y = cube->plyer->s.y * MINIMAP_SCALE;
+	end.x = start.x + cos(cube->plyer->derection) * (TILE_SIZE * MINIMAP_SCALE);
+	end.y = start.y + sin(cube->plyer->derection) * (TILE_SIZE * MINIMAP_SCALE);
 	color = ft_get_color(0, 0, 255, 255);
-	draw_line(cube, start_x, start_y, end_x, end_y, color);
+	draw_line(cube, start.x, start.y, end.x, end.y, color);
 }
 
 void	draw_rays(t_cube *cube)
 {
-	int start_x;
-	int start_y;
-	int end_x;
-	int end_y;
-	int color;
+	t_ipoint start;
+	t_ipoint end;
 	t_ray	*ray;
+	int	color;
 
 	color = ft_get_color(0, 204, 102, 255);
-	start_x = cube->plyer->x * MINIMAP_SCALE;
-	start_y = cube->plyer->y * MINIMAP_SCALE;
+	start.x = cube->plyer->s.x * MINIMAP_SCALE;
+	start.y = cube->plyer->s.y * MINIMAP_SCALE;
 	for (int i = 0; i < cube->window->width; i++)
 	{
-		ray = &cube->rays[i];
-		end_x = ray->hit_x * MINIMAP_SCALE;
-		end_y = ray->hit_y * MINIMAP_SCALE;
-		draw_line(cube, start_x, start_y, end_x, end_y, color);
+		ray = &cube->ray[i];
+		end.x = ray->hit.x * MINIMAP_SCALE;
+		end.y = ray->hit.y * MINIMAP_SCALE;
+		draw_line(cube, start.x, start.y, end.x, end.y, color);
 	}
 
 }
@@ -141,8 +137,8 @@ void draw_player(t_cube *cube)
 
 	color = ft_get_color(255, 0, 0, 255);
 
-	x = cube->plyer->x * MINIMAP_SCALE;
-	y = cube->plyer->y * MINIMAP_SCALE;
+	x = cube->plyer->s.x * MINIMAP_SCALE;
+	y = cube->plyer->s.y * MINIMAP_SCALE;
 	radius = TILE_SIZE / 8;
 	draw_circle(cube, x, y, radius, color);
 
@@ -168,8 +164,11 @@ void draw_minimap(t_cube *cube)
 
 			if (cube->map->map2d[y][x] == '1')
 				color = ft_get_color(0, 0, 0, 255);
+			else if (cube->map->map2d[y][x] == 32)
+				color = ft_get_color(0, 255, 0, 255);
 			else
 				color = ft_get_color(255, 255, 255, 255);
+
 			draw_rectangle(cube, map_x, map_y, TILE_SIZE * MINIMAP_SCALE, color);
 			x++;
 		}

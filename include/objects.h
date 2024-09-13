@@ -6,7 +6,7 @@
 /*   By: mregrag <mregrag@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 10:49:25 by mregrag           #+#    #+#             */
-/*   Updated: 2024/08/31 23:22:17 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/12 08:38:08 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,24 +25,34 @@ typedef enum e_walk
 	DOWN,
 }	t_walk;
 
+typedef struct s_dpoint
+{
+	double	x;
+	double	y;
+}	t_dpoint;
+
+typedef struct s_ipoint
+{
+	int	x;
+	int	y;
+}	t_ipoint;
+
 typedef struct s_player
 {
-	int		x;
-	int		y;
+	t_ipoint	s;
+	t_ipoint	m;
 	double	derection;
 	float	fov;
 	int		turn;
 	int		walk;
-	int		m_x;
-	int		m_y;
 
 }	t_player;
 
 typedef struct s_map
 {
 	char	**map2d;
-	int		p_x;
-	int		p_y;
+	char	**textur2d;
+	t_ipoint	m;
 	int		w_map;
 	int		h_map;
 	int		cols;
@@ -50,13 +60,8 @@ typedef struct s_map
 	int		fd;
 	char	*line;
 	char	*map;
+	char	*tex;
 }	t_map;
-
-typedef struct s_point
-{
-	double	x;
-	double	y;
-}	t_point;
 
 typedef struct s_textur
 {
@@ -77,13 +82,11 @@ typedef struct s_ray
 {
 	int		index;
 	double		angl;
-	double		hwallhit_x;
-	double		hwallhit_y;
-	double		vwallhit_x;
-	double		vwallhit_y;
-	double		hit_x;
-	double		hit_y;
+	t_dpoint		hwall;
+	t_dpoint		vwall;
+	t_dpoint		hit;
 	double		distance;
+	double		angle;
 	int		up;
 	int		down;
 	int		right;
@@ -97,7 +100,7 @@ typedef struct s_cube
 	mlx_t		*window;
 	t_map		*map;
 	t_player	*plyer;
-	t_ray		*rays;
+	t_ray		*ray;
 	t_textur	*textur;
 }	t_cube;
 

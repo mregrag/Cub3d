@@ -6,7 +6,7 @@
 /*   By: mregrag <mregrag@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 06:30:06 by mregrag           #+#    #+#             */
-/*   Updated: 2024/08/30 19:28:30 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/13 04:55:00 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,16 @@ void	walk_player(t_cube *cube, double move_x, double move_y)
 	int		new_x;
 	int		new_y;
 
-	new_x = roundf(cube->plyer->x + move_x);
-	new_y = roundf(cube->plyer->y + move_y);
+	new_x = roundf(cube->plyer->s.x + move_x);
+	new_y = roundf(cube->plyer->s.y + move_y);
 	map_x = (new_x / TILE_SIZE);
 	map_y = (new_y / TILE_SIZE);
 	if (cube->map->map2d[map_y][map_x] != '1' && \
-	(cube->map->map2d[map_y][cube->plyer->x / TILE_SIZE] != '1' && \
-	cube->map->map2d[cube->plyer->y / TILE_SIZE][map_x] != '1'))
-	if (cube->map->map2d[map_y][map_x] != '1')
+	(cube->map->map2d[map_y][cube->plyer->s.x / TILE_SIZE] != '1' && \
+	cube->map->map2d[cube->plyer->s.y / TILE_SIZE][map_x] != '1'))
 	{
-		cube->plyer->x = new_x;
-		cube->plyer->y = new_y;
+		cube->plyer->s.x = new_x;
+		cube->plyer->s.y = new_y;
 	}
 }
 

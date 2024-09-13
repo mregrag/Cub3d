@@ -6,7 +6,7 @@
 #    By: mregrag <mregrag@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/07 18:20:34 by mregrag           #+#    #+#              #
-#    Updated: 2024/08/29 22:31:51 by mregrag          ###   ########.fr        #
+#    Updated: 2024/09/10 23:49:39 by mregrag          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,7 @@ SRCS		:= $(MAIN) \
 # 			$(TEXTURS)\
 # 			$(UTILS)\
 # 			$(MAIN)\
-#
+
 OBJS		:=	$(SRCS:.c=.o)
 
 all: $(NAME)

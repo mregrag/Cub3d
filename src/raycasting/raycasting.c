@@ -6,99 +6,101 @@
 /*   By: mregrag <mregrag@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 07:08:14 by mregrag           #+#    #+#             */
-/*   Updated: 2024/08/31 23:25:11 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/13 06:15:27 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-static double	vertical_intersect(t_cube *cube, t_ray *ray)
+static double	vertical_intersect(t_cube *cube)
 {
-	double	x;
-	double	y;
-	double	dx;
-	double	dy;
+	t_dpoint	inter;
+	t_dpoint	delta;
 
-	x = floor(cube->plyer->x / TILE_SIZE) * TILE_SIZE;
-	if (ray->right)
-		x += TILE_SIZE;
-	y = cube->plyer->y + (x - cube->plyer->x) * tan(ray->angl);
-	dx = TILE_SIZE;
-	dy = TILE_SIZE * tan(ray->angl);
-	adjust_step(ray, &dx, &dy, 1);
-	if (ray->left)
-		x--;
-	while (!hit_wall(x, y, cube))
+	cube->ray->angl = normalize_angle(cube->ray->angl);
+	inter.x = floor(cube->plyer->s.x / TILE_SIZE) * TILE_SIZE;
+	inter.x += TILE_SIZE * cube->ray->right;
+	inter.y = cube->plyer->s.y + (inter.x - cube->plyer->s.x) * tan(cube->ray->angl);
+	delta.x = TILE_SIZE;
+	delta.y = TILE_SIZE * tan(cube->ray->angl);
+	adjust_step(cube, &delta.x, &delta.y, 1);
+	while(inter.x >= 0 && inter.x <= cube->window->width && inter.y >= 0 && inter.y <= cube->window->height)
 	{
-		x += dx;
-		y += dy;
+		if (hit_wall(inter.x - cube->ray->left, inter.y, cube))
+		{
+			cube->ray->vwall.x = inter.x;
+			cube->ray->vwall.y = inter.y;
+			break;
+		}
+		else
+		{
+			inter.x += delta.x;
+			inter.y += delta.y;
+		}
 	}
-	ray->vwallhit_x = x;
-	ray->vwallhit_y = y;
-	return (calcul_distance(x, y, cube->plyer->x, cube->plyer->y));
+	return (calcul_distance(inter.x, inter.y, cube->plyer->s.x, cube->plyer->s.y));
 }
 
-static double	horizontal_intersect(t_cube *cube, t_ray *ray)
+static double	horizontal_intersect(t_cube *cube)
 {
-	double	x;
-	double	y;
-	double	dx;
-	double	dy;
+	t_dpoint	inter;
+	t_dpoint	delta;
 
-	y = floor(cube->plyer->y / TILE_SIZE) * TILE_SIZE;
-	if (ray->down)
-		y += TILE_SIZE;
-	x = cube->plyer->x + (y - cube->plyer->y) / tan(ray->angl);
-	dy = TILE_SIZE;
-	dx = dy / tan(ray->angl);
-	adjust_step(ray, &dx, &dy, 0);
-	if (ray->up)
-		y--;
-	while (!hit_wall(x, y, cube))
+	cube->ray->angl = normalize_angle(cube->ray->angl);
+	inter.y = floor(cube->plyer->s.y / TILE_SIZE) * TILE_SIZE;
+	inter.y += TILE_SIZE * cube->ray->down;
+	inter.x = cube->plyer->s.x + (inter.y - cube->plyer->s.y) / tan(cube->ray->angl);
+	delta.y = TILE_SIZE;
+	delta.x = delta.y / tan(cube->ray->angl);
+	adjust_step(cube, &delta.x, &delta.y, 0);
+	while(inter.x >= 0 && inter.x <= cube->window->width && inter.y >= 0 && inter.y <= cube->window->height)
 	{
-		x += dx;
-		y += dy;
+		if (hit_wall(inter.x, inter.y - cube->ray->up, cube))
+		{
+			cube->ray->hwall.x = inter.x;
+			cube->ray->hwall.y = inter.y;
+			break;
+		}
+		else
+		{
+			inter.x += delta.x;
+			inter.y += delta.y;
+		}
 	}
-	ray->hwallhit_x = x;
-	ray->hwallhit_y = y;
-	return (calcul_distance(x, y, cube->plyer->x, cube->plyer->y));
+	return (calcul_distance(inter.x, inter.y, cube->plyer->s.x, cube->plyer->s.y));
 }
 
-void raycasting(t_cube *cube)
+void	raycasting(t_cube *cube)
 {
-    double	h_distance;
-    double 	v_distance;
-    double	ray_angle;
-    t_ray	*ray;
-    int		column;
+	t_dpoint	distance;
+	double		ray_angle;
+	t_ray		*ray;
+	int			column;
 
-    column = 0;
-    ray_angle = cube->plyer->derection - (cube->plyer->fov / 2);
-    while (column < cube->window->width)
-    {
-        ray = &cube->rays[column];
-        init_ray(ray, normalize_angle(ray_angle));
-        h_distance = horizontal_intersect(cube, ray);
-        v_distance = vertical_intersect(cube, ray);
-        if (v_distance <= h_distance)
-        {
-            ray->distance = v_distance;
-            ray->flag = 1;  // Flag to indicate vertical hit
-        }
-        else
-        {
-            ray->distance = h_distance;
-            ray->flag = 0;  // Flag to indicate horizontal hit
-        }
-	if (h_distance < v_distance)
-		ray->hit_x = ray->hwallhit_x;
-	else
-		ray->hit_x = ray->vwallhit_x;
-	if (h_distance < v_distance)
-		ray->hit_y = ray-> hwallhit_y;
-	else
-		ray->hit_y = ray->vwallhit_y;
-        ray_angle += (cube->plyer->fov / cube->window->width);
-        column++;
-    }
+	ray = NULL;
+	column = 0;
+	ray_angle = cube->plyer->derection - (cube->plyer->fov / 2);
+	while (column < cube->window->width)
+	{
+		ray = &cube->ray[column];
+		check_rayfacing(cube, normalize_angle(ray_angle));
+		distance.x = horizontal_intersect(cube);
+		distance.y = vertical_intersect(cube);
+		if (distance.y <= distance.x)
+		{
+			cube->ray->distance = distance.y;
+			ray->hit.x = cube->ray->vwall.x;
+			ray->hit.y = cube->ray->vwall.y;
+			cube->ray->flag = 1;
+		}
+		else
+		{
+			cube->ray->distance = distance.x;
+			ray->hit.x = cube->ray->hwall.x;
+			ray->hit.y = cube->ray-> hwall.y;
+			cube->ray->flag = 0;
+		}
+		projected_wall(cube, cube->ray, column++);
+		ray_angle += (cube->plyer->fov / cube->window->width);
+	}
 }
