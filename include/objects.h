@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   objects.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mregrag <mregrag@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 10:49:25 by mregrag           #+#    #+#             */
 /*   Updated: 2024/09/12 08:38:08 by mregrag          ###   ########.fr       */
@@ -70,14 +70,26 @@ typedef struct s_textur
 	mlx_texture_t	*we;
 	mlx_texture_t	*ea;
 }	t_textur;
+typedef struct s_point
+{
+	double	x;
+	double	y;
+}	t_point;
+
 
 typedef struct s_txtr
 {
 	char			*key;
-	char			*value;
-	struct s_txtr	*next;
+	char			*path;
 }	t_txtr;
 
+typedef struct s_colors
+{
+	char			*key;
+	int				r;
+	int				g;
+	int				b;
+}	t_colors;
 typedef struct s_ray
 {
 	int		index;
@@ -102,6 +114,9 @@ typedef struct s_cube
 	t_player	*plyer;
 	t_ray		*ray;
 	t_textur	*textur;
+	t_ray		*rays;
+	t_txtr		*txtrs[4];
+	t_colors	*colors[2];
 }	t_cube;
 
 #endif

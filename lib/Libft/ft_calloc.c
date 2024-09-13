@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mregrag <mregrag@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 23:37:24 by mregrag           #+#    #+#             */
-/*   Updated: 2023/11/30 22:22:33 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/13 11:35:29 by aait-bab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	*ft_calloc(size_t count, size_t size)
 
 	total = count * size;
 	if (count != 0 && total / count != size)
-		return (NULL); 
-	tmp = malloc(total);
+		return (NULL);
+	tmp = ft_malloc(total, 1);
 	if (!tmp)
 		return (NULL);
 	ft_bzero(tmp, total);

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mregrag <mregrag@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/23 16:32:00 by mregrag           #+#    #+#             */
-/*   Updated: 2023/12/26 13:56:24 by mregrag          ###   ########.fr       */
+/*   Created: 2024/09/13 09:22:15 by aait-bab          #+#    #+#             */
+/*   Updated: 2024/09/13 09:56:26 by aait-bab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin_gnl(char const *s1, char const *s2)
 {
 	char	*result;
 	int		i;
@@ -31,7 +31,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (result);
 }
 
-size_t	ft_strlen(const char *s)
+size_t	ft_strlen_gnl(const char *s)
 {
 	size_t	i;
 
@@ -43,7 +43,7 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-char	*ft_strdup(const char *s1)
+char	*ft_strdup_gnl(const char *s1)
 {
 	char	*dup;
 	int		i;
@@ -58,7 +58,7 @@ char	*ft_strdup(const char *s1)
 	return (dup);
 }
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strchr_gnl(const char *s, int c)
 {
 	while (*s)
 	{
@@ -71,7 +71,7 @@ char	*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
-char	*ft_substr(const char *s, unsigned int start, size_t len)
+char	*ft_substr_gnl(const char *s, unsigned int start, size_t len)
 {
 	char	*str;
 	size_t	i;

@@ -1,33 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   ft_print.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 01:09:40 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/12 11:03:31 by aait-bab         ###   ########.fr       */
+/*   Created: 2024/08/26 11:58:41 by aait-bab          #+#    #+#             */
+/*   Updated: 2024/09/10 21:25:47 by aait-bab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../include/cub3d.h"
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+void	print_fd(char *msg, int fd)
 {
-	char	*result;
-	size_t	i;
-
-	i = 0;
-	if (!s || !f)
-		return (NULL);
-	result = ft_malloc(ft_strlen(s) + 1, 1);
-	if (!result)
-		return (NULL);
-	while (i < ft_strlen(s))
-	{
-		result[i] = f(i, s[i]);
-		i++;
-	}
-	result[i] = '\0';
-	return (result);
+	write(fd, msg, ft_strlen(msg));
+	write(fd, "\n", 1);
 }

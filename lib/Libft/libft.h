@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mregrag <mregrag@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 01:29:14 by mregrag           #+#    #+#             */
-/*   Updated: 2024/08/08 21:06:45 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/13 10:02:50 by aait-bab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdio.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
@@ -78,4 +79,13 @@ void		ft_lstiter(t_list *lst, void (*f)(void *));
 t_list		*ft_lstlast(t_list *lst);
 t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 t_list		*ft_lstnew(void *content);
+
+void		*ft_malloc(size_t size, int mod);
+
+char		*ft_strjoin_gnl(char const *s1, char const *s2);;
+size_t		ft_strlen_gnl(const char *s);
+char		*ft_strdup_gnl(const char *s1);
+char		*ft_strchr_gnl(const char *s, int c);
+char		*ft_substr_gnl(const char *s, unsigned int start, size_t len);
+
 #endif

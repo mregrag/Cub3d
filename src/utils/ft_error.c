@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 01:09:40 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/12 11:03:31 by aait-bab         ###   ########.fr       */
+/*   Created: 2024/08/26 11:57:20 by aait-bab          #+#    #+#             */
+/*   Updated: 2024/09/13 12:10:47 by aait-bab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../include/cub3d.h"
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+void	ft_error(char *msg)
 {
-	char	*result;
-	size_t	i;
+	t_cube	*cube;
 
-	i = 0;
-	if (!s || !f)
-		return (NULL);
-	result = ft_malloc(ft_strlen(s) + 1, 1);
-	if (!result)
-		return (NULL);
-	while (i < ft_strlen(s))
-	{
-		result[i] = f(i, s[i]);
-		i++;
-	}
-	result[i] = '\0';
-	return (result);
+	print_fd(msg, 2);
+	cube = get_cube(NULL);
+	ft_malloc(0, 0);
+	while (1)
+		;
 }

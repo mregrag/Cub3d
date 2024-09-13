@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mregrag <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 14:37:38 by mregrag           #+#    #+#             */
-/*   Updated: 2023/11/30 01:35:46 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/12 12:49:02 by aait-bab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ char	**ft_split(char const *s, char c)
 
 	if (!s)
 		return (NULL);
-	matrix = (char **)malloc((ft_count_words(s, c) + 1) * sizeof(char *));
+	matrix = (char **)ft_malloc((ft_count_words(s, c) + 1) * sizeof(char *), 1);
 	if (!matrix)
 		return (NULL);
 	return (ft_split_words(matrix, s, c));
