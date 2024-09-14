@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 18:21:10 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/13 12:00:58 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/13 14:59:35 by aait-bab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void render_walls(t_cube *cube)
 
 void	rendered(void *param)
 {
-	t_cube *cube;
+	t_cube	*cube;
 
 	cube = param;
 	mlx_resize_image(cube->img, cube->window->width, cube->window->height);
@@ -56,7 +56,7 @@ void	rendered(void *param)
 
 void	init_player(t_cube *cube)
 {
-	char c;
+	char	c;
 
 	c = cube->map->map2d[cube->map->p_y][cube->map->p_x];
 	if (c == 'E')
@@ -97,9 +97,9 @@ int	main(int argc, char **argv)
 	get_cube(&cube);
 	ft_parse_cube(argv[1], &cube);
 
-	cube.plyer = malloc(sizeof(t_player));
+	cube.plyer = ft_malloc(sizeof(t_player), 1);
 	cube.window = mlx_init(WIDTH, HEIGHT, "Cub3D", true);
-	cube.textur = malloc(sizeof(mlx_texture_t));
+	cube.textur = ft_malloc(sizeof(mlx_texture_t), 1);
 	cube.img = mlx_new_image(cube.window, cube.window->width, cube.window->height);
 	cube.textur->no = mlx_load_png("src/textures/naroto.png");
 	mlx_image_to_window(cube.window, cube.img, 0, 0);
