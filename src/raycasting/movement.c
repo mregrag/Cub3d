@@ -6,22 +6,22 @@
 /*   By: mregrag <mregrag@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 06:30:06 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/13 04:55:00 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/14 11:03:33 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
+#include <math.h>
 
-
-void	walk_player(t_cube *cube, double move_x, double move_y)
+static void	walk_player(t_cube *cube, double move_x, double move_y)
 {
 	int		map_y;
 	int		map_x;
 	int		new_x;
 	int		new_y;
 
-	new_x = roundf(cube->plyer->s.x + move_x);
-	new_y = roundf(cube->plyer->s.y + move_y);
+	new_x = round(cube->plyer->s.x + move_x);
+	new_y = round(cube->plyer->s.y + move_y);
 	map_x = (new_x / TILE_SIZE);
 	map_y = (new_y / TILE_SIZE);
 	if (cube->map->map2d[map_y][map_x] != '1' && \
@@ -33,12 +33,25 @@ void	walk_player(t_cube *cube, double move_x, double move_y)
 	}
 }
 
+static void	turnright(t_cube *cube)
+{
+	cube->plyer->derection += ROTATION_SPEED;
+	if (cube->plyer->derection > 2 * M_PI)
+		cube->plyer->derection -= 2 * M_PI;
+}
+
+static void	turnleft(t_cube *cube)
+{
+	cube->plyer->derection -= ROTATION_SPEED;
+	if (cube->plyer->derection < 2 * M_PI)
+		cube->plyer->derection += 2 * M_PI;
+}
 void	movement(t_cube *cube, double move_x, double move_y)
 {
-	if (cube->plyer->turn == RIGHT)
-		turnright(&cube->plyer->derection);
-	if (cube->plyer->turn == LEFT)
-		turnleft(&cube->plyer->derection);
+	if (cube->plyer->turn == TURN_RIGHT)
+		turnright(cube);
+	if (cube->plyer->turn == TURN_LEFT)
+		turnleft(cube);
 	if (cube->plyer->walk == RIGHT)
 	{
 		move_x = -sin(cube->plyer->derection) * MOVE_SPEED;

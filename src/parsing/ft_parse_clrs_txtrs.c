@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 13:29:09 by aait-bab          #+#    #+#             */
-/*   Updated: 2024/09/13 12:01:04 by aait-bab         ###   ########.fr       */
+/*   Updated: 2024/09/14 02:26:14 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	contain2comma(char *str)
 int	in_txtrs_set(char *txtr)
 {
 	return (!ft_strncmp(txtr, "NO", 2) || !ft_strncmp(txtr, "SO", 2)
-		|| !ft_strncmp(txtr, "WE", 2) || !ft_strncmp(txtr, "EA", 2));
+			|| !ft_strncmp(txtr, "WE", 2) || !ft_strncmp(txtr, "EA", 2));
 }
 
 static void	parse_color(char *t_line, t_cube *cube)
@@ -100,7 +100,7 @@ t_list	*ft_parse_clrs_textrs(t_list *head, t_cube *cube)
 			if (t_line[0] == 'F' || t_line[0] == 'C')
 				parse_color(t_line, cube);
 			else if (t_line[0] == 'N' || t_line[0] == 'S' || t_line[0] == 'W' \
-				|| t_line[0] == 'E')
+					|| t_line[0] == 'E')
 				parse_texture(t_line, cube);
 			else
 				ft_error("Error\ninvalid line");

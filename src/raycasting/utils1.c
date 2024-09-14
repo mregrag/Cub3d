@@ -6,7 +6,7 @@
 /*   By: mregrag <mregrag@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 21:18:06 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/13 06:14:57 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/14 11:39:02 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	adjust_step(t_cube *cube, double *dx, double *dy, int is_vertical)
 
 void	check_rayfacing(t_cube *cube, double angle)
 {
-	cube->ray->angl = angle;
 	cube->ray->down = angle > 0 && angle < M_PI;
 	cube->ray->up = !cube->ray->down;
 	cube->ray->right = angle < (M_PI / 2) || angle > (3 * M_PI / 2);
@@ -47,7 +46,7 @@ int	hit_wall(double x, double y, t_cube *cube)
 {
 	t_ipoint	m;
 
-	if (x < 0 || x > cube->window->width || y < 0 || y > cube->window->height)
+	if (x < 0 || y < 0)
 		return (1);
 	m.x = floor(x / TILE_SIZE);
 	m.y = floor(y / TILE_SIZE);

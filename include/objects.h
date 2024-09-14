@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 10:49:25 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/12 08:38:08 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/14 11:07:00 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ typedef enum e_walk
 	RIGHT,
 	UP,
 	DOWN,
+	TURN_RIGHT,
+	TURN_LEFT,
 }	t_walk;
 
 typedef struct s_dpoint
