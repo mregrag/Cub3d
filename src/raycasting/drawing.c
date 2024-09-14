@@ -6,64 +6,31 @@
 /*   By: mregrag <mregrag@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 18:56:54 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/13 11:12:44 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/14 11:54:01 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-#include <stdio.h>
 
 void	draw_ceiling(t_cube *cube, int ray, int ceiling_end)
 {
 	int		i;
 	int		color;
 
-	color = ft_get_color(192, 192, 192, 255);
+	i = 0;
+	while (i < 2 && cube->colors[i])
+	{
+		if (!ft_strncmp(cube->colors[i]->key, "C", 1))
+			color = ft_get_color(cube->colors[i]->r, cube->colors[i]->g, cube->colors[i]->b, 255);
+		else if (!ft_strncmp(cube->colors[i]->key, "C", 1))
+			color = ft_get_color(cube->colors[i]->r, cube->colors[i]->g, cube->colors[i]->b, 255);
+		i++;
+	}
 	i = 0;
 	while (i < ceiling_end)
 		my_mlx_pixel_put(cube, ray, i++, color);
 }
 
-
-// double	calculate_texture_x(mlx_texture_t *texture, t_cube *cube)
-// {
-// 	double	x;
-//
-// 	if (cube->ray->flag == 0) // Horizontal wall hit
-// 		x = (int)fmodf((cube->ray->hwall.x * \
-// 		(texture->width / TILE_SIZE)), texture->width);
-// 	else
-// 		x = (int)fmodf((cube->ray->vwall.y * \
-// 		(texture->width / TILE_SIZE)), texture->width);
-// 	return (x);
-// }
-
-double	calculate_texture_x(mlx_texture_t *texture, t_cube *cube)
-{
-	double x;
-
-	if (cube->ray->flag == 0)  // Horizontal wall hit
-	{
-		x = cube->ray->hwall.x;
-		if (cube->ray->right)
-			x = TILE_SIZE - fmod(x, TILE_SIZE);
-		else
-			x = fmod(x, TILE_SIZE);
-	}
-	else  // Vertical wall hit
-	{
-		x = cube->ray->vwall.y;
-		if (cube->ray->up)
-			x = TILE_SIZE - fmod(x, TILE_SIZE);
-		else
-			x = fmod(x, TILE_SIZE);
-	}
-
-	// Scale to texture size
-	x = (x * texture->width) / TILE_SIZE;
-
-	return x;
-}
 
 void	draw_wall(t_cube *cube, int wall_t, int wall_b, double wall_h)
 {
@@ -72,7 +39,7 @@ void	draw_wall(t_cube *cube, int wall_t, int wall_b, double wall_h)
 	uint32_t		*arr;
 	double			factor;
 
-	texture = cube->textur->no;
+	texture = get_texture(cube, cube->ray->flag);
 	arr = (uint32_t *)texture->pixels;
 	factor = (double)texture->height / wall_h;
 	textoffset.x = calculate_texture_x(texture, cube);
@@ -91,13 +58,22 @@ void	draw_wall(t_cube *cube, int wall_t, int wall_b, double wall_h)
 void	draw_floor(t_cube *cube, int ray, int floor_start)
 {
 	int		color;
+	int		i;
 
-	color = ft_get_color(0, 0, 0, 255);
+	i = 0;
+	while (i < 2 && cube->colors[i])
+	{
+		if (!ft_strncmp(cube->colors[i]->key, "F", 1))
+			color = ft_get_color(cube->colors[i]->r, cube->colors[i]->g, cube->colors[i]->b, 255);
+		else if (!ft_strncmp(cube->colors[i]->key, "F", 1))
+			color = ft_get_color(cube->colors[i]->r, cube->colors[i]->g, cube->colors[i]->b, 255);
+		i++;
+	}
 	while (floor_start < cube->window->height)
 		my_mlx_pixel_put(cube, ray, floor_start++, color);
 }
 
-void	projected_wall(t_cube *cube, t_ray *ray, int index)
+void	projected_wall(t_cube *cube, t_ray *ray)
 {
 	double	wall_h;
 	double	disproplan;
@@ -114,9 +90,8 @@ void	projected_wall(t_cube *cube, t_ray *ray, int index)
 		wall_b = cube->window->height;
 	if (wall_t < 0)
 		wall_t = 0;
-	draw_ceiling(cube, index, wall_t);
-	cube->ray->index = index;
+	draw_ceiling(cube, cube->ray->index, wall_t);
 	draw_wall(cube, wall_t, wall_b, wall_h);
-	draw_floor(cube, index, wall_b);
+	draw_floor(cube, cube->ray->index, wall_b);
 }
 

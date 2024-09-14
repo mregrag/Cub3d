@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/07 18:21:10 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/13 12:00:58 by mregrag          ###   ########.fr       */
+/*   Created: 2024/08/07 18:21:0 by mregrag           #+#    #+#             */
+/*   Updated: 2024/09/14 09:55:33 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,6 @@ void	mouse_rotate(void *param)
 	// mlx_cursor_hook(cube.window, (void *)mouse_rotate, &cube);
 }
 
-void render_walls(t_cube *cube)
-{
-	t_ray	*ray; int	i;
-	int	color;
-
-	color = ft_get_color(255, 0, 0, 255);
-	i = 0;
-	while (i < cube->window->width)
-	{
-		ray = &cube->ray[i];
-		projected_wall(cube, ray, i++);
-	}
-}
-
 void	rendered(void *param)
 {
 	t_cube *cube;
@@ -51,9 +37,32 @@ void	rendered(void *param)
 	draw_rays(cube);
 	draw_player(cube);
 	draw_grid(cube);
-	free(cube->ray);
+	// free(cube->ray);
 }
 
+int	load_texture(t_cube *cube)
+{
+	int i = 0;
+
+	while (i < 4 && cube->txtrs[i] && cube->txtrs[i]->key)
+	{
+		if (!ft_strncmp(cube->txtrs[i]->key, "NO", 2))
+			cube->textur->no = mlx_load_png(cube->txtrs[i]->path);
+		else if (!ft_strncmp(cube->txtrs[i]->key, "SO", 2))
+			cube->textur->so = mlx_load_png(cube->txtrs[i]->path);
+		else if (!ft_strncmp(cube->txtrs[i]->key, "WE", 2))
+			cube->textur->we = mlx_load_png(cube->txtrs[i]->path);
+		else if (!ft_strncmp(cube->txtrs[i]->key, "EA", 2))
+			cube->textur->ea = mlx_load_png(cube->txtrs[i]->path);
+		i++;
+	}
+	if (!cube->textur->no || !cube->textur->so || !cube->textur->we || !cube->textur->ea)
+	{
+		fprintf(stderr, "Not all required textures were loaded\n");
+		return 0;
+	}
+	return 1;
+}
 void	init_player(t_cube *cube)
 {
 	char c;
@@ -82,32 +91,25 @@ t_cube	*get_cube(t_cube *cube)
 }
 
 
-void leak(void)
-{
-	system("leaks cub3D");
-}
-
 int	main(int argc, char **argv)
 {
 	t_cube	cube;
 
-	atexit(leak);
 	if (argc != 2)
 		return (print_fd("Error\nmissing map file", 2), 1);
 	get_cube(&cube);
 	ft_parse_cube(argv[1], &cube);
-
 	cube.plyer = malloc(sizeof(t_player));
 	cube.window = mlx_init(WIDTH, HEIGHT, "Cub3D", true);
-	cube.textur = malloc(sizeof(mlx_texture_t));
+	cube.textur = malloc(sizeof(t_textur));
 	cube.img = mlx_new_image(cube.window, cube.window->width, cube.window->height);
-	cube.textur->no = mlx_load_png("src/textures/naroto.png");
+	if(!load_texture(&cube))
+		exit(1);
 	mlx_image_to_window(cube.window, cube.img, 0, 0);
 	init_player(&cube);
 	mlx_loop_hook(cube.window, &rendered, &cube);
 	mlx_key_hook(cube.window, &key_press, &cube);
 	mlx_loop(cube.window);
-
 	ft_malloc(0, 0);
 	return (EXIT_SUCCESS);
 }

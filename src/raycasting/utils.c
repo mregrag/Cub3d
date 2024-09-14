@@ -6,7 +6,7 @@
 /*   By: mregrag <mregrag@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 03:49:51 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/13 08:55:33 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/14 10:04:31 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,19 +56,6 @@ int	ft_get_color(int r, int g, int b, int a)
 	return (r << 24 | g << 16 | b << 8 | a << 0);
 }
 
-void	turnright(double *dererction)
-{
-	*dererction += ROTATION_SPEED;
-	if (*dererction > 2 * M_PI)
-		*dererction -= 2 * M_PI;
-}
-
-void	turnleft(double *dererction)
-{
-	*dererction -= ROTATION_SPEED;
-	if (*dererction < 0)
-		*dererction += 2 * M_PI;
-}
 
 void	my_mlx_pixel_put(t_cube *cube, int x, int y, int color)
 {

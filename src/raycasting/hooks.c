@@ -6,7 +6,7 @@
 /*   By: mregrag <mregrag@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 03:43:59 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/13 12:07:42 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/14 08:14:52 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ void	key_press(mlx_key_data_t keydata, void *param)
 	else if (keydata.key == MLX_KEY_W && keydata.action == MLX_PRESS)
 		cube->plyer->walk = UP;
 	else if (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_PRESS)
-		cube->plyer->turn = LEFT;
+		cube->plyer->turn = TURN_LEFT;
 	else if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_PRESS)
-		cube->plyer->turn = RIGHT;
+		cube->plyer->turn = TURN_RIGHT;
 	key_reles(keydata, cube);
 }

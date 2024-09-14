@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 18:20:49 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/13 08:50:02 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/14 11:50:41 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	ft_reles(mlx_key_data_t keydata, t_cube *cube);
 void	key_press(mlx_key_data_t keydata, void *ml);
 
 void	turn_player(t_cube *cube, int turn);
-void	walk_player(t_cube *cube, double move_x, double move_y);
 void	movement(t_cube *cube, double move_x, double move_y);
 
 
@@ -47,8 +46,11 @@ int		ft_isnumber(char *str);
 int		empty_line(char *line);
 
 
+//-------------------------------texture----------------------
 
 
+mlx_texture_t	*get_texture(t_cube *cube, int flag);
+double	calculate_texture_x(mlx_texture_t *texture, t_cube *cube);
 
 //-------------------------------raycasting----------------------
 
@@ -77,14 +79,12 @@ void	render(t_cube *cube, double ray);
 void	draw_rays(t_cube *cube);
 // void	render(t_cube *mlx);
 
-void	turnright(double *dererction);
-void	turnleft(double *dererction);
 //-----------------------drawing-------------------------
 
 void	draw_ceiling(t_cube *cube, int ray, int ceiling_end);
 void	draw_wall(t_cube *cube, int wall_t, int wall_b, double wall_h);
 void	draw_floor(t_cube *cube, int ray, int floor_start);
-void	projected_wall(t_cube *cube, t_ray *ray, int index);
+void	projected_wall(t_cube *cube, t_ray *ray);
 
 //-----------------------drawing-------------------------
 void	adjust_step(t_cube *cube, double *dx, double *dy, int is_vertical);
