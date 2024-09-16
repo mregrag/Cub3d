@@ -1,0 +1,67 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/08/07 18:20:34 by mregrag           #+#    #+#              #
+#    Updated: 2024/09/16 13:38:02 by aait-bab         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME		= cub3D
+LIBFT		= libft.a
+LIBRAIRIE	= "./lib/libft"
+CC			= cc
+CFLAGS		= -Wall -Wextra -Werror -fsanitize=address -g2
+HEADERMLX	= ./MLX42/MLX42.h
+HEADERLIBFT	= ./lib/Libft/libft.h
+RM			= rm -rf
+MLX			= ./MLX42/libmlx42.a
+FLAG_MLX	= -framework Cocoa -framework OpenGL -framework IOKit -lglfw
+INCLUDE		= -I/Users/${USER}/.brew/Cellar/glfw/3.4/include/GLFW
+LIB			= -L/Users/${USER}/.brew/Cellar/glfw/3.4/lib
+
+HEADERCUB	= ./include/cub3d.h ./include/macros.h ./include/objects.h
+
+PARSING		=	./src/parsing/ft_parse_cube.c ./src/parsing/ft_parse_clrs_txtrs.c ./src/parsing/ft_helpers.c \
+				./src/parsing/ft_parse_map.c ./src/parsing/ft_check_dbl_keys.c ./src/parsing/ft_fill_map2d.c \
+				./src/parsing/ft_valid_caras_walls.c 
+				
+RAYCASTING	=	src/raycasting/ft_helpers.c src/raycasting/ft_hooks.c src/raycasting/ft_raycasting.c src/raycasting/ft_movement.c \
+				src/raycasting/ft_helpers1.c src/raycasting/ft_drawing.c  src/raycasting/ft_player_walk.c
+
+TEXTURS		=	src/textures/ft_texture.c src/textures/ft_load_txrts.c
+
+UTILS		=	src/utils/ft_error.c src/utils/ft_print.c src/utils/ft_trim.c src/utils/ft_clear_img.c \
+				src/utils/ft_get_cube.c  src/utils/ft_destroy_all.c src/utils/ft_init_cube.c 
+
+MAIN		=	src/main.c
+
+SRCS		=	$(MAIN)  $(RAYCASTING)  $(PARSING) $(UTILS) $(TEXTURS) 
+
+OBJS		=	$(SRCS:.c=.o)
+
+all: $(NAME)
+
+$(LIBFT):
+	@make -C $(LIBRAIRIE)
+
+$(NAME): $(LIBFT) $(OBJS)
+	@$(CC) $(CFLAGS) $(FLAG_MLX) $(LIB) $(OBJS) $(MLX) -L$(LIBRAIRIE) -o $(NAME) -lft
+
+%.o: %.c $(HEADERCUB) $(HEADERLIBFT) $(HEADERMLX)
+	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
+
+clean:
+	@make clean -C $(LIBRAIRIE)
+	@$(RM) $(OBJS)
+
+fclean: clean
+	@make fclean -C $(LIBRAIRIE)
+	@$(RM) $(NAME)
+
+re: fclean all
+
+.PHONY: all clean fclean
