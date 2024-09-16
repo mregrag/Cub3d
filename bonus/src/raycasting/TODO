@@ -1,1 +1,0 @@
-// mlx->rays->distance *= cos(reset_angle(mlx->rays->ray_angl - mlx->plyer->derection))

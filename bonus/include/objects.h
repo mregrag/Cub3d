@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 10:49:25 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/15 20:54:39 by aait-bab         ###   ########.fr       */
+/*   Updated: 2024/09/16 18:21:21 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,6 @@ typedef struct s_textur
 	mlx_texture_t	*we;
 	mlx_texture_t	*ea;
 }	t_textur;
-typedef struct s_point
-{
-	double	x;
-	double	y;
-}	t_point;
-
 
 typedef struct s_txtr
 {
@@ -94,6 +88,7 @@ typedef struct s_colors
 	int				g;
 	int				b;
 }	t_colors;
+
 typedef struct s_ray
 {
 	int		index;
@@ -113,13 +108,11 @@ typedef struct s_ray
 typedef struct s_cube
 {
 	mlx_image_t	*img;
-	mlx_image_t	*img2;
 	mlx_t		*window;
 	t_map		*map;
 	t_player	*plyer;
 	t_ray		*ray;
 	t_textur	*textur;
-	t_ray		*rays;
 	t_txtr		*txtrs[6];
 	t_colors	*colors[6];
 }	t_cube;

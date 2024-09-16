@@ -6,15 +6,15 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 10:19:54 by aait-bab          #+#    #+#             */
-/*   Updated: 2024/09/16 13:36:19 by aait-bab         ###   ########.fr       */
+/*   Updated: 2024/09/16 16:49:11 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MACROS_H
 # define MACROS_H
 
-# include "../MLX42/MLX42.h"
-# include "../lib/Libft/libft.h"
+# include "../../MLX42/MLX42.h"
+# include "../../lib/Libft/libft.h"
 # include <unistd.h>
 # include <math.h>
 # include <stdio.h>

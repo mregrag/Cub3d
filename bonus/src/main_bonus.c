@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 18:21:10 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/16 16:20:35 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/16 17:44:44 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,13 @@ void	rendered(void *param)
 	cube = param;
 	ft_clear_img(cube->img);
 	mlx_resize_image(cube->img, cube->window->width, cube->window->height);
+	cube->ray = ft_malloc(sizeof(t_ray) * cube->window->width, 1);
 	movement(cube, 0, 0);
 	raycasting(cube);
+	minimap_debug(cube);
+	draw_player(cube);
+	draw_rays(cube);
+	draw_grid(cube);
 }
 
 int	main(int argc, char **argv)

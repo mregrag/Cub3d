@@ -6,15 +6,15 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 10:19:54 by aait-bab          #+#    #+#             */
-/*   Updated: 2024/09/15 22:50:40 by aait-bab         ###   ########.fr       */
+/*   Updated: 2024/09/16 18:41:39 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MACROS_H
 # define MACROS_H
 
-# include "../MLX42/MLX42.h"
-# include "../lib/Libft/libft.h"
+# include "../../MLX42/MLX42.h"
+# include "../../lib/Libft/libft.h"
 # include <unistd.h>
 # include <math.h>
 # include <stdio.h>
@@ -30,6 +30,7 @@
 # define FOV 60
 # define ROTATION_SPEED 0.045
 # define MOVE_SPEED 2
+# define COLLISION  1
 
 # define MINIMAP_SCALE 0.8
 #endif

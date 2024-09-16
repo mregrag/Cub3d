@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 18:20:49 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/16 13:39:24 by aait-bab         ###   ########.fr       */
+/*   Updated: 2024/09/16 15:54:39 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,11 @@ void	projected_wall(t_cube *cube);
 void	adjust_step(t_cube *cube, double *dx, double *dy, int is_vertical);
 void	check_rayfacing(t_cube *cube, double angle);
 int		hit_wall(double x, double y, t_cube *cube);
+
+//-----------------debug-----------------------------------
+
+void minimap_debug(t_cube *cube);
+void draw_grid(t_cube *cube);
+void	draw_rays(t_cube *cube);
+void draw_player(t_cube *cube);
 #endif
