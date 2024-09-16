@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 18:20:49 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/14 11:50:41 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/15 22:30:38 by aait-bab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ double	calcul_distance(double x_inter, double y_inter, double p_x, double p_y);
 double	deg2rad(double degrees);
 int		ft_get_color(int r, int g, int b, int a);
 void	my_mlx_pixel_put(t_cube *cube, int x, int y, int color);
+void	my_mlx_pixel_put2(t_cube *cube, int x, int y, int color);
+
 
 //-------------------------------General utils--------------------
 void	ft_error(char *msg);
@@ -90,6 +92,7 @@ void	projected_wall(t_cube *cube, t_ray *ray);
 void	adjust_step(t_cube *cube, double *dx, double *dy, int is_vertical);
 void	check_rayfacing(t_cube *cube,  double angle);
 int	hit_wall(double x, double y, t_cube *cube);
+void clear_image(mlx_image_t *img);
 
 // void	draw_player(t_cube *cube);
 // void    draw_player(t_cube *cube, int offset_x, int offset_y);

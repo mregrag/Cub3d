@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 10:49:25 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/14 11:07:00 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/15 20:54:39 by aait-bab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,14 +113,15 @@ typedef struct s_ray
 typedef struct s_cube
 {
 	mlx_image_t	*img;
+	mlx_image_t	*img2;
 	mlx_t		*window;
 	t_map		*map;
 	t_player	*plyer;
 	t_ray		*ray;
 	t_textur	*textur;
 	t_ray		*rays;
-	t_txtr		*txtrs[4];
-	t_colors	*colors[2];
+	t_txtr		*txtrs[6];
+	t_colors	*colors[6];
 }	t_cube;
 
 #endif

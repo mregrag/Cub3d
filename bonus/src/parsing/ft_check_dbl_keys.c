@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 18:52:25 by aait-bab          #+#    #+#             */
-/*   Updated: 2024/09/11 21:03:19 by aait-bab         ###   ########.fr       */
+/*   Updated: 2024/09/14 12:32:52 by aait-bab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ static void	check_colors(t_colors **colors)
 	int	j;
 
 	i = 0;
-	while (i < 2)
+	while (colors[i])
 	{
 		j = i + 1;
-		while (j < 2)
+		while (colors[j])
 		{
 			if (!strcmp(colors[i]->key, colors[j]->key))
 				ft_error("Error\nduplicate color key");
@@ -38,10 +38,10 @@ static void	check_txtrs(t_txtr **txtrs)
 
 	i = 0;
 	j = 0;
-	while (i < 4)
+	while (txtrs[i])
 	{
 		j = i + 1;
-		while (j < 4)
+		while (txtrs[j])
 		{
 			if (!strcmp(txtrs[i]->key, txtrs[j]->key))
 				ft_error("Error\nduplicate texture key");

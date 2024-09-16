@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 13:29:09 by aait-bab          #+#    #+#             */
-/*   Updated: 2024/09/14 02:26:14 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/14 14:36:25 by aait-bab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,6 @@ static void	parse_color(char *t_line, t_cube *cube)
 	char		**colors;
 	char		*key;
 
-	if (i == 2)
-		return ;
 	key = ft_substr(t_line, 0, 1);
 	if (t_line[1] != ' ')
 		ft_error("Error\ninvalid color");
@@ -61,6 +59,7 @@ static void	parse_color(char *t_line, t_cube *cube)
 	cube->colors[i]->r = ft_atoi(colors[0]);
 	cube->colors[i]->g = ft_atoi(colors[1]);
 	cube->colors[i]->b = ft_atoi(colors[2]);
+	cube->colors[i + 1] = NULL;
 	i++;
 }
 
@@ -70,8 +69,6 @@ static void	parse_texture(char *t_line, t_cube *cube)
 	char		*key;
 	char		*path;
 
-	if (i == 4)
-		return ;
 	if (ft_strlen(t_line) < 2 || t_line[2] != ' ')
 		ft_error("Error\ninvalid texture");
 	key = ft_substr(t_line, 0, 2);
@@ -83,6 +80,7 @@ static void	parse_texture(char *t_line, t_cube *cube)
 	cube->txtrs[i] = ft_malloc(sizeof(t_txtr), 1);
 	cube->txtrs[i]->key = key;
 	cube->txtrs[i]->path = path;
+	cube->txtrs[i + 1] = NULL;
 	i++;
 }
 

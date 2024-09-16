@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 18:21:10 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/14 12:21:13 by aait-bab         ###   ########.fr       */
+/*   Updated: 2024/09/16 10:24:38 by aait-bab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,22 +29,24 @@ void	rendered(void *param)
 	t_cube	*cube;
 
 	cube = param;
+	clear_image(cube->img);
 	mlx_resize_image(cube->img, cube->window->width, cube->window->height);
 	cube->ray = ft_calloc(sizeof(t_ray), cube->window->width);
 	movement(cube, 0, 0);
 	raycasting(cube);
 	draw_minimap(cube);
-	draw_rays(cube);
+	// draw_rays(cube);
 	draw_player(cube);
 	draw_grid(cube);
-	// free(cube->ray);
+	free(cube->ray);
+	
 }
 
 int	load_texture(t_cube *cube)
 {
 	int i = 0;
 
-	while (i < 4 && cube->txtrs[i] && cube->txtrs[i]->key)
+	while (cube->txtrs[i] != NULL)
 	{
 		if (!ft_strncmp(cube->txtrs[i]->key, "NO", 2))
 			cube->textur->no = mlx_load_png(cube->txtrs[i]->path);
@@ -103,9 +105,11 @@ int	main(int argc, char **argv)
 	cube.window = mlx_init(WIDTH, HEIGHT, "Cub3D", true);
 	cube.textur = malloc(sizeof(t_textur));
 	cube.img = mlx_new_image(cube.window, cube.window->width, cube.window->height);
+	cube.img2 = mlx_new_image(cube.window, 120, 120);
 	if(!load_texture(&cube))
 		exit(1);
 	mlx_image_to_window(cube.window, cube.img, 0, 0);
+	mlx_image_to_window(cube.window, cube.img2, 10, 10);
 	init_player(&cube);
 	mlx_loop_hook(cube.window, &rendered, &cube);
 	mlx_key_hook(cube.window, &key_press, &cube);

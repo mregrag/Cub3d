@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mregrag <mregrag@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 03:49:51 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/14 10:04:31 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/15 20:56:43 by aait-bab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,16 @@ void	my_mlx_pixel_put(t_cube *cube, int x, int y, int color)
 	else if (y >= cube->window->height)
 		return ;
 	mlx_put_pixel(cube->img, x, y, color);
+}
+void	my_mlx_pixel_put2(t_cube *cube, int x, int y, int color)
+{
+	if (x < 0)
+		return ;
+	else if (x >= 120)
+		return ;
+	if (y < 0)
+		return ;
+	else if (y >= 120)
+		return ;
+	mlx_put_pixel(cube->img2, x, y, color);
 }

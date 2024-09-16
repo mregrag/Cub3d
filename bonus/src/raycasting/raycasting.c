@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mregrag <mregrag@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 07:08:14 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/14 11:59:24 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/15 23:18:22 by aait-bab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ static double	vertical_intersect(t_cube *cube)
 	t_dpoint	delta;
 
 	inter.x = floor(cube->plyer->s.x / TILE_SIZE) * TILE_SIZE;
-	inter.x += TILE_SIZE * cube->ray->right;
+	if (cube->ray->right)
+		inter.x += TILE_SIZE;
 	inter.y = cube->plyer->s.y + (inter.x - cube->plyer->s.x) * tan(cube->ray->angl);
 	delta.x = TILE_SIZE;
 	delta.y = TILE_SIZE * tan(cube->ray->angl);
@@ -39,7 +40,8 @@ static double	horizontal_intersect(t_cube *cube)
 	t_dpoint	delta;
 
 	inter.y = floor(cube->plyer->s.y / TILE_SIZE) * TILE_SIZE;
-	inter.y += TILE_SIZE * cube->ray->down;
+	if(cube->ray->down)
+		inter.y += TILE_SIZE;
 	inter.x = cube->plyer->s.x + (inter.y - cube->plyer->s.y) / tan(cube->ray->angl);
 	delta.y = TILE_SIZE;
 	delta.x = TILE_SIZE / tan(cube->ray->angl);

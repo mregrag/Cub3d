@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mregrag <mregrag@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 18:56:54 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/14 11:54:01 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/15 22:28:21 by aait-bab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	draw_ceiling(t_cube *cube, int ray, int ceiling_end)
 	int		color;
 
 	i = 0;
-	while (i < 2 && cube->colors[i])
+	while (cube->colors[i] != NULL)
 	{
 		if (!ft_strncmp(cube->colors[i]->key, "C", 1))
 			color = ft_get_color(cube->colors[i]->r, cube->colors[i]->g, cube->colors[i]->b, 255);
@@ -61,7 +61,7 @@ void	draw_floor(t_cube *cube, int ray, int floor_start)
 	int		i;
 
 	i = 0;
-	while (i < 2 && cube->colors[i])
+	while (cube->colors[i] != NULL)
 	{
 		if (!ft_strncmp(cube->colors[i]->key, "F", 1))
 			color = ft_get_color(cube->colors[i]->r, cube->colors[i]->g, cube->colors[i]->b, 255);
@@ -90,8 +90,8 @@ void	projected_wall(t_cube *cube, t_ray *ray)
 		wall_b = cube->window->height;
 	if (wall_t < 0)
 		wall_t = 0;
-	draw_ceiling(cube, cube->ray->index, wall_t);
+	//draw_ceiling(cube, cube->ray->index, wall_t);
 	draw_wall(cube, wall_t, wall_b, wall_h);
-	draw_floor(cube, cube->ray->index, wall_b);
+	//draw_floor(cube, cube->ray->index, wall_b);
 }
 
