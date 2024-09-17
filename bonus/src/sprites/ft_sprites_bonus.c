@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error_bonus.c                                   :+:      :+:    :+:   */
+/*   ft_sprites_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/26 11:57:20 by aait-bab          #+#    #+#             */
-/*   Updated: 2024/09/17 22:33:03 by aait-bab         ###   ########.fr       */
+/*   Created: 2024/09/17 09:42:24 by aait-bab          #+#    #+#             */
+/*   Updated: 2024/09/17 22:23:50 by aait-bab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-void	ft_error(char *msg)
+void	ft_sprites(t_cube *cube, int *i, int *j)
 {
-	t_cube	*cube;
-
-	print_fd(msg, 2);
-	cube = ft_get_cube(NULL);
-	ft_malloc(0, 0);
-	exit(1);
+	if (cube->shoot)
+	{
+		if (++(*j) > 4)
+		{
+			cube->sprites[*i]->img->enabled = false;
+			(*i)++;
+			((*i % 5 == 0) && (*i = 0, cube->shoot = 0));
+			cube->sprites[*i]->img->enabled = true;
+		}
+		*j = (*j % 5);
+	}
 }

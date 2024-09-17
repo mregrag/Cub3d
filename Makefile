@@ -6,7 +6,7 @@
 #    By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/07 18:20:34 by mregrag           #+#    #+#              #
-#    Updated: 2024/09/16 18:09:45 by mregrag          ###   ########.fr        #
+#    Updated: 2024/09/17 11:47:46 by aait-bab         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,6 @@ SRCS		=	./mandatory/src/parsing/ft_parse_cube.c \
 			./mandatory/src/raycasting/ft_helpers1.c \
 			./mandatory/src/raycasting/ft_drawing.c\
 			./mandatory/src/raycasting/ft_player_walk.c \
-			./mandatory/src/raycasting/minimap_debug.c \
 			./mandatory/src/textures/ft_texture.c\
 			./mandatory/src/textures/ft_load_txrts.c \
 			./mandatory/src/utils/ft_error.c \
@@ -59,6 +58,8 @@ SRCSB		=	./bonus/src/parsing/ft_parse_cube_bonus.c \
 			./bonus/src/parsing/ft_check_dbl_keys_bonus.c \
 			./bonus/src/parsing/ft_fill_map2d_bonus.c \
 			./bonus/src/parsing/ft_valid_caras_walls_bonus.c\
+			./bonus/src/sprites/ft_load_sprites_bonus.c\
+			./bonus/src/sprites/ft_sprites_bonus.c\
 			./bonus/src/raycasting/ft_helpers_bonus.c\
 			./bonus/src/raycasting/ft_hooks_bonus.c\
 			./bonus/src/raycasting/ft_raycasting_bonus.c\
@@ -66,6 +67,8 @@ SRCSB		=	./bonus/src/parsing/ft_parse_cube_bonus.c \
 			./bonus/src/raycasting/ft_helpers1_bonus.c \
 			./bonus/src/raycasting/ft_drawing_bonus.c\
 			./bonus/src/raycasting/ft_player_walk_bonus.c \
+			./bonus/src/raycasting/ft_minimap_bonus.c\
+			./bonus/src/raycasting/ft_draw_player_bonus.c\
 			./bonus/src/textures/ft_texture_bonus.c \
 			./bonus/src/textures/ft_load_txrts_bonus.c \
 			./bonus/src/utils/ft_error_bonus.c \
@@ -76,7 +79,7 @@ SRCSB		=	./bonus/src/parsing/ft_parse_cube_bonus.c \
 			./bonus/src/utils/ft_destroy_all_bonus.c \
 			./bonus/src/utils/ft_init_cube_bonus.c \
 			./bonus//src/minimap_debug.c \
-			./bonus/src/main_bonus.c
+			./bonus/src/main_bonus.c 
 
 OBJS		=	$(SRCS:.c=.o)
 OBJS_B		=	$(SRCSB:.c=.o)

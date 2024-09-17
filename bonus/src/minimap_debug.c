@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   minimap_debug.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mregrag <mregrag@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 16:54:59 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/16 17:02:43 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/16 21:43:42 by aait-bab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-void	draw_line(t_cube *cube, int x0, int y0, int x1, int y1, uint32_t color)
+void	draw_line_dg(t_cube *cube, int x0, int y0, int x1, int y1, uint32_t color)
 {
 	int	dx;
 	int	dy;
@@ -49,22 +49,21 @@ void	draw_line(t_cube *cube, int x0, int y0, int x1, int y1, uint32_t color)
 	}
 }
 
-void	draw_player_direction(t_cube *cube)
+void	draw_player_direction_dg(t_cube *cube)
 {
 	t_ipoint start;
 	t_ipoint end;
 	int	color;
 
-	printf("d = %f\n", cube->plyer->derection);
 	start.x = cube->plyer->s.x * MINIMAP_SCALE;
 	start.y = cube->plyer->s.y * MINIMAP_SCALE;
 	end.x = start.x + cos(cube->plyer->derection) * (TILE_SIZE * MINIMAP_SCALE);
 	end.y = start.y + sin(cube->plyer->derection) * (TILE_SIZE * MINIMAP_SCALE);
 	color = ft_get_color(0, 0, 255, 255);
-	draw_line(cube, start.x, start.y, end.x, end.y, color);
+	draw_line_dg(cube, start.x, start.y, end.x, end.y, color);
 }
 
-void	draw_rays(t_cube *cube)
+void	draw_rays_dg(t_cube *cube)
 {
 	t_ipoint start;
 	t_ipoint end;
@@ -79,11 +78,11 @@ void	draw_rays(t_cube *cube)
 		ray = &cube->ray[i];
 		end.x = ray->hit.x * MINIMAP_SCALE;
 		end.y = ray->hit.y * MINIMAP_SCALE;
-		draw_line(cube, start.x, start.y, end.x, end.y, color);
+		draw_line_dg(cube, start.x, start.y, end.x, end.y, color);
 	}
 
 }
-void	draw_rectangle(t_cube *cube, int x, int y, int size, int color)
+void	draw_rectangle_dg(t_cube *cube, int x, int y, int size, int color)
 {
 	int	i;
 	int	j;
@@ -101,7 +100,7 @@ void	draw_rectangle(t_cube *cube, int x, int y, int size, int color)
 	}
 }
 
-void draw_grid(t_cube *cube)
+void draw_grid_dg(t_cube *cube)
 {
 	int color;
 	int x, y;
@@ -111,13 +110,13 @@ void draw_grid(t_cube *cube)
 	color = ft_get_color(100, 100, 100, 255);
 
 	for (x = 0; x <= minimap_width; x += TILE_SIZE * MINIMAP_SCALE)
-		draw_line(cube, x, 0, x, minimap_height, color);
+		draw_line_dg(cube, x, 0, x, minimap_height, color);
 
 	for (y = 0; y <= minimap_height; y += TILE_SIZE * MINIMAP_SCALE)
-		draw_line(cube, 0, y, minimap_width, y, color);
+		draw_line_dg(cube, 0, y, minimap_width, y, color);
 }
 
-void draw_circle(t_cube *cube, int center_x, int center_y, int radius, uint32_t color)
+void draw_circle_dg(t_cube *cube, int center_x, int center_y, int radius, uint32_t color)
 {
 	for (int y = -radius; y <= radius; y++)
 	{
@@ -129,7 +128,7 @@ void draw_circle(t_cube *cube, int center_x, int center_y, int radius, uint32_t 
 	}
 }
 
-void draw_player(t_cube *cube)
+void draw_player_dg(t_cube *cube)
 {
 	int	x;
 	int	y;
@@ -141,7 +140,7 @@ void draw_player(t_cube *cube)
 	x = cube->plyer->s.x * MINIMAP_SCALE;
 	y = cube->plyer->s.y * MINIMAP_SCALE;
 	radius = TILE_SIZE / 8;
-	draw_circle(cube, x, y, radius, color);
+	draw_circle_dg(cube, x, y, radius, color);
 
 }
 
@@ -170,11 +169,11 @@ void	minimap_debug(t_cube *cube)
 			else
 				color = ft_get_color(255, 255, 255, 255);
 
-			draw_rectangle(cube, map_x, map_y, TILE_SIZE * MINIMAP_SCALE, color);
+			draw_rectangle_dg(cube, map_x, map_y, TILE_SIZE * MINIMAP_SCALE, color);
 			x++;
 		}
 		y++;
 	}
-	draw_player_direction(cube);
+	draw_player_direction_dg(cube);
 }
 

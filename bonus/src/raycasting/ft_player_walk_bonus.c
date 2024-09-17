@@ -6,12 +6,11 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:33:54 by aait-bab          #+#    #+#             */
-/*   Updated: 2024/09/16 19:56:36 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/17 13:04:11 by aait-bab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-#include <math.h>
 
 static void    check_horizontal_move(t_cube *cube, double new_x, double move_x)
 {
@@ -54,7 +53,6 @@ void    walk_player(t_cube *cube, double move_x, double move_y)
 
 	new_x = floor(cube->plyer->s.x + move_x);
 	new_y = cube->plyer->s.y + move_y;
-	printf("new_y = %d\n", new_y);
 	check_horizontal_move(cube, new_x, move_x);
 	check_vertical_move(cube, new_y, move_y);
 }

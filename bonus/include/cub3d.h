@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 18:20:49 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/16 15:54:39 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/17 12:49:37 by aait-bab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void    walk_player(t_cube *cube, double move_x, double move_y);
 // helper functions
 int		ft_get_color(int r, int g, int b, int a);
 void	my_mlx_pixel_put(t_cube *cube, int x, int y, int color);
+void	my_mlx_pixel_put2(t_cube *cube, int x, int y, int color);
 
 //-------------------------------General utils--------------------
 void	ft_error(char *msg);
@@ -62,8 +63,15 @@ void	ft_init_cube(t_cube *cube);
 t_cube	*ft_get_cube(t_cube *cube);
 void	ft_destroy_all(t_cube *cube);
 
+//-----------------------sprites-------------------------
+void	ft_load_sprites(t_cube *cube);
+void	ft_sprites(t_cube *cube, int *i, int *j);
+//-----------------------drawing-------------------------
+
 //-----------------------drawing-------------------------
 void	projected_wall(t_cube *cube);
+void    draw_minimap(t_cube *cube);
+void    draw_player(t_cube *cube);
 
 //-----------------------drawing-------------------------
 void	adjust_step(t_cube *cube, double *dx, double *dy, int is_vertical);
@@ -73,7 +81,7 @@ int		hit_wall(double x, double y, t_cube *cube);
 //-----------------debug-----------------------------------
 
 void minimap_debug(t_cube *cube);
-void draw_grid(t_cube *cube);
-void	draw_rays(t_cube *cube);
-void draw_player(t_cube *cube);
+void draw_grid_dg(t_cube *cube);
+void	draw_rays_dg(t_cube *cube);
+void draw_player_dg(t_cube *cube);
 #endif

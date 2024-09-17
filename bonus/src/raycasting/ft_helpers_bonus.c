@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_helpers_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 03:49:51 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/16 11:33:47 by aait-bab         ###   ########.fr       */
+/*   Updated: 2024/09/16 21:37:40 by aait-bab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,16 @@ void	my_mlx_pixel_put(t_cube *cube, int x, int y, int color)
 	else if (y >= cube->window->height)
 		return ;
 	mlx_put_pixel(cube->img, x, y, color);
+}
+void	my_mlx_pixel_put2(t_cube *cube, int x, int y, int color)
+{
+	if (x < 0)
+		return ;
+	else if (x >= 120)
+		return ;
+	if (y < 0)
+		return ;
+	else if (y >= 120)
+		return ;
+	mlx_put_pixel(cube->img2, x, y, color);
 }

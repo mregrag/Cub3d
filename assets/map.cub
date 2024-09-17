@@ -1,7 +1,7 @@
-NO map/textures/f.png
-SO map/textures/b.png
-WE map/textures/c.png
-EA map/textures/e.png
+NO assets/textures/f.png
+SO assets/textures/b.png
+WE assets/textures/c.png
+EA assets/textures/e.png
 
 F 32,32,32
 C 204,255,255
