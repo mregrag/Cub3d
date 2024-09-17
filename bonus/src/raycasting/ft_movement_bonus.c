@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 06:30:06 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/16 13:38:36 by aait-bab         ###   ########.fr       */
+/*   Updated: 2024/09/17 22:55:27 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,14 @@
 static void	turnright(t_cube *cube)
 {
 	cube->plyer->derection += ROTATION_SPEED;
-	if (cube->plyer->derection > 2 * M_PI)
-		cube->plyer->derection -= 2 * M_PI;
+	cube->plyer->derection = normalize_angle(cube->plyer->derection);
 }
 
 static void	turnleft(t_cube *cube)
 {
 	cube->plyer->derection -= ROTATION_SPEED;
-	if (cube->plyer->derection < 0)
-		cube->plyer->derection += 2 * M_PI;
+	cube->plyer->derection = normalize_angle(cube->plyer->derection);
 }
-
 void	movement(t_cube *cube, double move_x, double move_y)
 {
 	if (cube->plyer->turn == TURN_RIGHT)

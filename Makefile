@@ -6,25 +6,28 @@
 #    By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/07 18:20:34 by mregrag           #+#    #+#              #
-#    Updated: 2024/09/17 11:47:46 by aait-bab         ###   ########.fr        #
+#    Updated: 2024/09/17 22:47:24 by mregrag          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= cub3D
 NAME_B		= cub3D_bonus
 LIBFT		= libft.a
-LIBRAIRIE	= "./lib/libft"
-CC			= cc
+LIBRAIRIE	= "./lib/Libft"
+CC		= cc
 CFLAGS		= -Wall -Wextra -Werror -fsanitize=address -g2
 HEADERMLX	= ./MLX42/MLX42.h
 HEADERLIBFT	= ./lib/Libft/libft.h
-RM			= rm -rf
-MLX			= ./MLX42/libmlx42.a
+RM		= rm -rf
+MLX		= ./MLX42/libmlx42.a
 FLAG_MLX	= -framework Cocoa -framework OpenGL -framework IOKit -lglfw
 INCLUDE		= -I/Users/${USER}/.brew/Cellar/glfw/3.4/include/GLFW
-LIB			= -L/Users/${USER}/.brew/Cellar/glfw/3.4/lib
+LIB		= -L/Users/${USER}/.brew/Cellar/glfw/3.4/lib
 
-HEADERCUB	= ./include/cub3d.h ./include/macros.h ./include/objects.h
+# HEADERCUB	= ./include/cub3d.h ./include/macros.h ./include/objects.h
+
+HEADER		= ./mandatory/include/cub3d.h ./mmandatory/include/macros.h ./mandatory/include/objects.h
+HEADER_B	= ./bonus/include/cub3d.h ./bonus/include/macros.h ./bonus/include/objects.h
 
 SRCS		=	./mandatory/src/parsing/ft_parse_cube.c \
 			./mandatory/src/parsing/ft_parse_clrs_txtrs.c \
@@ -79,7 +82,7 @@ SRCSB		=	./bonus/src/parsing/ft_parse_cube_bonus.c \
 			./bonus/src/utils/ft_destroy_all_bonus.c \
 			./bonus/src/utils/ft_init_cube_bonus.c \
 			./bonus//src/minimap_debug.c \
-			./bonus/src/main_bonus.c 
+			./bonus/src/main_bonus.c
 
 OBJS		=	$(SRCS:.c=.o)
 OBJS_B		=	$(SRCSB:.c=.o)
@@ -92,11 +95,10 @@ $(LIBFT):
 $(NAME): $(LIBFT) $(OBJS)
 	@$(CC) $(CFLAGS) $(FLAG_MLX) $(LIB) $(OBJS) $(MLX) -L$(LIBRAIRIE) -o $(NAME) -lft
 
-%.o: %.c $(HEADERCUB) $(HEADERLIBFT) $(HEADERMLX)
+%.o: %.c $(HEADER_B) $(HEADERLIBFT) $(HEADERMLX)
 	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
-bonus: $(OBJS_B)
-	@make -C $(LIBRAIRIE)
+bonus: $(LIBFT) $(OBJS_B)
 	@$(CC) $(CFLAGS) $(FLAG_MLX) $(LIB) $(OBJS_B) $(MLX) -L$(LIBRAIRIE) -o $(NAME_B) -lft
 clean:
 	@make clean -C $(LIBRAIRIE)
@@ -111,3 +113,4 @@ fclean: clean
 re: fclean all
 
 .PHONY: clean
+

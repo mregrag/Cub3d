@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 18:21:10 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/17 13:44:59 by aait-bab         ###   ########.fr       */
+/*   Updated: 2024/09/17 22:53:39 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,25 +26,25 @@ void	mouse_rotate(void *param)
 
 void	rendered(void *param)
 {
-	static int	i=0;
-	static int	j=0;
+	// static int	i=0;
+	// static int	j=0;
 	t_cube		*cube;
 
 	cube = param;
 	ft_clear_img(cube->img);
 	mlx_resize_image(cube->img, cube->window->width, cube->window->height);
 	mlx_resize_image(cube->img2, cube->window->width, cube->window->height);
-	
+
 	cube->ray = ft_malloc(sizeof(t_ray) * cube->window->width, 1);
 	movement(cube, 0, 0);
 	raycasting(cube);
-	draw_minimap(cube);
-	draw_player(cube);
-	ft_sprites(cube, &i, &j);
-	// minimap_debug(cube);
-	// draw_player_dg(cube);
-	// draw_rays_dg(cube);
-	// draw_grid_dg(cube);
+	// draw_minimap(cube);
+	// draw_player(cube);
+	// ft_sprites(cube, &i, &j);
+	minimap_debug(cube);
+	draw_player_dg(cube);
+	draw_rays_dg(cube);
+	draw_grid_dg(cube);
 }
 
 int	main(int argc, char **argv)
