@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 06:30:06 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/17 22:55:27 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/18 11:02:03 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,28 +23,29 @@ static void	turnleft(t_cube *cube)
 	cube->plyer->derection -= ROTATION_SPEED;
 	cube->plyer->derection = normalize_angle(cube->plyer->derection);
 }
+
 void	movement(t_cube *cube, double move_x, double move_y)
 {
 	if (cube->plyer->turn == TURN_RIGHT)
 		turnright(cube);
-	if (cube->plyer->turn == TURN_LEFT)
+	else if (cube->plyer->turn == TURN_LEFT)
 		turnleft(cube);
-	if (cube->plyer->walk == RIGHT)
+	else if (cube->plyer->walk == RIGHT)
 	{
 		move_x = -sin(cube->plyer->derection) * MOVE_SPEED;
 		move_y = cos(cube->plyer->derection) * MOVE_SPEED;
 	}
-	if (cube->plyer->walk == LEFT)
+	else if (cube->plyer->walk == LEFT)
 	{
 		move_x = sin(cube->plyer->derection) * MOVE_SPEED;
 		move_y = -cos(cube->plyer->derection) * MOVE_SPEED;
 	}
-	if (cube->plyer->walk == UP)
+	else if (cube->plyer->walk == UP)
 	{
 		move_x = cos(cube->plyer->derection) * MOVE_SPEED;
 		move_y = sin(cube->plyer->derection) * MOVE_SPEED;
 	}
-	if (cube->plyer->walk == DOWN)
+	else if (cube->plyer->walk == DOWN)
 	{
 		move_x = -cos(cube->plyer->derection) * MOVE_SPEED;
 		move_y = -sin(cube->plyer->derection) * MOVE_SPEED;

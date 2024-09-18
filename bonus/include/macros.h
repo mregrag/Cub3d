@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 10:19:54 by aait-bab          #+#    #+#             */
-/*   Updated: 2024/09/17 09:33:50 by aait-bab         ###   ########.fr       */
+/*   Updated: 2024/09/18 12:37:06 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # define FOV 60
 # define ROTATION_SPEED 0.045
 # define MOVE_SPEED 2
-# define COLLISION  1
+# define COLLISION  2
 
 # define MINIMAP_SCALE 0.8
 #endif

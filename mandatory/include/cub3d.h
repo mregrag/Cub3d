@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 18:20:49 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/16 21:26:14 by aait-bab         ###   ########.fr       */
+/*   Updated: 2024/09/18 12:37:54 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	movement(t_cube *cube, double move_x, double move_y);
 int		ft_get_color(int r, int g, int b, int a);
 void	my_mlx_pixel_put(t_cube *cube, int x, int y, int color);
 int		reverse_bytes(int c);
+double	calcul_distance(t_dpoint start, t_ipoint end);
 
 //-------------------------------parsing-------------------------
 void	ft_parse_cube(char *file, t_cube *cube);
@@ -47,7 +48,6 @@ void	        ft_load_txtrs(t_cube *cube);
 int		parsing_map(char *path, t_map *map);
 double	normalize_angle(float angle);
 void	raycasting(t_cube *cube);
-double	calcul_distance(double x_inter, double y_inter, double p_x, double p_y);
 void    walk_player(t_cube *cube, double move_x, double move_y);
 // helper functions
 int		ft_get_color(int r, int g, int b, int a);
@@ -66,7 +66,7 @@ void	ft_destroy_all(t_cube *cube);
 void	projected_wall(t_cube *cube);
 
 //-----------------------drawing-------------------------
-void	adjust_step(t_cube *cube, double *dx, double *dy, int is_vertical);
+void	adjust_step(t_cube *cube, t_dpoint *delta, int is_vertical);
 void	check_rayfacing(t_cube *cube, double angle);
 int		hit_wall(double x, double y, t_cube *cube);
 

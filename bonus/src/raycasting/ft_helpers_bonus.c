@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 03:49:51 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/16 21:37:40 by aait-bab         ###   ########.fr       */
+/*   Updated: 2024/09/18 11:35:01 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ int	reverse_bytes(int c)
 	return (b);
 }
 
-double	calcul_distance(double x, double y, double p_x, double p_y)
+double	calcul_distance(t_dpoint start, t_ipoint end)
 {
-	return (sqrt(pow(x - p_x, 2) + pow(y - p_y, 2)));
+	return (sqrt(pow(start.x - end.x, 2) + pow(start.y - end.y, 2)));
 }
 
 int	ft_get_color(int r, int g, int b, int a)

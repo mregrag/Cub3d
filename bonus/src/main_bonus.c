@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 18:21:10 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/17 22:53:39 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/18 12:40:37 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	mouse_rotate(void *param)
 
 void	rendered(void *param)
 {
-	// static int	i=0;
-	// static int	j=0;
+	static int	i=0;
+	static int	j=0;
 	t_cube		*cube;
 
 	cube = param;
@@ -40,7 +40,7 @@ void	rendered(void *param)
 	raycasting(cube);
 	// draw_minimap(cube);
 	// draw_player(cube);
-	// ft_sprites(cube, &i, &j);
+	ft_sprites(cube, &i, &j);
 	minimap_debug(cube);
 	draw_player_dg(cube);
 	draw_rays_dg(cube);
@@ -58,6 +58,9 @@ int	main(int argc, char **argv)
 	ft_init_cube(&cube);
 	mlx_loop_hook(cube.window, &rendered, &cube);
 	mlx_key_hook(cube.window, &key_press, &cube);
+	mlx_set_mouse_pos(cube.window, WIDTH / 2, HEIGHT / 2);
+	mlx_set_cursor_mode(cube.window, MLX_MOUSE_DISABLED);
+	mlx_cursor_hook(cube.window, (void *)mouse_rotate, &cube);
 	mlx_loop(cube.window);
 	ft_destroy_all(&cube);
 	return (EXIT_SUCCESS);

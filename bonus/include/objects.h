@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 10:49:25 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/17 11:51:23 by aait-bab         ###   ########.fr       */
+/*   Updated: 2024/09/18 11:11:40 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,12 @@ typedef struct s_dpoint
 	double	x;
 	double	y;
 }	t_dpoint;
+
+typedef struct s_fpoint
+{
+	float	x;
+	float	y;
+}	t_fpoint;
 
 typedef struct s_ipoint
 {
