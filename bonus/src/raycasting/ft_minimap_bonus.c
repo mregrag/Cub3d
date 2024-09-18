@@ -6,35 +6,33 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 21:33:16 by aait-bab          #+#    #+#             */
-/*   Updated: 2024/09/18 16:00:45 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/18 15:57:02 by aait-bab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-void	draw_line(mlx_image_t *img, t_dpoint start, t_dpoint end, uint32_t color)
+void	draw_line(t_cube *cube, t_dpoint start, t_dpoint end, uint32_t color)
 {
-	float	dx;
-	float	dy;
-	float	steps;
-	float	x_inc;
-	float	y_inc;
-	int	i;
+	t_fpoint	inc;
+	t_fpoint	d;
+	float		steps;
+	int			i;
 
 	i = 0;
-	dx = end.x - start.x;
-	dy = end.y - start.y;
-	if (fabs(dx) > fabs(dy))
-		steps = fabs(dx);
+	d.x = end.x - start.x;
+	d.y = end.y - start.y;
+	if (fabs(d.x) > fabs(d.y))
+		steps = fabs(d.x);
 	else
-		steps = fabs(dy);
-	x_inc = dx / steps;
-	y_inc = dy / steps;
+		steps = fabs(d.y);
+	inc.x = d.x / steps;
+	inc.y = d.y / steps;
 	while (i <= steps)
 	{
-		mlx_put_pixel(img, roundf(start.x), roundf(start.y), color);
-		start.x += x_inc;
-		start.y += y_inc;
+		mlx_put_pixel(cube->img2, roundf(start.x), roundf(start.y), color);
+		start.x += inc.x;
+		start.y += inc.y;
 		i++;
 	}
 }
@@ -43,17 +41,17 @@ static void	draw_player_direction(t_cube *cube)
 {
 	t_dpoint	start;
 	t_dpoint	end;
-	int	color;
+	int			color;
 
 	start.x = 60;
 	start.y = 60;
 	end.x = start.x + cos(cube->plyer->derection) * 10;
 	end.y = start.y + sin(cube->plyer->derection) * 10;
 	color = ft_get_color(0, 0, 255, 255);
-	draw_line(cube->img2, start, end, color);
+	draw_line(cube, start, end, color);
 }
 
-void    draw_minimap(t_cube *cube)
+void	draw_minimap(t_cube *cube)
 {
 	int		ref_x;
 	int		ref_y;
