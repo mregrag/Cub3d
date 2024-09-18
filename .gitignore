@@ -1,2 +1,5 @@
 *.o
 .DS_store
+cube3D_bonus
+cube3D
+*.a

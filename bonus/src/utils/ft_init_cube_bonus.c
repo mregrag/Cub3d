@@ -6,16 +6,68 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 12:21:31 by aait-bab          #+#    #+#             */
-/*   Updated: 2024/09/18 12:54:01 by aait-bab         ###   ########.fr       */
+/*   Updated: 2024/09/18 15:00:27 by aait-bab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
+static void	init_window_imgs(t_cube *cube)
+{
+	mlx_texture_t	*red_p;
+	int32_t			w_wi;
+	int32_t			w_he;
+
+	cube->window = mlx_init(WIDTH, HEIGHT, "Cub3D", true);
+	if (!cube->window)
+		ft_error("Error\nfailed to create window");
+	(1 && (w_wi = cube->window->width, w_he = cube->window->height));
+	cube->img = mlx_new_image(cube->window, w_wi, w_he);
+	if (!cube->img)
+		ft_error("Error\nfailed to create image");
+	cube->img2 = mlx_new_image(cube->window, 120, 120);
+	if (!cube->img2)
+		ft_error("Error\nfailed to create image");
+	red_p = mlx_load_png("assets/sprites/point.png");
+	if (!red_p)
+		ft_error("Error\nfailed to load image");
+	cube->img3 = mlx_texture_to_image(cube->window, red_p);
+	if (!cube->img3)
+		ft_error("Error\nfailed to load image");
+	mlx_delete_texture(red_p);
+}
+
+static void	set_up_imgs_pos(t_cube *cube)
+{
+	int	i;
+	int	w_wi;
+	int	w_he;
+	int	img_w;
+	int	img_h;
+
+	(1 && (i = 0, w_wi = cube->window->width, w_he = cube->window->height));
+	if (mlx_image_to_window(cube->window, cube->img, 0, 0) == -1)
+		ft_error("Error\nfailed to put image to window");
+	if (mlx_image_to_window(cube->window, cube->img2, 0, 0) == -1)
+		ft_error("Error\nfailed to put image to window");
+	if (mlx_image_to_window(cube->window, cube->img3, w_wi / 4, w_he / 2) == -1)
+		ft_error("Error\nfailed to put image to window");
+	while (i < 5)
+	{
+		cube->sprites[i]->img->enabled = false;
+		img_w = (w_wi - cube->sprites[i]->img->width) / 2;
+		img_h = w_he - cube->sprites[i]->img->height;
+		mlx_image_to_window(cube->window, cube->sprites[i]->img, img_w, img_h);
+		i++;
+	}
+	cube->sprites[0]->img->enabled = true;
+}
+
 static void	init_player(t_cube *cube)
 {
 	char	c;
 
+	cube->plyer = ft_malloc(sizeof(t_player), 1);
 	c = cube->map->map2d[cube->map->p_y][cube->map->p_x];
 	if (c == 'E')
 		cube->plyer->derection = 0;
@@ -32,31 +84,9 @@ static void	init_player(t_cube *cube)
 
 void	ft_init_cube(t_cube *cube)
 {
-	cube->window = mlx_init(WIDTH, HEIGHT, "Cub3D", true);
-	if (!cube->window)
-		ft_error("Error\nfailed to create window");
-	cube->img = mlx_new_image(cube->window, cube->window->width, cube->window->height);
-	if (!cube->img)
-		ft_error("Error\nfailed to create image");
-	cube->img2 = mlx_new_image(cube->window,  120, 120);
-	cube->plyer = ft_malloc(sizeof(t_player), 1);
-	cube->textur = ft_malloc(sizeof(t_textur), 1);
-	cube->shoot = 0;
+	init_window_imgs(cube);
 	ft_load_txtrs(cube);
 	ft_load_sprites(cube);
-	if (mlx_image_to_window(cube->window, cube->img, 0, 0) == -1)
-		ft_error("Error\nfailed to put image to window");
-	if (mlx_image_to_window(cube->window, cube->img2, 0, 0) == -1)
-		ft_error("Error\nfailed to put image to window");
-	if (mlx_image_to_window(cube->window, cube->img3, cube->window->width/4,cube->window->height /2) == -1)
-		ft_error("Error\nfailed to put image to window");
-	int i = 0;
-	while (i < 5)
-	{
-		cube->sprites[i]->img->enabled = false;
-		mlx_image_to_window(cube->window, cube->sprites[i]->img,( cube->window->width - cube->sprites[i]->img->width)/2, cube->window->height - cube->sprites[i]->img->height);
-		i++;
-	}
-	cube->sprites[0]->img->enabled = true;
+	set_up_imgs_pos(cube);
 	init_player(cube);
 }

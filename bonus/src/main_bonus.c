@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 18:21:10 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/18 12:54:22 by aait-bab         ###   ########.fr       */
+/*   Updated: 2024/09/18 15:04:23 by aait-bab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ void	mouse_rotate(void *param)
 	mlx_get_mouse_pos(cube->window, &cube->plyer->m.x, &cube->plyer->m.y);
 	cube->plyer->derection += (float)(cube->plyer->m.x - (WIDTH / 2)) / (HEIGHT / 2);
 	mlx_set_mouse_pos(cube->window, (WIDTH / 2), (HEIGHT / 2));
-	mlx_set_cursor_mode(cube->window, MLX_MOUSE_DISABLED);
-	mlx_cursor_hook(cube->window, (void *)mouse_rotate, &cube);
 }
 
 void	rendered(void *param)
@@ -36,13 +34,13 @@ void	rendered(void *param)
 	cube->ray = ft_malloc(sizeof(t_ray) * cube->window->width, 1);
 	movement(cube, 0, 0);
 	raycasting(cube);
-	// draw_minimap(cube);
-	// draw_player(cube);
+	draw_minimap(cube);
+	draw_player(cube);
 	ft_sprites(cube, &i, &j);
-	minimap_debug(cube);
-	draw_player_dg(cube);
-	draw_rays_dg(cube);
-	draw_grid_dg(cube);
+	// minimap_debug(cube);
+	// draw_player_dg(cube);
+	// draw_rays_dg(cube);
+	// draw_grid_dg(cube);
 }
 
 int	main(int argc, char **argv)
