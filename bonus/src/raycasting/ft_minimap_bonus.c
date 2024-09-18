@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 21:33:16 by aait-bab          #+#    #+#             */
-/*   Updated: 2024/09/18 15:51:46 by aait-bab         ###   ########.fr       */
+/*   Updated: 2024/09/18 15:57:02 by aait-bab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	draw_line(t_cube *cube, t_dpoint start, t_dpoint end, uint32_t color)
 	inc.y = d.y / steps;
 	while (i <= steps)
 	{
-		mlx_put_pixel(cube->img, roundf(start.x), roundf(start.y), color);
+		mlx_put_pixel(cube->img2, roundf(start.x), roundf(start.y), color);
 		start.x += inc.x;
 		start.y += inc.y;
 		i++;
