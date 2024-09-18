@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 21:33:16 by aait-bab          #+#    #+#             */
-/*   Updated: 2024/09/18 14:02:22 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/18 16:00:45 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ static void	draw_player_direction(t_cube *cube)
 	draw_line(cube->img2, start, end, color);
 }
 
-
 void    draw_minimap(t_cube *cube)
 {
 	int		ref_x;
@@ -64,7 +63,6 @@ void    draw_minimap(t_cube *cube)
 	start_y = cube->plyer->s.y - 60;
 	ref_y = start_y;
 	ref_x = cube->plyer->s.x - 60;
-	ft_clear_img(cube->img2);
 	while (start_y < cube->plyer->s.y + 60)
 	{
 		start_x = cube->plyer->s.x - 60;
@@ -74,9 +72,9 @@ void    draw_minimap(t_cube *cube)
 					(0 < start_y && start_y < (cube->map->width * TILE_SIZE)))
 			{
 				if (cube->map->map2d[(start_y /  TILE_SIZE)][start_x / TILE_SIZE] == '1')
-					mlx_put_pixel(cube->img2, start_x - ref_x, start_y - ref_y, ft_get_color(0, 0, 0, 255));
+					my_mlx_pixel_put2(cube, start_x - ref_x, start_y - ref_y, ft_get_color(0, 0, 0, 255));
 				else
-					mlx_put_pixel(cube->img2, start_x - ref_x, start_y - ref_y, ft_get_color(255, 255, 255, 255));
+					my_mlx_pixel_put2(cube, start_x - ref_x, start_y - ref_y, ft_get_color(255, 255, 255, 255));
 			}
 			start_x++;
 		}

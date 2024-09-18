@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 12:21:31 by aait-bab          #+#    #+#             */
-/*   Updated: 2024/09/16 13:30:24 by aait-bab         ###   ########.fr       */
+/*   Updated: 2024/09/18 14:15:37 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	init_player(t_cube *cube)
 {
 	char	c;
 
-	c = cube->map->map2d[cube->map->p_y][cube->map->p_x];
+	c = cube->map->map2d[cube->map->p.y][cube->map->p.x];
 	if (c == 'E')
 		cube->plyer->derection = 0;
 	if (c == 'N')
@@ -25,8 +25,8 @@ static void	init_player(t_cube *cube)
 		cube->plyer->derection = M_PI;
 	if (c == 'S')
 		cube->plyer->derection = M_PI / 2;
-	cube->plyer->s.x = (cube->map->p_x * TILE_SIZE) + TILE_SIZE / 2;
-	cube->plyer->s.y = (cube->map->p_y * TILE_SIZE) + TILE_SIZE / 2;
+	cube->plyer->s.x = (cube->map->p.x * TILE_SIZE) + TILE_SIZE / 2;
+	cube->plyer->s.y = (cube->map->p.y * TILE_SIZE) + TILE_SIZE / 2;
 	cube->plyer->fov = FOV * (M_PI / 180);
 }
 

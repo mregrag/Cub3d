@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 18:05:26 by aait-bab          #+#    #+#             */
-/*   Updated: 2024/09/18 13:59:44 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/18 14:13:15 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,8 @@ static void	get_position_player(t_map *map)
 			if (map->map2d[i][j] == 'N' || map->map2d[i][j] == 'S' \
 			|| map->map2d[i][j] == 'W' || map->map2d[i][j] == 'E')
 			{
-				map->p_x = j;
-				map->p_y = i;
+				map->p.x = j;
+				map->p.y = i;
 				return ;
 			}
 			j++;

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   drawing.c                                          :+:      :+:    :+:   */
+/*   ft_drawing_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 18:56:54 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/16 12:12:47 by aait-bab         ###   ########.fr       */
+/*   Updated: 2024/09/18 14:21:39 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	draw_ceiling(t_cube *cube, int ray, int ceiling_end)
 		i++;
 	}
 	i = 0;
-	while (i <= ceiling_end)
+	while (i < ceiling_end)
 		my_mlx_pixel_put(cube, ray, i++, color);
 }
 

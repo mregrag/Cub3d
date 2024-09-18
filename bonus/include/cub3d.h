@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 18:20:49 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/18 11:40:38 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/18 15:26:47 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CUB3D_H
 
 # include "objects.h"
+#include <stdint.h>
 
 t_cube	*ft_get_cube(t_cube *cube);
 void	key_press(mlx_key_data_t keydata, void *ml);
@@ -21,9 +22,10 @@ void	movement(t_cube *cube, double move_x, double move_y);
 
 //-------------------------------------ustils----------------------
 int		ft_get_color(int r, int g, int b, int a);
-void	my_mlx_pixel_put(t_cube *cube, int x, int y, int color);
+void	my_mlx_pixel_put(t_cube *cube, uint32_t x, uint32_t y, uint32_t color);
 int		reverse_bytes(int c);
 double	calcul_distance(t_dpoint start, t_ipoint end);
+void	my_mlx_pixel_put2(t_cube *cube, uint32_t x, uint32_t y, uint32_t color);
 
 //-------------------------------parsing-------------------------
 void	ft_parse_cube(char *file, t_cube *cube);
@@ -51,8 +53,6 @@ void	raycasting(t_cube *cube);
 void    walk_player(t_cube *cube, double move_x, double move_y);
 // helper functions
 int		ft_get_color(int r, int g, int b, int a);
-void	my_mlx_pixel_put(t_cube *cube, int x, int y, int color);
-void	my_mlx_pixel_put2(t_cube *cube, int x, int y, int color);
 
 //-------------------------------General utils--------------------
 void	ft_error(char *msg);
@@ -84,4 +84,5 @@ void minimap_debug(t_cube *cube);
 void draw_grid_dg(t_cube *cube);
 void	draw_rays_dg(t_cube *cube);
 void draw_player_dg(t_cube *cube);
+void	draw_line_dg(t_cube *cube, int x0, int y0, int x1, int y1, uint32_t color);
 #endif

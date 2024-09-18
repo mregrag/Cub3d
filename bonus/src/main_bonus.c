@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 18:21:10 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/18 14:06:44 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/18 15:01:10 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,19 +32,20 @@ void	rendered(void *param)
 
 	cube = param;
 	ft_clear_img(cube->img);
+	ft_clear_img(cube->img2);
 	mlx_resize_image(cube->img, cube->window->width, cube->window->height);
-	mlx_resize_image(cube->img2, cube->window->width, cube->window->height);
+	mlx_resize_image(cube->img2, cube->window->width / 4 , cube->window->height / 2);
 
 	cube->ray = ft_malloc(sizeof(t_ray) * cube->window->width, 1);
 	movement(cube, 0, 0);
 	raycasting(cube);
-	// draw_minimap(cube);
-	// draw_player(cube);
+	draw_minimap(cube);
+	draw_player(cube);
 	ft_sprites(cube, &i, &j);
-	minimap_debug(cube);
-	draw_player_dg(cube);
-	draw_rays_dg(cube);
-	draw_grid_dg(cube);
+	// minimap_debug(cube);
+	// draw_player_dg(cube);
+	// draw_rays_dg(cube);
+	// draw_grid_dg(cube);
 }
 
 int	main(int argc, char **argv)

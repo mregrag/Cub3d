@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 03:49:51 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/18 11:35:01 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/18 14:59:43 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,27 +43,27 @@ int	ft_get_color(int r, int g, int b, int a)
 	return (r << 24 | g << 16 | b << 8 | a << 0);
 }
 
-void	my_mlx_pixel_put(t_cube *cube, int x, int y, int color)
+void	my_mlx_pixel_put(t_cube *cube, uint32_t x, uint32_t y, uint32_t color)
 {
 	if (x < 0)
 		return ;
-	else if (x >= cube->window->width)
+	else if (x >= cube->img->width)
 		return ;
 	if (y < 0)
 		return ;
-	else if (y >= cube->window->height)
+	else if (y >= cube->img->height)
 		return ;
 	mlx_put_pixel(cube->img, x, y, color);
 }
-void	my_mlx_pixel_put2(t_cube *cube, int x, int y, int color)
+void	my_mlx_pixel_put2(t_cube *cube, uint32_t x, uint32_t y, uint32_t color)
 {
 	if (x < 0)
 		return ;
-	else if (x >= 120)
+	else if (x > cube->img2->width)
 		return ;
 	if (y < 0)
 		return ;
-	else if (y >= 120)
+	else if (y >= cube->img2->height)
 		return ;
 	mlx_put_pixel(cube->img2, x, y, color);
 }
