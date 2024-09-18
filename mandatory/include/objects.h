@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 10:49:25 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/16 11:08:15 by aait-bab         ###   ########.fr       */
+/*   Updated: 2024/09/18 13:58:28 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,8 @@ typedef struct s_map
 	t_ipoint	m;
 	int		p_x;
 	int		p_y;
-	int		w_map;
-	int		h_map;
-	int		cols;
-	int		rows;
+	int		height;
+	int		width;
 	int		fd;
 	char	*line;
 	char	*map;

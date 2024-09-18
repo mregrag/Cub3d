@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 21:33:16 by aait-bab          #+#    #+#             */
-/*   Updated: 2024/09/18 09:47:55 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/18 14:02:22 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ void    draw_minimap(t_cube *cube)
 		start_x = cube->plyer->s.x - 60;
 		while (start_x < cube->plyer->s.x + 60)
 		{
-			if ((0 < start_x && start_x  < (cube->map->cols * TILE_SIZE)) && \
-					(0 < start_y && start_y < (cube->map->rows * TILE_SIZE)))
+			if ((0 < start_x && start_x  < (cube->map->height * TILE_SIZE)) && \
+					(0 < start_y && start_y < (cube->map->width * TILE_SIZE)))
 			{
 				if (cube->map->map2d[(start_y /  TILE_SIZE)][start_x / TILE_SIZE] == '1')
 					mlx_put_pixel(cube->img2, start_x - ref_x, start_y - ref_y, ft_get_color(0, 0, 0, 255));

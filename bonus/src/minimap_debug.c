@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 16:54:59 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/16 21:43:42 by aait-bab         ###   ########.fr       */
+/*   Updated: 2024/09/18 14:03:25 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,8 @@ void draw_grid_dg(t_cube *cube)
 {
 	int color;
 	int x, y;
-	int minimap_width = cube->map->cols * TILE_SIZE * MINIMAP_SCALE;
-	int minimap_height = cube->map->rows * TILE_SIZE * MINIMAP_SCALE;
+	int minimap_width = cube->map->height * TILE_SIZE * MINIMAP_SCALE;
+	int minimap_height = cube->map->width * TILE_SIZE * MINIMAP_SCALE;
 
 	color = ft_get_color(100, 100, 100, 255);
 
@@ -154,10 +154,10 @@ void	minimap_debug(t_cube *cube)
 
 
 	y = 0;
-	while (y < cube->map->rows)
+	while (y < cube->map->width)
 	{
 		x = 0;
-		while (x < cube->map->cols)
+		while (x < cube->map->height)
 		{
 			map_x = x * TILE_SIZE * MINIMAP_SCALE;
 			map_y = y * TILE_SIZE * MINIMAP_SCALE;

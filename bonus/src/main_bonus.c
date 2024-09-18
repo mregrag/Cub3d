@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 18:21:10 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/18 12:40:37 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/18 14:06:44 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,13 @@ int	main(int argc, char **argv)
 	ft_get_cube(&cube);
 	ft_parse_cube(argv[1], &cube);
 	ft_init_cube(&cube);
+	// printf("y = %d\n", cube.map->cols);
+	// printf("x = %d\n", cube.map->rows);
 	mlx_loop_hook(cube.window, &rendered, &cube);
 	mlx_key_hook(cube.window, &key_press, &cube);
 	mlx_set_mouse_pos(cube.window, WIDTH / 2, HEIGHT / 2);
-	mlx_set_cursor_mode(cube.window, MLX_MOUSE_DISABLED);
-	mlx_cursor_hook(cube.window, (void *)mouse_rotate, &cube);
+	// mlx_set_cursor_mode(cube.window, MLX_MOUSE_DISABLED);
+	// mlx_cursor_hook(cube.window, (void *)mouse_rotate, &cube);
 	mlx_loop(cube.window);
 	ft_destroy_all(&cube);
 	return (EXIT_SUCCESS);

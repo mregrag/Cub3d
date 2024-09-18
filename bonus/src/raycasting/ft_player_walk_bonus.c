@@ -6,7 +6,7 @@
 /*   By: mregrag <mregrag@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 12:15:24 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/18 12:30:25 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/18 13:46:36 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ static void	check_horizontal_move(t_cube *cube, int new_x, int move_x)
 		map_x = (new_x + COLLISION) / TILE_SIZE;
 	else
 		map_x = (new_x - COLLISION) / TILE_SIZE;
-	map_y_up = roundf(cube->plyer->s.y - COLLISION) / TILE_SIZE;
-	map_y_down = roundf(cube->plyer->s.y + COLLISION) / TILE_SIZE;
+	map_y_up = (cube->plyer->s.y - COLLISION) / TILE_SIZE;
+	map_y_down = (cube->plyer->s.y + COLLISION) / TILE_SIZE;
 	if (cube->map->map2d[map_y_up][map_x] != '1'
 			|| cube->map->map2d[map_y_down][map_x] != '1')
 		cube->plyer->s.x = new_x;
@@ -39,8 +39,8 @@ static void	check_vertical_move(t_cube *cube, int new_y, int move_y)
 		map_y = (new_y + COLLISION) / TILE_SIZE;
 	else
 		map_y = (new_y - COLLISION) / TILE_SIZE;
-	map_x_left = roundf(cube->plyer->s.x - COLLISION) / TILE_SIZE;
-	map_x_right = roundf(cube->plyer->s.x + COLLISION) / TILE_SIZE;
+	map_x_left = (cube->plyer->s.x - COLLISION) / TILE_SIZE;
+	map_x_right = (cube->plyer->s.x + COLLISION) / TILE_SIZE;
 	if (cube->map->map2d[map_y][map_x_left] != '1'
 			|| cube->map->map2d[map_y][map_x_right] != '1')
 		cube->plyer->s.y = new_y;
@@ -51,8 +51,8 @@ void	walk_player(t_cube *cube, double move_x, double move_y)
 	int	new_x;
 	int	new_y;
 
-	new_x = roundf(cube->plyer->s.x + move_x);
-	new_y = roundf(cube->plyer->s.y + move_y);
+	new_x = floor(cube->plyer->s.x + move_x);
+	new_y = floor(cube->plyer->s.y + move_y);
 	if (cube->map->map2d[new_y / TILE_SIZE][new_x / TILE_SIZE] != '1')
 	{
 		check_horizontal_move(cube, new_x, move_x);

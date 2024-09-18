@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 18:05:26 by aait-bab          #+#    #+#             */
-/*   Updated: 2024/09/13 11:16:34 by aait-bab         ###   ########.fr       */
+/*   Updated: 2024/09/18 13:57:59 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int	ft_parse_map(t_list *head, t_cube *cube)
 	cube->map = ft_malloc(sizeof(t_map), 1);
 	cube->map->map2d = map2d;
 	get_position_player(cube->map);
-	cube->map->rows = strslen(map2d);
-	cube->map->cols = (int)ft_strlen(map2d[0]);
+	cube->map->width = strslen(map2d);
+	cube->map->height = (int)ft_strlen(map2d[0]);
 	return (1);
 }
