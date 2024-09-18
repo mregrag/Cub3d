@@ -6,53 +6,43 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 21:33:16 by aait-bab          #+#    #+#             */
-/*   Updated: 2024/09/17 13:48:31 by aait-bab         ###   ########.fr       */
+/*   Updated: 2024/09/18 09:47:55 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-static void	draw_line(t_cube *cube, int x0, int y0, int x1, int y1, uint32_t color)
+void	draw_line(mlx_image_t *img, t_dpoint start, t_dpoint end, uint32_t color)
 {
-	int	dx;
-	int	dy;
-	int	sx;
-	int	sy;
-	int	err;
-	int	e2;
+	float	dx;
+	float	dy;
+	float	steps;
+	float	x_inc;
+	float	y_inc;
+	int	i;
 
-	dx = abs(x1 - x0);
-	dy = abs(y1 - y0);
-	sx = 1;
-	sy = 1;
-	if (x0 > x1)
-		sx = -1;
-	if (y0 > y1)
-		sy = -1;
-	err = dx - dy;
-	while (1)
+	i = 0;
+	dx = end.x - start.x;
+	dy = end.y - start.y;
+	if (fabs(dx) > fabs(dy))
+		steps = fabs(dx);
+	else
+		steps = fabs(dy);
+	x_inc = dx / steps;
+	y_inc = dy / steps;
+	while (i <= steps)
 	{
-		my_mlx_pixel_put2(cube, x0, y0, color);
-		if (x0 == x1 && y0 == y1)
-			break ;
-		e2 = 2 * err;
-		if (e2 > -dy)
-		{
-			err -= dy;
-			x0 += sx;
-		}
-		if (e2 < dx)
-		{
-			err += dx;
-			y0 += sy;
-		}
+		mlx_put_pixel(img, roundf(start.x), roundf(start.y), color);
+		start.x += x_inc;
+		start.y += y_inc;
+		i++;
 	}
 }
 
 static void	draw_player_direction(t_cube *cube)
 {
-	t_ipoint start;
-	t_ipoint end;
+	t_dpoint	start;
+	t_dpoint	end;
 	int	color;
 
 	start.x = 60;
@@ -60,7 +50,7 @@ static void	draw_player_direction(t_cube *cube)
 	end.x = start.x + cos(cube->plyer->derection) * 10;
 	end.y = start.y + sin(cube->plyer->derection) * 10;
 	color = ft_get_color(0, 0, 255, 255);
-	draw_line(cube, start.x, start.y, end.x, end.y, color);
+	draw_line(cube->img2, start, end, color);
 }
 
 
@@ -81,7 +71,7 @@ void    draw_minimap(t_cube *cube)
 		while (start_x < cube->plyer->s.x + 60)
 		{
 			if ((0 < start_x && start_x  < (cube->map->cols * TILE_SIZE)) && \
-				(0 < start_y && start_y < (cube->map->rows * TILE_SIZE)))
+					(0 < start_y && start_y < (cube->map->rows * TILE_SIZE)))
 			{
 				if (cube->map->map2d[(start_y /  TILE_SIZE)][start_x / TILE_SIZE] == '1')
 					mlx_put_pixel(cube->img2, start_x - ref_x, start_y - ref_y, ft_get_color(0, 0, 0, 255));

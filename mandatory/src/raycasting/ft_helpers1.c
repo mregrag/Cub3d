@@ -1,36 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils1.c                                           :+:      :+:    :+:   */
+/*   ft_helpers1.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mregrag <mregrag@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 21:18:06 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/14 11:39:02 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/18 12:45:59 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-void	adjust_step(t_cube *cube, double *dx, double *dy, int is_vertical)
+void	adjust_step(t_cube *cube, t_dpoint *delta, int is_vertical)
 {
 	if (is_vertical)
 	{
 		if (cube->ray->left)
-			*dx *= -1;
-		if (cube->ray->up && *dy > 0)
-			*dy *= -1;
-		if (cube->ray->down && *dy < 0)
-			*dy *= -1;
+			delta->x *= -1;
+		if (cube->ray->up && delta->y > 0)
+			delta->y *= -1;
+		if (cube->ray->down && delta->y < 0)
+			delta->y *= -1;
 	}
 	else
 	{
 		if (cube->ray->up)
-			*dy *= -1;
-		if (cube->ray->left && *dx > 0)
-			*dx *= -1;
-		if (cube->ray->right && *dx < 0)
-			*dx *= -1;
+			delta->y *= -1;
+		if (cube->ray->left && delta->x > 0)
+			delta->x *= -1;
+		if (cube->ray->right && delta->x < 0)
+			delta->x *= -1;
 	}
 }
 
