@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 06:30:06 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/18 11:02:03 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/18 21:19:47 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	movement(t_cube *cube, double move_x, double move_y)
 		turnright(cube);
 	else if (cube->plyer->turn == TURN_LEFT)
 		turnleft(cube);
-	else if (cube->plyer->walk == RIGHT)
+	if (cube->plyer->walk == RIGHT)
 	{
 		move_x = -sin(cube->plyer->derection) * MOVE_SPEED;
 		move_y = cos(cube->plyer->derection) * MOVE_SPEED;
@@ -50,5 +50,6 @@ void	movement(t_cube *cube, double move_x, double move_y)
 		move_x = -cos(cube->plyer->derection) * MOVE_SPEED;
 		move_y = -sin(cube->plyer->derection) * MOVE_SPEED;
 	}
-	walk_player(cube, move_x, move_y);
+	 if (move_x != 0 || move_y != 0)
+		 walk_player(cube, move_x, move_y);
 }
