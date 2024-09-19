@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 10:19:54 by aait-bab          #+#    #+#             */
-/*   Updated: 2024/09/18 13:24:25 by aait-bab         ###   ########.fr       */
+/*   Updated: 2024/09/18 16:41:33 by aait-bab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # include <string.h>
 # include <limits.h>
 # include <fcntl.h>
+#include <stdint.h>
+
 
 # define WIDTH 1700.0
 # define HEIGHT 1000.0

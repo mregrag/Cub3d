@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 18:21:10 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/16 21:25:21 by aait-bab         ###   ########.fr       */
+/*   Updated: 2024/09/18 18:00:18 by aait-bab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,14 @@ void	rendered(void *param)
 	raycasting(cube);
 }
 
+void	lk()
+{
+	system("leaks cub3D");
+}
+
 int	main(int argc, char **argv)
 {
+	atexit(lk);
 	t_cube	cube;
 
 	if (argc != 2)
@@ -35,6 +41,8 @@ int	main(int argc, char **argv)
 	mlx_loop_hook(cube.window, &rendered, &cube);
 	mlx_key_hook(cube.window, &key_press, &cube);
 	mlx_loop(cube.window);
-	ft_destroy_all(&cube);
+	// ft_destroy_all(&cube);
+	ft_error("CLOSED");
+	// ft_malloc(0, 0);
 	return (EXIT_SUCCESS);
 }

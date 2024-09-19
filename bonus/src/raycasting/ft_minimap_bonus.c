@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 21:33:16 by aait-bab          #+#    #+#             */
-/*   Updated: 2024/09/18 15:57:02 by aait-bab         ###   ########.fr       */
+/*   Updated: 2024/09/18 16:39:28 by aait-bab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,32 +51,37 @@ static void	draw_player_direction(t_cube *cube)
 	draw_line(cube, start, end, color);
 }
 
+static void	minimap_put_pixel(t_cube *cube, t_ipoint s, t_ipoint r)
+{
+	if ((0 < s.x && s.x < (cube->map->height * TILE_SIZE)) && \
+					(0 < s.y && s.y < (cube->map->width * TILE_SIZE)))
+	{
+		if (cube->map->map2d[(s.y / TILE_SIZE)][s.x / TILE_SIZE] == '1')
+			my_mlx_pixel_put2(cube, s.x - r.x, s.y - r.y, \
+				ft_get_color(0, 0, 0, 255));
+		else
+			my_mlx_pixel_put2(cube, s.x - r.x, s.y - r.y, \
+				ft_get_color(255, 255, 255, 255));
+	}
+}
+
 void	draw_minimap(t_cube *cube)
 {
-	int		ref_x;
-	int		ref_y;
-	int		start_x;
-	int		start_y;
+	t_ipoint	ref;
+	t_ipoint	start;
 
-	start_y = cube->plyer->s.y - 60;
-	ref_y = start_y;
-	ref_x = cube->plyer->s.x - 60;
-	while (start_y < cube->plyer->s.y + 60)
+	start.y = cube->plyer->s.y - 60;
+	ref.y = start.y;
+	ref.x = cube->plyer->s.x - 60;
+	while (start.y < cube->plyer->s.y + 60)
 	{
-		start_x = cube->plyer->s.x - 60;
-		while (start_x < cube->plyer->s.x + 60)
+		start.x = cube->plyer->s.x - 60;
+		while (start.x < cube->plyer->s.x + 60)
 		{
-			if ((0 < start_x && start_x  < (cube->map->height * TILE_SIZE)) && \
-					(0 < start_y && start_y < (cube->map->width * TILE_SIZE)))
-			{
-				if (cube->map->map2d[(start_y /  TILE_SIZE)][start_x / TILE_SIZE] == '1')
-					my_mlx_pixel_put2(cube, start_x - ref_x, start_y - ref_y, ft_get_color(0, 0, 0, 255));
-				else
-					my_mlx_pixel_put2(cube, start_x - ref_x, start_y - ref_y, ft_get_color(255, 255, 255, 255));
-			}
-			start_x++;
+			minimap_put_pixel(cube, start, ref);
+			start.x++;
 		}
-		start_y++;
+		start.y++;
 	}
 	draw_player_direction(cube);
 	draw_player(cube);

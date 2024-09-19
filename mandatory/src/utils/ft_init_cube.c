@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 12:21:31 by aait-bab          #+#    #+#             */
-/*   Updated: 2024/09/18 14:15:37 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/18 17:00:58 by aait-bab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static void	init_player(t_cube *cube)
 {
 	char	c;
 
+	cube->plyer = ft_malloc(sizeof(t_player), 1);
 	c = cube->map->map2d[cube->map->p.y][cube->map->p.x];
 	if (c == 'E')
 		cube->plyer->derection = 0;
@@ -38,8 +39,6 @@ void	ft_init_cube(t_cube *cube)
 	cube->img = mlx_new_image(cube->window, cube->window->width, cube->window->height);
 	if (!cube->img)
 		ft_error("Error\nfailed to create image");
-	cube->plyer = ft_malloc(sizeof(t_player), 1);
-	cube->textur = ft_malloc(sizeof(t_textur), 1);
 	cube->ray = ft_malloc(sizeof(t_ray), 1);
 	ft_load_txtrs(cube);
 	if (mlx_image_to_window(cube->window, cube->img, 0, 0) == -1)

@@ -6,7 +6,7 @@
 #    By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/07 18:20:34 by mregrag           #+#    #+#              #
-#    Updated: 2024/09/17 22:47:24 by mregrag          ###   ########.fr        #
+#    Updated: 2024/09/18 16:28:52 by aait-bab         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME_B		= cub3D_bonus
 LIBFT		= libft.a
 LIBRAIRIE	= "./lib/Libft"
 CC		= cc
-CFLAGS		= -Wall -Wextra -Werror -fsanitize=address -g2
+CFLAGS		= -Wall -Wextra -Werror #-fsanitize=address -g2
 HEADERMLX	= ./MLX42/MLX42.h
 HEADERLIBFT	= ./lib/Libft/libft.h
 RM		= rm -rf
@@ -24,7 +24,6 @@ FLAG_MLX	= -framework Cocoa -framework OpenGL -framework IOKit -lglfw
 INCLUDE		= -I/Users/${USER}/.brew/Cellar/glfw/3.4/include/GLFW
 LIB		= -L/Users/${USER}/.brew/Cellar/glfw/3.4/lib
 
-# HEADERCUB	= ./include/cub3d.h ./include/macros.h ./include/objects.h
 
 HEADER		= ./mandatory/include/cub3d.h ./mmandatory/include/macros.h ./mandatory/include/objects.h
 HEADER_B	= ./bonus/include/cub3d.h ./bonus/include/macros.h ./bonus/include/objects.h

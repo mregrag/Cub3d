@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 18:21:10 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/18 15:04:23 by aait-bab         ###   ########.fr       */
+/*   Updated: 2024/09/18 16:27:33 by aait-bab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	mouse_rotate(void *param)
 {
-	t_cube *cube;
+	t_cube	*cube;
 
 	cube = param;
 	mlx_get_mouse_pos(cube->window, &cube->plyer->m.x, &cube->plyer->m.y);
@@ -54,8 +54,6 @@ int	main(int argc, char **argv)
 	ft_get_cube(&cube);
 	ft_parse_cube(argv[1], &cube);
 	ft_init_cube(&cube);
-	// printf("y = %d\n", cube.map->cols);
-	// printf("x = %d\n", cube.map->rows);
 	mlx_loop_hook(cube.window, &rendered, &cube);
 	mlx_key_hook(cube.window, &key_press, &cube);
 	mlx_set_mouse_pos(cube.window, WIDTH / 2, HEIGHT / 2);

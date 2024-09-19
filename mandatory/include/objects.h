@@ -6,13 +6,12 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 10:49:25 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/18 14:15:06 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/18 16:49:27 by aait-bab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 # ifndef OBJECTS_H
-#define OBJECTS_H
+# define OBJECTS_H
 
 # include "macros.h"
 
@@ -43,25 +42,25 @@ typedef struct s_player
 {
 	t_ipoint	s;
 	t_ipoint	m;
-	double	derection;
-	float	fov;
-	int		turn;
-	int		walk;
+	double		derection;
+	float		fov;
+	int			turn;
+	int			walk;
 
 }	t_player;
 
 typedef struct s_map
 {
-	char	**map2d;
-	char	**textur2d;
+	char		**map2d;
+	char		**textur2d;
 	t_ipoint	m;
 	t_ipoint	p;
-	int		height;
-	int		width;
-	int		fd;
-	char	*line;
-	char	*map;
-	char	*tex;
+	int			height;
+	int			width;
+	int			fd;
+	char		*line;
+	char		*map;
+	char		*tex;
 }	t_map;
 
 typedef struct s_textur
@@ -93,18 +92,18 @@ typedef struct s_colors
 }	t_colors;
 typedef struct s_ray
 {
-	int		index;
+	int			index;
 	double		angl;
-	t_dpoint		hwall;
-	t_dpoint		vwall;
-	t_dpoint		hit;
+	t_dpoint	hwall;
+	t_dpoint	vwall;
+	t_dpoint	hit;
 	double		distance;
 	double		angle;
-	int		up;
-	int		down;
-	int		right;
-	int		left;
-	int		flag;
+	int			up;
+	int			down;
+	int			right;
+	int			left;
+	int			flag;
 }	t_ray;
 
 typedef struct s_cube

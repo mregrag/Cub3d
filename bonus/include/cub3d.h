@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 18:20:49 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/18 15:26:47 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/18 16:43:07 by aait-bab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define CUB3D_H
 
 # include "objects.h"
-#include <stdint.h>
 
 t_cube	*ft_get_cube(t_cube *cube);
 void	key_press(mlx_key_data_t keydata, void *ml);
@@ -44,13 +43,13 @@ int		empty_line(char *line);
 //-------------------------------texture----------------------
 mlx_texture_t	*get_texture(t_cube *cube, int flag);
 void	        ft_load_txtrs(t_cube *cube);
-double	calculate_texture_x(mlx_texture_t *texture, t_cube *cube);
+double          calculate_texture_x(mlx_texture_t *texture, t_cube *cube);
 
 //-------------------------------raycasting----------------------
 int		parsing_map(char *path, t_map *map);
 double	normalize_angle(float angle);
 void	raycasting(t_cube *cube);
-void    walk_player(t_cube *cube, double move_x, double move_y);
+void	walk_player(t_cube *cube, double move_x, double move_y);
 // helper functions
 int		ft_get_color(int r, int g, int b, int a);
 
@@ -66,12 +65,11 @@ void	ft_destroy_all(t_cube *cube);
 //-----------------------sprites-------------------------
 void	ft_load_sprites(t_cube *cube);
 void	ft_sprites(t_cube *cube, int *i, int *j);
-//-----------------------drawing-------------------------
 
 //-----------------------drawing-------------------------
 void	projected_wall(t_cube *cube);
-void    draw_minimap(t_cube *cube);
-void    draw_player(t_cube *cube);
+void	draw_minimap(t_cube *cube);
+void	draw_player(t_cube *cube);
 
 //-----------------------drawing-------------------------
 void	adjust_step(t_cube *cube, t_dpoint *delta, int is_vertical);
@@ -79,10 +77,10 @@ void	check_rayfacing(t_cube *cube, double angle);
 int		hit_wall(double x, double y, t_cube *cube);
 
 //-----------------debug-----------------------------------
-
-void minimap_debug(t_cube *cube);
-void draw_grid_dg(t_cube *cube);
+void	minimap_debug(t_cube *cube);
+void	draw_grid_dg(t_cube *cube);
 void	draw_rays_dg(t_cube *cube);
-void draw_player_dg(t_cube *cube);
+void	draw_player_dg(t_cube *cube);
 void	draw_line_dg(t_cube *cube, int x0, int y0, int x1, int y1, uint32_t color);
+
 #endif
