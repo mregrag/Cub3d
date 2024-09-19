@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 18:52:25 by aait-bab          #+#    #+#             */
-/*   Updated: 2024/09/14 12:32:52 by aait-bab         ###   ########.fr       */
+/*   Updated: 2024/09/19 11:10:04 by aait-bab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	check_colors(t_colors **colors)
 		j = i + 1;
 		while (colors[j])
 		{
-			if (!strcmp(colors[i]->key, colors[j]->key))
+			if (!ft_strncmp(colors[i]->key, colors[j]->key, 1))
 				ft_error("Error\nduplicate color key");
 			j++;
 		}
@@ -43,7 +43,7 @@ static void	check_txtrs(t_txtr **txtrs)
 		j = i + 1;
 		while (txtrs[j])
 		{
-			if (!strcmp(txtrs[i]->key, txtrs[j]->key))
+			if (!ft_strncmp(txtrs[i]->key, txtrs[j]->key, 2))
 				ft_error("Error\nduplicate texture key");
 			j++;
 		}
@@ -51,8 +51,27 @@ static void	check_txtrs(t_txtr **txtrs)
 	}
 }
 
+static void	check_load_txtrs(t_txtr **txtrs)
+{
+	mlx_texture_t	*tex[6];
+	int				i;
+
+
+	i = 0;
+
+	while (txtrs[i])
+	{
+		tex[i] = mlx_load_png(txtrs[i]->path);
+		if (!tex[i])
+			ft_error("failed to load textures");
+		mlx_delete_texture(tex[i]);
+		i++;
+	}
+}
+
 void	ft_check_dbl_keys(t_cube *cube)
 {
+	check_load_txtrs(cube->txtrs);
 	check_txtrs(cube->txtrs);
 	check_colors(cube->colors);
 }

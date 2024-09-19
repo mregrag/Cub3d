@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parse_clrs_txtrs.c                              :+:      :+:    :+:   */
+/*   ft_parse_clrs_txtrs_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 13:29:09 by aait-bab          #+#    #+#             */
-/*   Updated: 2024/09/16 12:34:51 by aait-bab         ###   ########.fr       */
+/*   Updated: 2024/09/19 11:44:55 by aait-bab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,6 @@ static void	parse_texture(char *t_line, t_cube *cube)
 		ft_error("Error\ninvalid texture");
 	if (!in_txtrs_set(key))
 		ft_error("Error\ninvalid texture or color identifier");
-	if (!mlx_load_png(path))
-		ft_error("Error\ninvalid texture path");
 	cube->txtrs[i] = ft_malloc(sizeof(t_txtr), 1);
 	cube->txtrs[i]->key = key;
 	cube->txtrs[i]->path = path;

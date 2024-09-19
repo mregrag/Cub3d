@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 18:21:10 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/19 10:11:21 by aait-bab         ###   ########.fr       */
+/*   Updated: 2024/09/19 12:12:51 by aait-bab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,25 @@ void	rendered(void *param)
 	cube->ray = ft_malloc(sizeof(t_ray) * cube->window->width, 1);
 	movement(cube, 0, 0);
 	raycasting(cube);
-	// draw_minimap(cube);
-	// draw_player(cube);
+	draw_minimap(cube);
+	draw_player(cube);
 	ft_sprites(cube, &i, &j);
-	minimap_debug(cube);
-	draw_player_dg(cube);
-	draw_rays_dg(cube);
-	draw_grid_dg(cube);
+	// minimap_debug(cube);
+	// draw_player_dg(cube);
+	// draw_rays_dg(cube);
+	// draw_grid_dg(cube);
 }
+
+void ft_init_all_null(t_cube *cube)
+{
+	cube->window = NULL;
+	cube->img = NULL;
+	cube->img2 = NULL;
+	cube->img3 = NULL;
+	cube->textur = NULL;
+	cube->sprites[0] = NULL;
+}
+
 
 int	main(int argc, char **argv)
 {
@@ -57,6 +68,7 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		return (print_fd("Error\nmissing map file", 2), 1);
 	ft_get_cube(&cube);
+	ft_init_all_null(&cube);
 	ft_parse_cube(argv[1], &cube);
 	ft_init_cube(&cube);
 	mlx_loop_hook(cube.window, &rendered, &cube);
