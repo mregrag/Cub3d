@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 10:49:25 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/18 13:18:51 by aait-bab         ###   ########.fr       */
+/*   Updated: 2024/09/18 17:56:47 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ typedef struct s_cube
 	mlx_image_t	*img;
 	mlx_image_t	*img2;
 	mlx_image_t	*img3;
+	mlx_texture_t	*red_p;
 	int			shoot;
 	mlx_t		*window;
 	t_map		*map;

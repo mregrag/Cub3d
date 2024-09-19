@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 18:56:54 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/18 14:21:39 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/18 22:09:52 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,13 @@ static void	draw_ceiling(t_cube *cube, int ray, int ceiling_end)
 	while (cube->colors[i] != NULL)
 	{
 		if (!ft_strncmp(cube->colors[i]->key, "C", 1))
-			color = ft_get_color(cube->colors[i]->r, cube->colors[i]->g, cube->colors[i]->b, 255);
+			color = ft_get_color(cube->colors[i]->r, \
+				cube->colors[i]->g, \
+				cube->colors[i]->b, 255);
 		else if (!ft_strncmp(cube->colors[i]->key, "C", 1))
-			color = ft_get_color(cube->colors[i]->r, cube->colors[i]->g, cube->colors[i]->b, 255);
+			color = ft_get_color(cube->colors[i]->r, \
+				cube->colors[i]->g, \
+				cube->colors[i]->b, 255);
 		i++;
 	}
 	i = 0;
@@ -36,21 +40,20 @@ static void	draw_wall(t_cube *cube, int wall_t, int wall_b, double wall_h)
 	t_dpoint		textoffset;
 	mlx_texture_t	*texture;
 	uint32_t		*arr;
-	double			factor;
+	int			y;
+	int			distop;
 
 	texture = get_texture(cube, cube->ray->flag);
 	arr = (uint32_t *)texture->pixels;
-	factor = (double)texture->height / wall_h;
 	textoffset.x = calculate_texture_x(texture, cube);
-	textoffset.y = (wall_t - (cube->window->height / 2) + (wall_h / 2)) * factor;
-	if (textoffset.y < 0)
-		textoffset.y = 0;
-	while (wall_t < wall_b)
+	y = wall_t;
+	while (y < wall_b)
 	{
-		my_mlx_pixel_put(cube, cube->ray->index, wall_t, reverse_bytes \
+		distop = y  + (wall_h / 2) - (cube->window->height / 2);
+		textoffset.y = distop * ((double)texture->height / wall_h);
+		my_mlx_pixel_put(cube, cube->ray->index, y, reverse_bytes \
 		(arr[(int)textoffset.y * texture->width + (int)textoffset.x]));
-		textoffset.y += factor;
-		wall_t++;
+		y++;
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 18:20:49 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/18 15:26:47 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/18 17:53:55 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,4 +85,5 @@ void draw_grid_dg(t_cube *cube);
 void	draw_rays_dg(t_cube *cube);
 void draw_player_dg(t_cube *cube);
 void	draw_line_dg(t_cube *cube, int x0, int y0, int x1, int y1, uint32_t color);
+
 #endif
