@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 18:05:26 by aait-bab          #+#    #+#             */
-/*   Updated: 2024/09/18 14:16:41 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/20 11:25:14 by aait-bab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,7 @@ static void	valid_map(char **map2d)
 				|| map2d[i][j] == 'W')
 			{
 				if (check_valid(map2d, i, j))
-					ft_error("Error\nplayer or 0 should \
-					not be surrounded by espaces");
+					ft_error("Error\nplayer or 0 is not surrounded by walls\n");
 			}
 			j++;
 		}
