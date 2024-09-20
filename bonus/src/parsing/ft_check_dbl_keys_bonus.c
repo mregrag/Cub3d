@@ -6,11 +6,11 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 18:52:25 by aait-bab          #+#    #+#             */
-/*   Updated: 2024/09/19 11:45:08 by aait-bab         ###   ########.fr       */
+/*   Updated: 2024/09/19 19:31:54 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d.h"
+#include "../../include/cub3d_bonus.h"
 
 static void	check_colors(t_colors **colors)
 {

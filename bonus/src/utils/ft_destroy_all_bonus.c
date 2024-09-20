@@ -6,11 +6,11 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 12:32:36 by aait-bab          #+#    #+#             */
-/*   Updated: 2024/09/19 11:35:27 by aait-bab         ###   ########.fr       */
+/*   Updated: 2024/09/19 19:34:09 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d.h"
+#include "../../include/cub3d_bonus.h"
 
 void	ft_destroy_all(t_cube *cube)
 {

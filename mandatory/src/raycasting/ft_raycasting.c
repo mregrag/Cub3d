@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 07:08:14 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/18 12:20:39 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/19 21:02:55 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,12 @@ static double	vertical_intersect(t_cube *cube)
 	inter.x = floor(cube->plyer->s.x / TILE_SIZE) * TILE_SIZE;
 	if (cube->ray->right)
 		inter.x += TILE_SIZE;
-	inter.y = cube->plyer->s.y + (inter.x - cube->plyer->s.x) * tan(cube->ray->angl);
+	inter.y = cube->plyer->s.y
+		+ (inter.x - cube->plyer->s.x) * tan(cube->ray->angl);
 	delta.x = TILE_SIZE;
 	delta.y = TILE_SIZE * tan(cube->ray->angl);
 	adjust_step(cube, &delta, 1);
-	while(!hit_wall(inter.x - cube->ray->left, inter.y, cube))
+	while (!hit_wall(inter.x - cube->ray->left, inter.y, cube))
 	{
 		inter.x += delta.x;
 		inter.y += delta.y;
@@ -40,13 +41,14 @@ static double	horizontal_intersect(t_cube *cube)
 	t_dpoint	delta;
 
 	inter.y = floor(cube->plyer->s.y / TILE_SIZE) * TILE_SIZE;
-	if(cube->ray->down)
+	if (cube->ray->down)
 		inter.y += TILE_SIZE;
-	inter.x = cube->plyer->s.x + (inter.y - cube->plyer->s.y) / tan(cube->ray->angl);
+	inter.x = cube->plyer->s.x
+		+ (inter.y - cube->plyer->s.y) / tan(cube->ray->angl);
 	delta.y = TILE_SIZE;
 	delta.x = TILE_SIZE / tan(cube->ray->angl);
 	adjust_step(cube, &delta, 0);
-	while(!hit_wall(inter.x, inter.y - cube->ray->up, cube))
+	while (!hit_wall(inter.x, inter.y - cube->ray->up, cube))
 	{
 		inter.x += delta.x;
 		inter.y += delta.y;
@@ -71,16 +73,15 @@ void	raycasting(t_cube *cube)
 		if (distance.y <= distance.x)
 		{
 			cube->ray->distance = distance.y;
-			cube->ray->flag = 1;
+			cube->ray->was_hit_vertical = 1;
 		}
 		else
 		{
 			cube->ray->distance = distance.x;
-			cube->ray->flag = 0;
+			cube->ray->was_hit_vertical = 0;
 		}
 		projected_wall(cube);
 		cube->ray->index++;
 		cube->ray->angl += (cube->plyer->fov / cube->window->width);
 	}
 }
-

@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 03:49:51 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/18 12:43:55 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/19 20:57:43 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,20 +38,20 @@ double	calcul_distance(t_dpoint start, t_ipoint end)
 	return (sqrt(pow(start.x - end.x, 2) + pow(start.y - end.y, 2)));
 }
 
-int	ft_get_color(int r, int g, int b, int a)
+uint32_t	ft_get_color(uint32_t r, uint32_t g, uint32_t b, uint32_t a)
 {
 	return (r << 24 | g << 16 | b << 8 | a << 0);
 }
 
-void	my_mlx_pixel_put(t_cube *cube, int x, int y, int color)
+void	my_pixel_put(mlx_image_t *img, uint32_t x, uint32_t y, uint32_t color)
 {
 	if (x < 0)
 		return ;
-	else if (x >= cube->window->width)
+	else if (x >= img->width)
 		return ;
 	if (y < 0)
 		return ;
-	else if (y >= cube->window->height)
+	else if (y >= img->height)
 		return ;
-	mlx_put_pixel(cube->img, x, y, color);
+	mlx_put_pixel(img, x, y, color);
 }

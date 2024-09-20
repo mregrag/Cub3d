@@ -6,11 +6,11 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:05:22 by aait-bab          #+#    #+#             */
-/*   Updated: 2024/09/18 13:38:50 by aait-bab         ###   ########.fr       */
+/*   Updated: 2024/09/19 19:33:31 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d.h"
+#include "../../include/cub3d_bonus.h"
 
 void	ft_load_txtrs(t_cube *cube)
 {

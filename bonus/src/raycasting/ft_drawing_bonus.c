@@ -6,13 +6,13 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 18:56:54 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/18 22:09:52 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/19 20:40:22 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d.h"
+#include "../../include/cub3d_bonus.h"
 
-static void	draw_ceiling(t_cube *cube, int ray, int ceiling_end)
+static void	draw_ceiling(t_cube *cube, int wall_t)
 {
 	int		i;
 	int		color;
@@ -31,33 +31,11 @@ static void	draw_ceiling(t_cube *cube, int ray, int ceiling_end)
 		i++;
 	}
 	i = 0;
-	while (i < ceiling_end)
-		my_mlx_pixel_put(cube, ray, i++, color);
+	while (i < wall_t)
+		my_pixel_put(cube->img, cube->ray->index, i++, color);
 }
 
-static void	draw_wall(t_cube *cube, int wall_t, int wall_b, double wall_h)
-{
-	t_dpoint		textoffset;
-	mlx_texture_t	*texture;
-	uint32_t		*arr;
-	int			y;
-	int			distop;
-
-	texture = get_texture(cube, cube->ray->flag);
-	arr = (uint32_t *)texture->pixels;
-	textoffset.x = calculate_texture_x(texture, cube);
-	y = wall_t;
-	while (y < wall_b)
-	{
-		distop = y  + (wall_h / 2) - (cube->window->height / 2);
-		textoffset.y = distop * ((double)texture->height / wall_h);
-		my_mlx_pixel_put(cube, cube->ray->index, y, reverse_bytes \
-		(arr[(int)textoffset.y * texture->width + (int)textoffset.x]));
-		y++;
-	}
-}
-
-static void	draw_floor(t_cube *cube, int ray, int floor_start)
+static void	draw_floor(t_cube *cube, int wall_b)
 {
 	int		color;
 	int		i;
@@ -66,13 +44,39 @@ static void	draw_floor(t_cube *cube, int ray, int floor_start)
 	while (cube->colors[i] != NULL)
 	{
 		if (!ft_strncmp(cube->colors[i]->key, "F", 1))
-			color = ft_get_color(cube->colors[i]->r, cube->colors[i]->g, cube->colors[i]->b, 255);
+			color = ft_get_color(cube->colors[i]->r, \
+				cube->colors[i]->g, \
+				cube->colors[i]->b, 255);
 		else if (!ft_strncmp(cube->colors[i]->key, "F", 1))
-			color = ft_get_color(cube->colors[i]->r, cube->colors[i]->g, cube->colors[i]->b, 255);
+			color = ft_get_color(cube->colors[i]->r, \
+				cube->colors[i]->g, \
+				cube->colors[i]->b, 255);
 		i++;
 	}
-	while (floor_start < cube->window->height)
-		my_mlx_pixel_put(cube, ray, floor_start++, color);
+	while (wall_b < cube->window->height)
+		my_pixel_put(cube->img, cube->ray->index, wall_b++, color);
+}
+
+static void	draw_wall(t_cube *cube, int wall_t, int wall_b, double wall_h)
+{
+	t_dpoint		textoffset;
+	mlx_texture_t	*texture;
+	uint32_t		*arr;
+	int				y;
+	int				distop;
+
+	texture = get_texture(cube);
+	arr = (uint32_t *)texture->pixels;
+	textoffset.x = calculate_texture_x(texture, cube);
+	y = wall_t;
+	while (y < wall_b)
+	{
+		distop = y + (wall_h / 2) - (cube->window->height / 2);
+		textoffset.y = distop * ((double)texture->height / wall_h);
+		my_pixel_put(cube->img, cube->ray->index, y, reverse_bytes \
+		(arr[(int)textoffset.y * texture->width + (int)textoffset.x]));
+		y++;
+	}
 }
 
 void	projected_wall(t_cube *cube)
@@ -82,7 +86,7 @@ void	projected_wall(t_cube *cube)
 	double	wall_t;
 	double	wall_b;
 
-	cube->ray->distance *= cos(normalize_angle(cube->ray->angl - cube->plyer->derection));
+	cube->ray->distance *= cos(cube->ray->angl - cube->plyer->derection);
 	disproplan = (cube->window->width / 2) / tan(cube->plyer->fov / 2);
 	wall_h = (TILE_SIZE / cube->ray->distance) * disproplan;
 	wall_b = (cube->window->height / 2) + (wall_h / 2);
@@ -91,7 +95,7 @@ void	projected_wall(t_cube *cube)
 		wall_b = cube->window->height;
 	if (wall_t < 0)
 		wall_t = 0;
-	draw_ceiling(cube, cube->ray->index, wall_t);
+	draw_ceiling(cube, wall_t);
 	draw_wall(cube, wall_t, wall_b, wall_h);
-	draw_floor(cube, cube->ray->index, wall_b);
+	draw_floor(cube, wall_b);
 }

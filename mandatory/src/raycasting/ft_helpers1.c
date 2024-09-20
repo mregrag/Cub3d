@@ -6,7 +6,7 @@
 /*   By: mregrag <mregrag@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 21:18:06 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/18 14:05:30 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/19 21:01:23 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ int	hit_wall(double x, double y, t_cube *cube)
 		return (1);
 	m.x = floor(x / TILE_SIZE);
 	m.y = floor(y / TILE_SIZE);
-	if (m.y < 0 || m.y >= cube->map->width || m.x < 0 || m.x >= cube->map->height)
+	if (m.y < 0 || m.y >= cube->map->width
+		|| m.x < 0 || m.x >= cube->map->height)
 		return (1);
 	if (cube->map->map2d[m.y][m.x] == '1')
 		return (1);

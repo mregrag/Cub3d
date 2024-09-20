@@ -6,11 +6,11 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 03:43:59 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/17 12:02:15 by aait-bab         ###   ########.fr       */
+/*   Updated: 2024/09/19 19:09:56 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d.h"
+#include "../../include/cub3d_bonus.h"
 
 static void	key_reles(mlx_key_data_t keydata, t_cube *cube)
 {

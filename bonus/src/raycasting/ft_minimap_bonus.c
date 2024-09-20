@@ -6,11 +6,11 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 21:33:16 by aait-bab          #+#    #+#             */
-/*   Updated: 2024/09/19 10:10:18 by aait-bab         ###   ########.fr       */
+/*   Updated: 2024/09/19 22:36:41 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d.h"
+#include "../../include/cub3d_bonus.h"
 
 void	draw_line(t_cube *cube, t_dpoint start, t_dpoint end, uint32_t color)
 {
@@ -30,7 +30,7 @@ void	draw_line(t_cube *cube, t_dpoint start, t_dpoint end, uint32_t color)
 	inc.y = d.y / steps;
 	while (i <= steps)
 	{
-		my_mlx_pixel_put2(cube, roundf(start.x), roundf(start.y), color);
+		my_pixel_put(cube->img2, roundf(start.x), roundf(start.y), color);
 		start.x += inc.x;
 		start.y += inc.y;
 		i++;
@@ -57,10 +57,10 @@ static void	minimap_put_pixel(t_cube *cube, t_ipoint s, t_ipoint r)
 					(0 < s.y && s.y < (cube->map->width * TILE_SIZE)))
 	{
 		if (cube->map->map2d[(s.y / TILE_SIZE)][s.x / TILE_SIZE] == '1')
-			my_mlx_pixel_put2(cube, s.x - r.x, s.y - r.y, \
+			my_pixel_put(cube->img2, s.x - r.x, s.y - r.y, \
 				ft_get_color(0, 0, 0, 255));
 		else
-			my_mlx_pixel_put2(cube, s.x - r.x, s.y - r.y, \
+			my_pixel_put(cube->img2, s.x - r.x, s.y - r.y, \
 				ft_get_color(255, 255, 255, 255));
 	}
 }

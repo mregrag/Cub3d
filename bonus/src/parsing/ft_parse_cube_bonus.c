@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parse_cube.c                                    :+:      :+:    :+:   */
+/*   ft_parse_cube_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 11:45:03 by aait-bab          #+#    #+#             */
-/*   Updated: 2024/09/13 10:52:45 by aait-bab         ###   ########.fr       */
+/*   Updated: 2024/09/19 19:32:45 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d.h"
+#include "../../include/cub3d_bonus.h"
 
 static void	create_lst_lines(int fd, t_list **head)
 {

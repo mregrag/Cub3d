@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   texture.c                                          :+:      :+:    :+:   */
+/*   ft_texture.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 11:57:46 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/16 11:34:31 by aait-bab         ###   ########.fr       */
+/*   Updated: 2024/09/19 20:24:47 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-mlx_texture_t	*get_texture(t_cube *cube, int flag)
+mlx_texture_t	*get_texture(t_cube *cube)
 {
 	cube->ray->angl = normalize_angle(cube->ray->angl);
-	if (flag == 1)
+	if (cube->ray->was_hit_vertical)
 	{
 		if (cube->ray->angl > M_PI / 2 && cube->ray->angl < 3 * (M_PI / 2))
 			return (cube->textur->ea);
@@ -35,10 +35,10 @@ double	calculate_texture_x(mlx_texture_t *texture, t_cube *cube)
 {
 	double	x;
 
-	if (cube->ray->flag == 0)
-		x = fmod(cube->ray->hwall.x, TILE_SIZE);
-	else
+	if (cube->ray->was_hit_vertical)
 		x = fmod(cube->ray->vwall.y, TILE_SIZE);
+	else
+		x = fmod(cube->ray->hwall.x, TILE_SIZE);
 	x = (x * texture->width) / TILE_SIZE;
 	return (x);
 }

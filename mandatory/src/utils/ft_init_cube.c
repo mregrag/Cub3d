@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 12:21:31 by aait-bab          #+#    #+#             */
-/*   Updated: 2024/09/18 17:00:58 by aait-bab         ###   ########.fr       */
+/*   Updated: 2024/09/19 21:07:03 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,14 @@ static void	init_player(t_cube *cube)
 
 void	ft_init_cube(t_cube *cube)
 {
+	int32_t			w_wi;
+	int32_t			w_he;
+
 	cube->window = mlx_init(WIDTH, HEIGHT, "Cub3D", true);
 	if (!cube->window)
 		ft_error("Error\nfailed to create window");
-	cube->img = mlx_new_image(cube->window, cube->window->width, cube->window->height);
+	(1 && (w_wi = cube->window->width, w_he = cube->window->height));
+	cube->img = mlx_new_image(cube->window, w_wi, w_he);
 	if (!cube->img)
 		ft_error("Error\nfailed to create image");
 	cube->ray = ft_malloc(sizeof(t_ray), 1);

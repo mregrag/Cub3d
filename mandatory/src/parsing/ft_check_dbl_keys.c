@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 18:52:25 by aait-bab          #+#    #+#             */
-/*   Updated: 2024/09/19 11:10:04 by aait-bab         ###   ########.fr       */
+/*   Updated: 2024/09/19 20:18:11 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,7 @@ static void	check_load_txtrs(t_txtr **txtrs)
 	mlx_texture_t	*tex[6];
 	int				i;
 
-
 	i = 0;
-
 	while (txtrs[i])
 	{
 		tex[i] = mlx_load_png(txtrs[i]->path);

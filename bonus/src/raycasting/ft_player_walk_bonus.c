@@ -6,11 +6,11 @@
 /*   By: mregrag <mregrag@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 12:15:24 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/18 21:27:50 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/19 19:10:25 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d.h"
+#include "../../include/cub3d_bonus.h"
 
 static int	is_wall(t_cube *cube, int x, int y)
 {

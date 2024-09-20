@@ -6,15 +6,15 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 10:59:11 by aait-bab          #+#    #+#             */
-/*   Updated: 2024/09/13 11:35:53 by aait-bab         ###   ########.fr       */
+/*   Updated: 2024/09/19 19:23:22 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	handel_error(void *ptr, t_list *head)
+static void	handel_error(void *ptr, t_list *head)
 {
-	printf("Error\nMemory allocation failed\n");
+	ft_putendl_fd("Error\nMemory allocation failed\n", 1);
 	free(ptr);
 	ft_lstclear(&head, free);
 	exit(1);

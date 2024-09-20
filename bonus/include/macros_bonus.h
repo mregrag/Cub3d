@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   macros.h                                           :+:      :+:    :+:   */
+/*   macros_bonus.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 10:19:54 by aait-bab          #+#    #+#             */
-/*   Updated: 2024/09/19 10:10:02 by aait-bab         ###   ########.fr       */
+/*   Updated: 2024/09/19 19:01:05 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MACROS_H
-# define MACROS_H
+#ifndef MACROS_BONUS_H
+# define MACROS_BONUS_H
 
 # include "../../MLX42/MLX42.h"
 # include "../../lib/Libft/libft.h"
@@ -21,8 +21,6 @@
 # include <string.h>
 # include <limits.h>
 # include <fcntl.h>
-#include <stdint.h>
-
 
 # define WIDTH 1700
 # define HEIGHT 1000
@@ -33,7 +31,6 @@
 # define ROTATION_SPEED 0.045
 # define MOVE_SPEED 2
 # define COLLISION  4
-
 # define MINIMAP_SCALE 0.8
-#endif
 
+#endif

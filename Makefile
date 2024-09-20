@@ -6,7 +6,7 @@
 #    By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/07 18:20:34 by mregrag           #+#    #+#              #
-#    Updated: 2024/09/18 16:28:52 by aait-bab         ###   ########.fr        #
+#    Updated: 2024/09/19 22:21:18 by mregrag          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME_B		= cub3D_bonus
 LIBFT		= libft.a
 LIBRAIRIE	= "./lib/Libft"
 CC		= cc
-CFLAGS		= -Wall -Wextra -Werror #-fsanitize=address -g2
+CFLAGS		= -Wall -Wextra -Werror -fsanitize=address -g2
 HEADERMLX	= ./MLX42/MLX42.h
 HEADERLIBFT	= ./lib/Libft/libft.h
 RM		= rm -rf
@@ -80,7 +80,6 @@ SRCSB		=	./bonus/src/parsing/ft_parse_cube_bonus.c \
 			./bonus/src/utils/ft_get_cube_bonus.c \
 			./bonus/src/utils/ft_destroy_all_bonus.c \
 			./bonus/src/utils/ft_init_cube_bonus.c \
-			./bonus//src/minimap_debug.c \
 			./bonus/src/main_bonus.c
 
 OBJS		=	$(SRCS:.c=.o)
@@ -94,7 +93,7 @@ $(LIBFT):
 $(NAME): $(LIBFT) $(OBJS)
 	@$(CC) $(CFLAGS) $(FLAG_MLX) $(LIB) $(OBJS) $(MLX) -L$(LIBRAIRIE) -o $(NAME) -lft
 
-%.o: %.c $(HEADER_B) $(HEADERLIBFT) $(HEADERMLX)
+%.o: %.c $(HEADER_B) $(HEADER) $(HEADERLIBFT) $(HEADERMLX)
 	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
 bonus: $(LIBFT) $(OBJS_B)

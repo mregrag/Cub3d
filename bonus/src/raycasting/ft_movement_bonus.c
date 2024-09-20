@@ -6,11 +6,11 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 06:30:06 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/18 21:19:47 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/19 19:03:58 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d.h"
+#include "../../include/cub3d_bonus.h"
 
 static void	turnright(t_cube *cube)
 {
@@ -50,6 +50,5 @@ void	movement(t_cube *cube, double move_x, double move_y)
 		move_x = -cos(cube->plyer->derection) * MOVE_SPEED;
 		move_y = -sin(cube->plyer->derection) * MOVE_SPEED;
 	}
-	 if (move_x != 0 || move_y != 0)
-		 walk_player(cube, move_x, move_y);
+	walk_player(cube, move_x, move_y);
 }

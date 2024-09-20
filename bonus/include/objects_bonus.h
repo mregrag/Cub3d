@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   objects.h                                          :+:      :+:    :+:   */
+/*   objects_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 10:49:25 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/19 11:46:47 by aait-bab         ###   ########.fr       */
+/*   Updated: 2024/09/19 19:08:22 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef OBJECTS_BONUS_H
+# define OBJECTS_BONUS_H
 
-# ifndef OBJECTS_H
-#define OBJECTS_H
-
-# include "macros.h"
+# include "macros_bonus.h"
 
 typedef enum e_walk
 {
@@ -47,27 +46,27 @@ typedef struct s_ipoint
 
 typedef struct s_player
 {
-	t_ipoint	s;
+	t_dpoint	s;
 	t_ipoint	m;
-	double	derection;
-	float	fov;
-	int		turn;
-	int		walk;
+	double		derection;
+	float		fov;
+	int			turn;
+	int			walk;
 
 }	t_player;
 
 typedef struct s_map
 {
-	char	**map2d;
-	char	**textur2d;
+	char		**map2d;
+	char		**textur2d;
 	t_ipoint	m;
 	t_ipoint	p;
-	int		width;
-	int		height;
-	int		fd;
-	char	*line;
-	char	*map;
-	char	*tex;
+	int			width;
+	int			height;
+	int			fd;
+	char		*line;
+	char		*map;
+	char		*tex;
 }	t_map;
 
 typedef struct s_textur
@@ -94,20 +93,18 @@ typedef struct s_colors
 
 typedef struct s_ray
 {
-	int		index;
+	int			index;
 	double		angl;
-	t_dpoint		hwall;
-	t_dpoint		vwall;
-	t_dpoint		hit;
+	t_dpoint	hwall;
+	t_dpoint	vwall;
 	double		distance;
 	double		angle;
-	int		up;
-	int		down;
-	int		right;
-	int		left;
-	int		flag;
+	int			up;
+	int			down;
+	int			right;
+	int			left;
+	int			was_hit_vertical;
 }	t_ray;
-
 
 typedef struct s_sprite
 {
@@ -124,8 +121,8 @@ typedef struct s_cube
 	mlx_image_t	*img;
 	mlx_image_t	*img2;
 	mlx_image_t	*img3;
-	mlx_texture_t	*red_p;
 	int			shoot;
+	mlx_texture_t	*red_p;
 	mlx_t		*window;
 	t_map		*map;
 	t_player	*plyer;

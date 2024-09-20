@@ -6,36 +6,42 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 09:10:37 by aait-bab          #+#    #+#             */
-/*   Updated: 2024/09/17 09:13:11 by aait-bab         ###   ########.fr       */
+/*   Updated: 2024/09/19 19:29:55 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../include/cub3d.h"
+#include "../../include/cub3d_bonus.h"
 
-static void draw_circle(t_cube *cube, int center_x, int center_y, int radius, uint32_t color)
+static void	draw_circle(t_cube *cube, t_ipoint p, int radius, uint32_t color)
 {
-	for (int y = -radius; y <= radius; y++)
+	int	dx;
+	int	dy;
+	int	distance;
+
+	dy = -radius;
+	while (dy <= radius)
 	{
-		for (int x = -radius; x <= radius; x++)
+		dx = -radius;
+		while (dx <= radius)
 		{
-			if (x*x + y*y <= radius*radius)
-				my_mlx_pixel_put2(cube, center_x + x, center_y + y, color);
+			distance = dx * dx + dy * dy;
+			if (distance <= radius * radius)
+				my_pixel_put(cube->img2, p.x + dx, p.y + dy, color);
+			dx++;
 		}
+		dy++;
 	}
 }
 
-void draw_player(t_cube *cube)
+void	draw_player(t_cube *cube)
 {
-	int	x;
-	int	y;
-	int	radius;
-	int	color;
+	t_ipoint	p;
+	int			radius;
+	int			color;
 
+	p.x = 60;
+	p.y = 60;
 	color = ft_get_color(255, 0, 0, 255);
-
-	x = cube->plyer->s.x * MINIMAP_SCALE;
-	y = cube->plyer->s.y * MINIMAP_SCALE;
 	radius = TILE_SIZE / 8;
-	draw_circle(cube, 60, 60, radius, color);
-
+	draw_circle(cube, p, radius, color);
 }
