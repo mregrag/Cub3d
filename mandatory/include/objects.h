@@ -6,11 +6,11 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 10:49:25 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/19 20:23:57 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/20 10:25:41 by aait-bab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# ifndef OBJECTS_H
+#ifndef OBJECTS_H
 # define OBJECTS_H
 
 # include "macros.h"
@@ -70,12 +70,12 @@ typedef struct s_textur
 	mlx_texture_t	*we;
 	mlx_texture_t	*ea;
 }	t_textur;
+
 typedef struct s_point
 {
 	double	x;
 	double	y;
 }	t_point;
-
 
 typedef struct s_txtr
 {
@@ -90,6 +90,7 @@ typedef struct s_colors
 	int				g;
 	int				b;
 }	t_colors;
+
 typedef struct s_ray
 {
 	int			index;

@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 18:21:10 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/20 10:06:05 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/20 10:21:18 by aait-bab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ void	mouse_rotate(void *param)
 	dx = mouse_x - WIDTH / 2;
 	cube->plyer->derection += dx * 0.002;
 	cube->plyer->derection = normalize_angle(cube->plyer->derection);
-	mlx_set_mouse_pos(cube->window, cube->window->width / 2, cube->window->height / 2);
+	mlx_set_mouse_pos(cube->window, cube->window->width / 2, \
+		cube->window->height / 2);
 }
 
 void	rendered(void *param)
@@ -56,16 +57,10 @@ void	ft_init_all_null(t_cube *cube)
 	cube->sprites[0] = NULL;
 }
 
-void	foo(void)
-{
-	system("leaks cub3D_bonus");
-}
-
 int	main(int argc, char **argv)
 {
 	t_cube	cube;
 
-	// atexit(foo);
 	if (argc != 2)
 		return (print_fd("Error\nmissing map file", 2), 1);
 	ft_get_cube(&cube);

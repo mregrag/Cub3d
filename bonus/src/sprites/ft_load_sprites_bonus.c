@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 10:25:08 by aait-bab          #+#    #+#             */
-/*   Updated: 2024/09/19 19:33:14 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/20 10:16:04 by aait-bab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ static void	allocate_sprites(t_cube *cube)
 
 static void	fill_sprts_txtrs(mlx_texture_t **sprites)
 {
-	int	i;
 	char	*paths[5];
+	int		i;
 
 	i = 0;
 	paths[0] = "assets/sprites/sp1.png";

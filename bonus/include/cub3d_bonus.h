@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 18:20:49 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/19 21:54:34 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/20 10:22:27 by aait-bab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void			key_press(mlx_key_data_t keydata, void *ml);
 void			movement(t_cube *cube, double move_x, double move_y);
 
 /* Utils */
-void			my_pixel_put(mlx_image_t *img, uint32_t x, uint32_t y, uint32_t color);
+void			my_pixel_put(mlx_image_t *img, uint32_t x, \
+	uint32_t y, uint32_t color);
 double			calcul_distance(t_dpoint start, t_dpoint end);
 uint32_t		ft_get_color(uint32_t r, uint32_t g, uint32_t b, uint32_t a);
 int				reverse_bytes(int c);

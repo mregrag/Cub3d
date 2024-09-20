@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 10:49:25 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/19 19:08:22 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/20 10:17:09 by aait-bab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,19 +118,19 @@ typedef struct s_sprite
 
 typedef struct s_cube
 {
-	mlx_image_t	*img;
-	mlx_image_t	*img2;
-	mlx_image_t	*img3;
-	int			shoot;
+	mlx_image_t		*img;
+	mlx_image_t		*img2;
+	mlx_image_t		*img3;
+	int				shoot;
 	mlx_texture_t	*red_p;
-	mlx_t		*window;
-	t_map		*map;
-	t_player	*plyer;
-	t_ray		*ray;
-	t_textur	*textur;
-	t_txtr		*txtrs[6];
-	t_colors	*colors[6];
-	t_sprite	*sprites[6];
+	mlx_t			*window;
+	t_map			*map;
+	t_player		*plyer;
+	t_ray			*ray;
+	t_textur		*textur;
+	t_txtr			*txtrs[6];
+	t_colors		*colors[6];
+	t_sprite		*sprites[6];
 }	t_cube;
 
 #endif
