@@ -6,7 +6,7 @@
 #    By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/07 18:20:34 by mregrag           #+#    #+#              #
-#    Updated: 2024/09/19 22:21:18 by mregrag          ###   ########.fr        #
+#    Updated: 2024/09/20 10:35:59 by aait-bab         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME_B		= cub3D_bonus
 LIBFT		= libft.a
 LIBRAIRIE	= "./lib/Libft"
 CC		= cc
-CFLAGS		= -Wall -Wextra -Werror -fsanitize=address -g2
+CFLAGS		= -Wall -Wextra -Werror #-fsanitize=address -g2
 HEADERMLX	= ./MLX42/MLX42.h
 HEADERLIBFT	= ./lib/Libft/libft.h
 RM		= rm -rf

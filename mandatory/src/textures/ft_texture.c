@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 11:57:46 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/19 20:24:47 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/20 10:55:38 by aait-bab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,12 @@
 
 mlx_texture_t	*get_texture(t_cube *cube)
 {
-	cube->ray->angl = normalize_angle(cube->ray->angl);
 	if (cube->ray->was_hit_vertical)
 	{
 		if (cube->ray->angl > M_PI / 2 && cube->ray->angl < 3 * (M_PI / 2))
-			return (cube->textur->ea);
-		else
 			return (cube->textur->we);
+		else
+			return (cube->textur->ea);
 	}
 	else
 	{

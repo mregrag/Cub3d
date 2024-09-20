@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 18:21:10 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/19 12:12:33 by aait-bab         ###   ########.fr       */
+/*   Updated: 2024/09/20 10:36:30 by aait-bab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,14 @@ static void	ft_init_all_null(t_cube *cube)
 	cube->textur = NULL;
 }
 
+void lk()
+{
+	system("leaks cub3D");
+}
+
 int	main(int argc, char **argv)
 {
+	atexit(lk);
 	t_cube	cube;
 
 	if (argc != 2)
