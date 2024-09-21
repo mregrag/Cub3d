@@ -1,7 +1,7 @@
-NO assets/textures/1.png
-SO assets/textures/2.png
-WE assets/textures/3.png
-EA assets/textures/4.png
+NO assets/textures/n.png
+SO assets/textures/s.png
+WE assets/textures/w.png
+EA assets/textures/e.png
 
 F 32,32,32
 C 204,255,255
