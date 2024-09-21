@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 07:08:14 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/19 19:10:39 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/20 13:34:10 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,48 +14,48 @@
 
 static double	vertical_intersect(t_cube *cube)
 {
-	t_dpoint	inter;
+	t_dpoint	intersect;
 	t_dpoint	delta;
 
-	inter.x = floor(cube->plyer->s.x / TILE_SIZE) * TILE_SIZE;
+	intersect.x = floor(cube->plyer->s.x / TILE_SIZE) * TILE_SIZE;
 	if (cube->ray->right)
-		inter.x += TILE_SIZE;
-	inter.y = cube->plyer->s.y
-		+ (inter.x - cube->plyer->s.x) * tan(cube->ray->angl);
+		intersect.x += TILE_SIZE;
+	intersect.y = cube->plyer->s.y
+		+ (intersect.x - cube->plyer->s.x) * tan(cube->ray->angl);
 	delta.x = TILE_SIZE;
 	delta.y = TILE_SIZE * tan(cube->ray->angl);
 	adjust_step(cube, &delta, 1);
-	while (!hit_wall(inter.x - cube->ray->left, inter.y, cube))
+	while (!is_wall(intersect.x - cube->ray->left, intersect.y, cube))
 	{
-		inter.x += delta.x;
-		inter.y += delta.y;
+		intersect.x += delta.x;
+		intersect.y += delta.y;
 	}
-	cube->ray->vwall.x = inter.x;
-	cube->ray->vwall.y = inter.y;
-	return (calcul_distance(inter, cube->plyer->s));
+	cube->ray->vwall.x = intersect.x;
+	cube->ray->vwall.y = intersect.y;
+	return (calcul_distance(intersect, cube->plyer->s));
 }
 
 static double	horizontal_intersect(t_cube *cube)
 {
-	t_dpoint	inter;
+	t_dpoint	intersect;
 	t_dpoint	delta;
 
-	inter.y = floor(cube->plyer->s.y / TILE_SIZE) * TILE_SIZE;
+	intersect.y = floor(cube->plyer->s.y / TILE_SIZE) * TILE_SIZE;
 	if (cube->ray->down)
-		inter.y += TILE_SIZE;
-	inter.x = cube->plyer->s.x
-		+ (inter.y - cube->plyer->s.y) / tan(cube->ray->angl);
+		intersect.y += TILE_SIZE;
+	intersect.x = cube->plyer->s.x
+		+ (intersect.y - cube->plyer->s.y) / tan(cube->ray->angl);
 	delta.y = TILE_SIZE;
 	delta.x = TILE_SIZE / tan(cube->ray->angl);
 	adjust_step(cube, &delta, 0);
-	while (!hit_wall(inter.x, inter.y - cube->ray->up, cube))
+	while (!is_wall(intersect.x, intersect.y - cube->ray->up, cube))
 	{
-		inter.x += delta.x;
-		inter.y += delta.y;
+		intersect.x += delta.x;
+		intersect.y += delta.y;
 	}
-	cube->ray->hwall.x = inter.x;
-	cube->ray->hwall.y = inter.y;
-	return (calcul_distance(inter, cube->plyer->s));
+	cube->ray->hwall.x = intersect.x;
+	cube->ray->hwall.y = intersect.y;
+	return (calcul_distance(intersect, cube->plyer->s));
 }
 
 void	raycasting(t_cube *cube)
@@ -68,8 +68,8 @@ void	raycasting(t_cube *cube)
 	{
 		cube->ray->angl = normalize_angle(cube->ray->angl);
 		check_rayfacing(cube, cube->ray->angl);
-		distance.y = vertical_intersect(cube);
 		distance.x = horizontal_intersect(cube);
+		distance.y = vertical_intersect(cube);
 		if (distance.y <= distance.x)
 		{
 			cube->ray->distance = distance.y;

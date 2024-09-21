@@ -6,18 +6,17 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 03:49:51 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/19 20:57:43 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/20 15:21:26 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-double	normalize_angle(float angle)
+double	normalize_angle(double angle)
 {
+	angle = fmod(angle, 2 * M_PI);
 	if (angle < 0)
-		angle += (2 * M_PI);
-	if (angle > (2 * M_PI))
-		angle -= (2 * M_PI);
+		angle += 2 * M_PI;
 	return (angle);
 }
 

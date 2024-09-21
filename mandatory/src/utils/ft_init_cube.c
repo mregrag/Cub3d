@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init_cube.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mregrag <mregrag@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/16 12:21:31 by aait-bab          #+#    #+#             */
-/*   Updated: 2024/09/19 21:07:03 by mregrag          ###   ########.fr       */
+/*   Created: 2024/09/20 17:26:30 by mregrag           #+#    #+#             */
+/*   Updated: 2024/09/21 16:08:04 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static void	init_player(t_cube *cube)
 	char	c;
 
 	cube->plyer = ft_malloc(sizeof(t_player), 1);
+	cube->ray = ft_malloc(sizeof(t_ray), 1);
 	c = cube->map->map2d[cube->map->p.y][cube->map->p.x];
 	if (c == 'E')
 		cube->plyer->derection = 0;
@@ -29,6 +30,8 @@ static void	init_player(t_cube *cube)
 	cube->plyer->s.x = (cube->map->p.x * TILE_SIZE) + TILE_SIZE / 2;
 	cube->plyer->s.y = (cube->map->p.y * TILE_SIZE) + TILE_SIZE / 2;
 	cube->plyer->fov = FOV * (M_PI / 180);
+	cube->plyer->turn = STOP;
+	cube->plyer->walk = STOP;
 }
 
 void	ft_init_cube(t_cube *cube)
@@ -36,14 +39,17 @@ void	ft_init_cube(t_cube *cube)
 	int32_t			w_wi;
 	int32_t			w_he;
 
-	cube->window = mlx_init(WIDTH, HEIGHT, "Cub3D", true);
+	if (!(HEIGHT <= 1440 && HEIGHT >= 1)
+		|| !(WIDTH <= 2560 && WIDTH >= 1)
+		|| !(FOV <= 180 && FOV >= 0))
+		ft_error("Invalid configuration\n");
+	cube->window = mlx_init(WIDTH, HEIGHT, "Cub3D", false);
 	if (!cube->window)
 		ft_error("Error\nfailed to create window");
 	(1 && (w_wi = cube->window->width, w_he = cube->window->height));
 	cube->img = mlx_new_image(cube->window, w_wi, w_he);
 	if (!cube->img)
 		ft_error("Error\nfailed to create image");
-	cube->ray = ft_malloc(sizeof(t_ray), 1);
 	ft_load_txtrs(cube);
 	if (mlx_image_to_window(cube->window, cube->img, 0, 0) == -1)
 		ft_error("Error\nfailed to put image to window");

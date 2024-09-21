@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 07:08:14 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/19 21:02:55 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/20 15:22:18 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static double	vertical_intersect(t_cube *cube)
 	delta.x = TILE_SIZE;
 	delta.y = TILE_SIZE * tan(cube->ray->angl);
 	adjust_step(cube, &delta, 1);
-	while (!hit_wall(inter.x - cube->ray->left, inter.y, cube))
+	while (!is_wall(inter.x - cube->ray->left, inter.y, cube))
 	{
 		inter.x += delta.x;
 		inter.y += delta.y;
@@ -48,7 +48,7 @@ static double	horizontal_intersect(t_cube *cube)
 	delta.y = TILE_SIZE;
 	delta.x = TILE_SIZE / tan(cube->ray->angl);
 	adjust_step(cube, &delta, 0);
-	while (!hit_wall(inter.x, inter.y - cube->ray->up, cube))
+	while (!is_wall(inter.x, inter.y - cube->ray->up, cube))
 	{
 		inter.x += delta.x;
 		inter.y += delta.y;

@@ -6,7 +6,7 @@
 /*   By: mregrag <mregrag@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 21:18:06 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/19 19:09:19 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/20 13:30:04 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	check_rayfacing(t_cube *cube, double angle)
 	cube->ray->left = !cube->ray->right;
 }
 
-int	hit_wall(double x, double y, t_cube *cube)
+int	is_wall(double x, double y, t_cube *cube)
 {
 	t_ipoint	m;
 

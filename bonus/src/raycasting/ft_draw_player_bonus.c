@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 09:10:37 by aait-bab          #+#    #+#             */
-/*   Updated: 2024/09/19 19:29:55 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/21 12:03:53 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,6 @@ void	draw_player(t_cube *cube)
 	p.x = 60;
 	p.y = 60;
 	color = ft_get_color(255, 0, 0, 255);
-	radius = TILE_SIZE / 8;
+	radius = TILE_SIZE / 10;
 	draw_circle(cube, p, radius, color);
 }

@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 18:20:49 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/20 10:22:27 by aait-bab         ###   ########.fr       */
+/*   Updated: 2024/09/20 15:18:13 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void			ft_load_txtrs(t_cube *cube);
 
 /* Raycasting */
 int				parsing_map(char *path, t_map *map);
-double			normalize_angle(float angle);
+double			normalize_angle(double angle);
 void			raycasting(t_cube *cube);
 void			walk_player(t_cube *cube, double move_x, double move_y);
 
@@ -71,6 +71,6 @@ void			draw_minimap(t_cube *cube);
 void			draw_player(t_cube *cube);
 void			adjust_step(t_cube *cube, t_dpoint *delta, int is_vertical);
 void			check_rayfacing(t_cube *cube, double angle);
-int				hit_wall(double x, double y, t_cube *cube);
+int				is_wall(double x, double y, t_cube *cube);
 
 #endif

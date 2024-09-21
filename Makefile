@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+         #
+#    By: mregrag <mregrag@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/08/07 18:20:34 by mregrag           #+#    #+#              #
-#    Updated: 2024/09/20 10:35:59 by aait-bab         ###   ########.fr        #
+#    Created: 2024/09/20 17:26:43 by mregrag           #+#    #+#              #
+#    Updated: 2024/09/21 11:34:54 by mregrag          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,15 +18,20 @@ CC		= cc
 CFLAGS		= -Wall -Wextra -Werror #-fsanitize=address -g2
 HEADERMLX	= ./MLX42/MLX42.h
 HEADERLIBFT	= ./lib/Libft/libft.h
-RM		= rm -rf
+RM		=  rm -rf
 MLX		= ./MLX42/libmlx42.a
 FLAG_MLX	= -framework Cocoa -framework OpenGL -framework IOKit -lglfw
 INCLUDE		= -I/Users/${USER}/.brew/Cellar/glfw/3.4/include/GLFW
 LIB		= -L/Users/${USER}/.brew/Cellar/glfw/3.4/lib
 
 
-HEADER		= ./mandatory/include/cub3d.h ./mmandatory/include/macros.h ./mandatory/include/objects.h
-HEADER_B	= ./bonus/include/cub3d.h ./bonus/include/macros.h ./bonus/include/objects.h
+HEADER		= ./mandatory/include/cub3d.h \
+		  ./mandatory/include/macros.h \
+		  ./mandatory/include/objects.h
+
+HEADER_B	= ./bonus/include/cub3d_bonus.h \
+		  ./bonus/include/macros_bonus.h \
+		  ./bonus/include/objects_bonus.h
 
 SRCS		=	./mandatory/src/parsing/ft_parse_cube.c \
 			./mandatory/src/parsing/ft_parse_clrs_txtrs.c \
@@ -93,7 +98,7 @@ $(LIBFT):
 $(NAME): $(LIBFT) $(OBJS)
 	@$(CC) $(CFLAGS) $(FLAG_MLX) $(LIB) $(OBJS) $(MLX) -L$(LIBRAIRIE) -o $(NAME) -lft
 
-%.o: %.c $(HEADER_B) $(HEADER) $(HEADERLIBFT) $(HEADERMLX)
+%.o: %.c $(HEADER) $(HEADER_B) $(HEADERLIBFT) $(HEADERMLX)
 	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
 bonus: $(LIBFT) $(OBJS_B)

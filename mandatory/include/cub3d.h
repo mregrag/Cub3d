@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 18:20:49 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/20 10:23:14 by aait-bab         ###   ########.fr       */
+/*   Updated: 2024/09/21 11:35:17 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ double			calculate_texture_x(mlx_texture_t *texture, t_cube *cube);
 void			ft_load_txtrs(t_cube *cube);
 
 /* Raycasting */
-double			normalize_angle(float angle);
+double			normalize_angle(double angle);
 void			raycasting(t_cube *cube);
 void			walk_player(t_cube *cube, double move_x, double move_y);
 
@@ -62,6 +62,6 @@ void			ft_destroy_all(t_cube *cube);
 void			projected_wall(t_cube *cube);
 void			adjust_step(t_cube *cube, t_dpoint *delta, int is_vertical);
 void			check_rayfacing(t_cube *cube, double angle);
-int				hit_wall(double x, double y, t_cube *cube);
+int				is_wall(double x, double y, t_cube *cube);
 
 #endif

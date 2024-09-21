@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 10:49:25 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/20 10:25:41 by aait-bab         ###   ########.fr       */
+/*   Updated: 2024/09/21 11:55:53 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ typedef struct s_player
 	t_ipoint	s;
 	t_ipoint	m;
 	double		derection;
-	float		fov;
-	int			turn;
-	int			walk;
+	double		fov;
+	t_walk		turn;
+	t_walk		walk;
 
 }	t_player;
 

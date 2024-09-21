@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 10:49:25 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/20 10:17:09 by aait-bab         ###   ########.fr       */
+/*   Updated: 2024/09/21 11:56:33 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,6 @@ typedef struct s_dpoint
 	double	y;
 }	t_dpoint;
 
-typedef struct s_fpoint
-{
-	float	x;
-	float	y;
-}	t_fpoint;
-
 typedef struct s_ipoint
 {
 	int	x;
@@ -49,9 +43,9 @@ typedef struct s_player
 	t_dpoint	s;
 	t_ipoint	m;
 	double		derection;
-	float		fov;
-	int			turn;
-	int			walk;
+	double		fov;
+	t_walk		turn;
+	t_walk		walk;
 
 }	t_player;
 
@@ -85,20 +79,20 @@ typedef struct s_txtr
 
 typedef struct s_colors
 {
-	char			*key;
-	int				r;
-	int				g;
-	int				b;
+	char	*key;
+	int		r;
+	int		g;
+	int		b;
 }	t_colors;
 
 typedef struct s_ray
 {
-	int			index;
 	double		angl;
 	t_dpoint	hwall;
 	t_dpoint	vwall;
 	double		distance;
 	double		angle;
+	int			index;
 	int			up;
 	int			down;
 	int			right;
@@ -108,12 +102,12 @@ typedef struct s_ray
 
 typedef struct s_sprite
 {
-	int				x;
-	int				y;
-	int				visible;
-	int				width;
-	int				height;
-	mlx_image_t		*img;
+	int			x;
+	int			y;
+	int			visible;
+	int			width;
+	int			height;
+	mlx_image_t	*img;
 }	t_sprite;
 
 typedef struct s_cube

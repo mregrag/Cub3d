@@ -6,28 +6,18 @@
 /*   By: mregrag <mregrag@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 12:15:24 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/19 19:10:25 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/20 17:22:11 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d_bonus.h"
 
-static int	is_wall(t_cube *cube, int x, int y)
-{
-	int	map_y;
-	int	map_x;
-
-	map_x = x / TILE_SIZE;
-	map_y = y / TILE_SIZE;
-	return (cube->map->map2d[map_y][map_x] == '1');
-}
-
 static int	check_collision(t_cube *cube, int x, int y)
 {
-	return (is_wall(cube, x - COLLISION, y - COLLISION)
-		|| is_wall(cube, x + COLLISION, y - COLLISION)
-		|| is_wall(cube, x - COLLISION, y + COLLISION)
-		|| is_wall(cube, x + COLLISION, y + COLLISION));
+	return (is_wall(x - COLLISION, y - COLLISION, cube)
+		|| is_wall(x + COLLISION, y - COLLISION, cube)
+		|| is_wall(x - COLLISION, y + COLLISION, cube)
+		|| is_wall(x + COLLISION, y + COLLISION, cube));
 }
 
 void	walk_player(t_cube *cube, double move_x, double move_y)
