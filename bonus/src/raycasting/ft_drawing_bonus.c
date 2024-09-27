@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 18:56:54 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/19 20:40:22 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/23 19:26:00 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,22 +59,23 @@ static void	draw_floor(t_cube *cube, int wall_b)
 
 static void	draw_wall(t_cube *cube, int wall_t, int wall_b, double wall_h)
 {
-	t_dpoint		textoffset;
+	t_ipoint		offset;
 	mlx_texture_t	*texture;
 	uint32_t		*arr;
+	uint32_t		color;
 	int				y;
-	int				distop;
 
 	texture = get_texture(cube);
 	arr = (uint32_t *)texture->pixels;
-	textoffset.x = calculate_texture_x(texture, cube);
+	offset.x = get_texture_x(texture, cube);
+	if (cube->textur->we == texture || cube->textur->so == texture)
+		offset.x = texture->width - offset.x - 1;
 	y = wall_t;
 	while (y < wall_b)
 	{
-		distop = y + (wall_h / 2) - (cube->window->height / 2);
-		textoffset.y = distop * ((double)texture->height / wall_h);
-		my_pixel_put(cube->img, cube->ray->index, y, reverse_bytes \
-		(arr[(int)textoffset.y * texture->width + (int)textoffset.x]));
+		offset.y = get_texture_y(texture, cube, y, wall_h);
+		color = reverse_bytes(arr[offset.y * texture->width + offset.x]);
+		my_pixel_put(cube->img, cube->ray->index, y, color);
 		y++;
 	}
 }
@@ -83,8 +84,8 @@ void	projected_wall(t_cube *cube)
 {
 	double	wall_h;
 	double	disproplan;
-	double	wall_t;
-	double	wall_b;
+	int		wall_t;
+	int		wall_b;
 
 	cube->ray->distance *= cos(cube->ray->angl - cube->plyer->derection);
 	disproplan = (cube->window->width / 2) / tan(cube->plyer->fov / 2);

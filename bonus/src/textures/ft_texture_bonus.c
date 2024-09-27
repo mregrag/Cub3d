@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 11:57:46 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/20 10:55:31 by aait-bab         ###   ########.fr       */
+/*   Updated: 2024/09/25 14:39:44 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,30 @@ mlx_texture_t	*get_texture(t_cube *cube)
 	}
 }
 
-double	calculate_texture_x(mlx_texture_t *texture, t_cube *cube)
+int	get_texture_x(mlx_texture_t *texture, t_cube *cube)
 {
-	double	x;
+	double	offset_x;
 
 	if (cube->ray->was_hit_vertical)
-		x = fmod(cube->ray->vwall.y, TILE_SIZE);
+		offset_x = fmod(cube->ray->vwall.y, TILE_SIZE);
 	else
-		x = fmod(cube->ray->hwall.x, TILE_SIZE);
-	x = (x * texture->width) / TILE_SIZE;
-	return (x);
+		offset_x = fmod(cube->ray->hwall.x, TILE_SIZE);
+	offset_x = (offset_x * texture->width) / TILE_SIZE;
+	return (offset_x);
+}
+
+int	get_texture_y(mlx_texture_t *texture, t_cube *cube, int y, int wall_h)
+{
+	double	step;
+	double	offset_y;
+	int		wall_t;
+
+	wall_t = (cube->window->height / 2) - (wall_h / 2);
+	step = (double)texture->height / wall_h;
+	offset_y = ((y - wall_t) * step);
+	if (offset_y >= texture->height)
+		offset_y = texture->height - 1;
+	if (offset_y < 0)
+		offset_y = 0;
+	return (offset_y);
 }

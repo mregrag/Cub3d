@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:33:54 by aait-bab          #+#    #+#             */
-/*   Updated: 2024/09/20 18:04:31 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/22 20:56:25 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ static int	check_collision(t_cube *cube, int x, int y)
 
 void	walk_player(t_cube *cube, double move_x, double move_y)
 {
-	double	new_x;
-	double	new_y;
+	int	new_x;
+	int	new_y;
 
-	new_x = roundf(cube->plyer->s.x + move_x);
-	new_y = roundf(cube->plyer->s.y + move_y);
+	new_x = round(cube->plyer->s.x + move_x);
+	new_y = round(cube->plyer->s.y + move_y);
 	if (!check_collision(cube, new_x, cube->plyer->s.y))
 		cube->plyer->s.x = new_x;
 	if (!check_collision(cube, cube->plyer->s.x, new_y))

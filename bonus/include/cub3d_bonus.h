@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 18:20:49 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/20 15:18:13 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/27 22:18:57 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 /* Core Functions */
 t_cube			*ft_get_cube(t_cube *cube);
 void			key_press(mlx_key_data_t keydata, void *ml);
+void			mouse_event(void *param);
 void			movement(t_cube *cube, double move_x, double move_y);
 
 /* Utils */
@@ -25,7 +26,7 @@ void			my_pixel_put(mlx_image_t *img, uint32_t x, \
 	uint32_t y, uint32_t color);
 double			calcul_distance(t_dpoint start, t_dpoint end);
 uint32_t		ft_get_color(uint32_t r, uint32_t g, uint32_t b, uint32_t a);
-int				reverse_bytes(int c);
+uint32_t		reverse_bytes(uint32_t c);
 
 /* Parsing */
 t_list			*ft_parse_clrs_textrs(t_list *head, t_cube *cube);
@@ -43,10 +44,11 @@ int				empty_line(char *line);
 int				ft_parse_map(t_list *head, t_cube *cube);
 
 /* Texture */
-double			calculate_texture_x(mlx_texture_t *texture, t_cube *cube);
+int				get_texture_x(mlx_texture_t *texture, t_cube *cube);
+int				get_texture_y(mlx_texture_t *texture, \
+		t_cube *cube, int y, int wall_h);
 mlx_texture_t	*get_texture(t_cube *cube);
 void			ft_load_txtrs(t_cube *cube);
-
 /* Raycasting */
 int				parsing_map(char *path, t_map *map);
 double			normalize_angle(double angle);
@@ -55,7 +57,6 @@ void			walk_player(t_cube *cube, double move_x, double move_y);
 
 /* General Utils */
 void			ft_error(char *msg);
-void			print_fd(char *msg, int fd);
 char			*ft_trim(char *str);
 void			ft_clear_img(mlx_image_t *img);
 void			ft_init_cube(t_cube *cube);
@@ -63,7 +64,7 @@ void			ft_destroy_all(t_cube *cube);
 
 /* Sprites */
 void			ft_load_sprites(t_cube *cube);
-void			ft_sprites(t_cube *cube, int *i, int *j);
+void			ft_sprites(t_cube *cube);
 
 /* Drawing */
 void			projected_wall(t_cube *cube);

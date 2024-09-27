@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 03:49:51 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/20 15:21:11 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/22 22:45:14 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ double	normalize_angle(double angle)
 	return (angle);
 }
 
-int	reverse_bytes(int c)
+uint32_t	reverse_bytes(uint32_t c)
 {
-	unsigned int	b;
+	uint32_t	b;
 
 	b = 0;
 	b |= (c & 0xFF) << 24;

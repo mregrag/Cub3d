@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 18:20:49 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/21 11:35:17 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/27 22:18:00 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void			movement(t_cube *cube, double move_x, double move_y);
 uint32_t		ft_get_color(uint32_t r, uint32_t g, uint32_t b, uint32_t a);
 void			my_pixel_put(mlx_image_t *img, uint32_t x, \
 	uint32_t y, uint32_t color);
-int				reverse_bytes(int c);
-double			calcul_distance(t_dpoint start, t_ipoint end);
+uint32_t		reverse_bytes(uint32_t c);
+double			calcul_distance(t_dpoint start, t_dpoint end);
 
 /* Parsing */
 void			ft_parse_cube(char *file, t_cube *cube);
@@ -41,8 +41,10 @@ int				ft_isnumber(char *str);
 int				empty_line(char *line);
 
 /* Texture */
+int				get_texture_x(mlx_texture_t *texture, t_cube *cube);
+int				get_texture_y(mlx_texture_t *texture, \
+		t_cube *cube, int y, int wall_h);
 mlx_texture_t	*get_texture(t_cube *cube);
-double			calculate_texture_x(mlx_texture_t *texture, t_cube *cube);
 void			ft_load_txtrs(t_cube *cube);
 
 /* Raycasting */
@@ -52,7 +54,6 @@ void			walk_player(t_cube *cube, double move_x, double move_y);
 
 /* General Utils */
 void			ft_error(char *msg);
-void			print_fd(char *msg, int fd);
 char			*ft_trim(char *str);
 void			ft_clear_img(mlx_image_t *img);
 void			ft_init_cube(t_cube *cube);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mregrag <mregrag@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/07 18:21:10 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/21 14:53:26 by mregrag          ###   ########.fr       */
+/*   Created: 2024/09/25 13:20:28 by mregrag           #+#    #+#             */
+/*   Updated: 2024/09/27 22:20:56 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,24 @@ static void	ft_init_all_null(t_cube *cube)
 	cube->textur = NULL;
 }
 
-// void lk()
-// {
-// 	system("leaks cub3D");
-// }
-//
+void	leaks(void)
+{
+	system("leaks cub3D");
+}
+
+void	check_open_fds(void)
+{
+	system("lsof -c cub3D");
+}
+
 int	main(int argc, char **argv)
 {
-	// atexit(lk);
 	t_cube	cube;
 
+	atexit(leaks);
+	// atexit(check_open_fds);
 	if (argc != 2)
-		return (print_fd("Error\nmissing map file", 2), 1);
+		return (ft_putendl_fd("Error\nmissing map file", 2), 1);
 	ft_get_cube(&cube);
 	ft_init_all_null(&cube);
 	ft_parse_cube(argv[1], &cube);

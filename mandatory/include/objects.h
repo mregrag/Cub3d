@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 10:49:25 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/21 11:55:53 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/27 20:49:31 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ typedef struct s_ipoint
 
 typedef struct s_player
 {
-	t_ipoint	s;
-	t_ipoint	m;
+	t_dpoint	s;
+	t_dpoint	m;
 	double		derection;
 	double		fov;
 	t_walk		turn;
@@ -71,12 +71,6 @@ typedef struct s_textur
 	mlx_texture_t	*ea;
 }	t_textur;
 
-typedef struct s_point
-{
-	double	x;
-	double	y;
-}	t_point;
-
 typedef struct s_txtr
 {
 	char			*key;
@@ -97,7 +91,6 @@ typedef struct s_ray
 	double		angl;
 	t_dpoint	hwall;
 	t_dpoint	vwall;
-	t_dpoint	hit;
 	double		distance;
 	double		angle;
 	int			up;
