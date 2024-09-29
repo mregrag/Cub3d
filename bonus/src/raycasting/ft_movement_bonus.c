@@ -6,11 +6,12 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 06:30:06 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/20 19:03:30 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/28 19:00:52 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d_bonus.h"
+#include <stdio.h>
 
 static void	turnright(t_cube *cube)
 {

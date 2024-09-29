@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 18:21:10 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/27 22:19:13 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/29 06:19:33 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	rendered(void *param)
 	movement(cube, 0, 0);
 	ft_sprites(cube);
 	draw_minimap(cube);
-	draw_player(cube);
 }
 
 void	ft_init_all_null(t_cube *cube)
@@ -35,6 +34,11 @@ void	ft_init_all_null(t_cube *cube)
 	cube->sprites[0] = NULL;
 }
 
+void	leaks(void)
+{
+	system("leaks cub3D");
+}
+
 void	check_open_fds(void)
 {
 	system("lsof -c cub3D");
@@ -44,7 +48,7 @@ int	main(int argc, char **argv)
 {
 	t_cube	cube;
 
-	atexit(check_open_fds);
+	atexit(leaks);
 	if (argc != 2)
 		return (ft_putendl_fd("Error\nmissing map file", 2), 1);
 	ft_get_cube(&cube);

@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:07:15 by aait-bab          #+#    #+#             */
-/*   Updated: 2024/09/19 19:33:04 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/28 17:53:27 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,22 +34,21 @@ static void	player_check(int p_x)
 void	ft_valid_caras_walls(char **map2d)
 {
 	int		p_x;
-	char	*set;
-	char	*set2;
 	int		i;
 	int		j;
 
-	(1 && (i = 0, p_x = 0, set = " 012NSEW", set2 = "NSEW"));
+	i = 0;
+	p_x = 0;
 	while (map2d[i])
 	{
 		j = 0;
 		while (map2d[i][j])
 		{
-			if (!ft_strchr(set, map2d[i][j]))
+			if (!ft_strchr(" 01DNSEW", map2d[i][j]))
 				ft_error("Error\ninvalid character in the map");
 			if (!serrounded_by_walls(i, j, map2d))
 				ft_error("Error\nmap is not surrounded by walls");
-			if (ft_strchr(set2, map2d[i][j]))
+			if (ft_strchr("NSEW", map2d[i][j]))
 				p_x++;
 			j++;
 		}

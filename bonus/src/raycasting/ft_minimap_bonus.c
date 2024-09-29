@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 21:33:16 by aait-bab          #+#    #+#             */
-/*   Updated: 2024/09/23 21:35:30 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/29 01:00:55 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,25 @@
 
 void	draw_line(t_cube *cube, t_dpoint start, t_dpoint end, uint32_t color)
 {
-	t_dpoint	inc;
-	t_dpoint	d;
+	t_dpoint	step;
+	t_dpoint	delta;
 	float		steps;
 	int			i;
 
 	i = 0;
-	d.x = end.x - start.x;
-	d.y = end.y - start.y;
-	if (fabs(d.x) > fabs(d.y))
-		steps = fabs(d.x);
+	delta.x = end.x - start.x;
+	delta.y = end.y - start.y;
+	if (fabs(delta.x) > fabs(delta.y))
+		steps = fabs(delta.x);
 	else
-		steps = fabs(d.y);
-	inc.x = d.x / steps;
-	inc.y = d.y / steps;
+		steps = fabs(delta.y);
+	step.x = delta.x / steps;
+	step.y = delta.y / steps;
 	while (i <= steps)
 	{
 		my_pixel_put(cube->img2, roundf(start.x), roundf(start.y), color);
-		start.x += inc.x;
-		start.y += inc.y;
+		start.x += step.x;
+		start.y += step.y;
 		i++;
 	}
 }
@@ -57,6 +57,11 @@ static void	minimap_put_pixel(t_cube *cube, t_ipoint s, t_ipoint r)
 		if (cube->map->map2d[(s.y / TILE_SIZE)][s.x / TILE_SIZE] == '1')
 			my_pixel_put(cube->img2, s.x - r.x, s.y - r.y, \
 				ft_get_color(0, 0, 0, 255));
+
+		else if (cube->map->map2d[(s.y / TILE_SIZE)][s.x / TILE_SIZE] == 'D')
+			my_pixel_put(cube->img2, s.x - r.x, s.y - r.y, \
+				ft_get_color(255, 0, 0, 255));
+		
 		else
 			my_pixel_put(cube->img2, s.x - r.x, s.y - r.y, \
 				ft_get_color(255, 255, 255, 255));

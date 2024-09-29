@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:05:22 by aait-bab          #+#    #+#             */
-/*   Updated: 2024/09/19 19:33:31 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/29 05:18:02 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	ft_load_txtrs(t_cube *cube)
 
 	i = 0;
 	cube->textur = ft_malloc(sizeof(t_textur), 1);
+	cube->textur->door = mlx_load_png("assets/d.png");
 	while (cube->txtrs[i] != NULL)
 	{
 		if (!ft_strncmp(cube->txtrs[i]->key, "NO", 2))
@@ -31,6 +32,6 @@ void	ft_load_txtrs(t_cube *cube)
 		i++;
 	}
 	if (!cube->textur->no || !cube->textur->so \
-		|| !cube->textur->we || !cube->textur->ea)
+		|| !cube->textur->we || !cube->textur->ea || !cube->textur->door)
 		ft_error("Error\nfailed to load textures");
 }

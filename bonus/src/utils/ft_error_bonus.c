@@ -6,11 +6,12 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 11:57:20 by aait-bab          #+#    #+#             */
-/*   Updated: 2024/09/27 22:19:39 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/29 06:36:55 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d_bonus.h"
+#include "MLX42.h"
 
 static void	destroy_textrs(t_cube *cube)
 {
@@ -24,6 +25,8 @@ static void	destroy_textrs(t_cube *cube)
 			mlx_delete_texture(cube->textur->we);
 		if (cube->textur->ea)
 			mlx_delete_texture(cube->textur->ea);
+		if (cube->textur->door)
+			mlx_delete_texture(cube->textur->door);
 	}
 }
 
@@ -60,6 +63,7 @@ void	ft_error(char *msg)
 		close(cube->map->fd);
 	destroy_textrs(cube);
 	destory_sprites(cube);
+	mlx_terminate(cube->window);
 	ft_malloc(0, 0);
 	exit(1);
 }

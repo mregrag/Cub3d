@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 12:21:31 by aait-bab          #+#    #+#             */
-/*   Updated: 2024/09/20 21:06:37 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/29 06:11:26 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ static void	init_player(t_cube *cube)
 
 	cube->plyer = ft_malloc(sizeof(t_player), 1);
 	cube->ray = ft_malloc(sizeof(t_ray), 1);
+	cube->door = ft_malloc(sizeof(t_door), 1);
 	c = cube->map->map2d[cube->map->p.y][cube->map->p.x];
 	if (c == 'E')
 		cube->plyer->derection = 0;
@@ -87,6 +88,8 @@ static void	init_player(t_cube *cube)
 	cube->plyer->fov = FOV * (M_PI / 180);
 	cube->plyer->turn = STOP;
 	cube->plyer->walk = STOP;
+	cube->door->is_door_open = 0;
+	cube->door->is_door_closed = 1;
 }
 
 void	ft_init_cube(t_cube *cube)

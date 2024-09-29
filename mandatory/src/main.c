@@ -6,7 +6,7 @@
 /*   By: mregrag <mregrag@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 13:20:28 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/27 22:20:56 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/29 06:18:45 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ int	main(int argc, char **argv)
 	t_cube	cube;
 
 	atexit(leaks);
-	// atexit(check_open_fds);
 	if (argc != 2)
 		return (ft_putendl_fd("Error\nmissing map file", 2), 1);
 	ft_get_cube(&cube);

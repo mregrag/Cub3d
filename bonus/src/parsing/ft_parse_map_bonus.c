@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 18:05:26 by aait-bab          #+#    #+#             */
-/*   Updated: 2024/09/27 21:32:09 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/29 07:12:47 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,16 @@ static int	check_valid(char **map2d, int i, size_t j)
 	return (0);
 }
 
+static int	is_door_valid(char **map2d, int x, int y)
+{
+	int	h_walls;
+	int	v_walls;
+
+	h_walls = (map2d[x][y - 1] == '1' && map2d[x][y + 1] == '1');
+	v_walls = (map2d[x - 1][y] == '1' && map2d[x + 1][y] == '1');
+	return (h_walls || v_walls);
+}
+
 static void	valid_map(char **map2d)
 {
 	size_t	j;
@@ -36,11 +46,13 @@ static void	valid_map(char **map2d)
 		{
 			if (map2d[i][j] == '0' || map2d[i][j] == 'S' \
 				|| map2d[i][j] == 'N' || map2d[i][j] == 'E' \
-				|| map2d[i][j] == 'W')
+				|| map2d[i][j] == 'W' || map2d[i][j] == 'D')
 			{
 				if (check_valid(map2d, i, j))
 					ft_error("Error\nplayer or 0 should \
 					not be surrounded by espaces");
+				if (map2d[i][j] == 'D' && !is_door_valid(map2d, i, j))
+					ft_error("Error: Invalid door placement at position");
 			}
 			j++;
 		}

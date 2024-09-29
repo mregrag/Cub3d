@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 07:08:14 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/20 13:34:10 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/29 05:54:51 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,14 @@ static double	vertical_intersect(t_cube *cube)
 	delta.x = TILE_SIZE;
 	delta.y = TILE_SIZE * tan(cube->ray->angl);
 	adjust_step(cube, &delta, 1);
-	while (!is_wall(intersect.x - cube->ray->left, intersect.y, cube))
+	while (!is_wall_or_door(intersect.x - cube->ray->left, intersect.y, cube))
 	{
 		intersect.x += delta.x;
 		intersect.y += delta.y;
 	}
 	cube->ray->vwall.x = intersect.x;
 	cube->ray->vwall.y = intersect.y;
+	cube->door->hit_door_v = cube->ray->hit_door;
 	return (calcul_distance(intersect, cube->plyer->s));
 }
 
@@ -48,13 +49,14 @@ static double	horizontal_intersect(t_cube *cube)
 	delta.y = TILE_SIZE;
 	delta.x = TILE_SIZE / tan(cube->ray->angl);
 	adjust_step(cube, &delta, 0);
-	while (!is_wall(intersect.x, intersect.y - cube->ray->up, cube))
+	while (!is_wall_or_door(intersect.x, intersect.y - cube->ray->up, cube))
 	{
 		intersect.x += delta.x;
 		intersect.y += delta.y;
 	}
 	cube->ray->hwall.x = intersect.x;
 	cube->ray->hwall.y = intersect.y;
+	cube->door->hit_door_h = cube->ray->hit_door;
 	return (calcul_distance(intersect, cube->plyer->s));
 }
 
@@ -74,11 +76,13 @@ void	raycasting(t_cube *cube)
 		{
 			cube->ray->distance = distance.y;
 			cube->ray->was_hit_vertical = 1;
+			cube->ray->hit_door = cube->door->hit_door_v;
 		}
 		else
 		{
 			cube->ray->distance = distance.x;
 			cube->ray->was_hit_vertical = 0;
+			cube->ray->hit_door = cube->door->hit_door_h;
 		}
 		projected_wall(cube);
 		cube->ray->index++;
