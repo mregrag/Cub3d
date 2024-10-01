@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 10:49:25 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/29 05:52:41 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/10/01 17:05:09 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,10 +125,8 @@ typedef struct s_door
 typedef struct s_cube
 {
 	mlx_image_t		*img;
-	mlx_image_t		*img2;
 	mlx_image_t		*img3;
 	int				shoot;
-	mlx_texture_t	*red_p;
 	mlx_t			*window;
 	t_map			*map;
 	t_player		*plyer;
@@ -138,6 +136,8 @@ typedef struct s_cube
 	t_colors		*colors[6];
 	t_sprite		*sprites[6];
 	t_door			*door;
+	int			mouse_enabled;
+
 }	t_cube;
 
 #endif

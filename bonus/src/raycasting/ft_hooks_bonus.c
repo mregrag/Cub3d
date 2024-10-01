@@ -6,11 +6,20 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 03:43:59 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/29 06:03:00 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/30 22:48:35 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d_bonus.h"
+
+static void	toggle_mouse(t_cube *cube)
+{
+	cube->mouse_enabled = !cube->mouse_enabled;
+	if (cube->mouse_enabled)
+		mlx_set_cursor_mode(cube->window, MLX_MOUSE_DISABLED);
+	else
+		mlx_set_cursor_mode(cube->window, MLX_MOUSE_NORMAL);
+}
 
 static void	key_reles(mlx_key_data_t keydata, t_cube *cube)
 {
@@ -51,6 +60,8 @@ void	key_press(mlx_key_data_t keydata, void *param)
 		cube->plyer->turn = TURN_RIGHT;
 	else if (keydata.key == MLX_KEY_SPACE && keydata.action == MLX_PRESS)
 		cube->door->is_door_open = 1;
+	else if (keydata.key == MLX_KEY_M && keydata.action == MLX_PRESS)
+		toggle_mouse(cube);
 	key_reles(keydata, cube);
 }
 
@@ -62,10 +73,12 @@ void	mouse_event(void *param)
 	int		dx;
 
 	cube = (t_cube *)param;
+	if (!cube->mouse_enabled)
+		return ;
 	mlx_get_mouse_pos(cube->window, &mouse_x, &mouse_y);
 	dx = mouse_x - cube->window->width / 2;
 	cube->plyer->derection += dx * 0.002;
 	cube->plyer->derection = normalize_angle(cube->plyer->derection);
 	mlx_set_mouse_pos(cube->window, cube->window->width / 2, \
-		   cube->window->height / 2);
+			cube->window->height / 2);
 }

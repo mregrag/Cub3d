@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 11:57:46 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/29 06:26:10 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/29 21:26:19 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@ mlx_texture_t	*get_texture(t_cube *cube)
 	if (cube->ray->was_hit_vertical)
 	{
 		if (cube->ray->angl > M_PI / 2 && cube->ray->angl < 3 * (M_PI / 2))
-			return (cube->textur->we);
-		else
 			return (cube->textur->ea);
+		else
+			return (cube->textur->we);
 	}
 	else
 	{
 		if (cube->ray->angl > 0 && cube->ray->angl < M_PI)
-			return (cube->textur->so);
-		else
 			return (cube->textur->no);
+		else
+			return (cube->textur->so);
 	}
 }
 

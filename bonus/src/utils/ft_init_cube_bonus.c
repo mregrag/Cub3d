@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 12:21:31 by aait-bab          #+#    #+#             */
-/*   Updated: 2024/09/29 06:11:26 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/30 22:52:47 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,12 @@ static void	init_window_imgs(t_cube *cube)
 		|| !(WIDTH <= 2560 && WIDTH >= 1)
 		|| !(FOV <= 180 && FOV >= 0))
 		ft_error("Invalid configuration\n");
-	cube->window = mlx_init(WIDTH, HEIGHT, "Cub3D", false);
+	cube->window = mlx_init(WIDTH, HEIGHT, "Cub3D", true);
 	if (!cube->window)
 		ft_error("Error\nfailed to create window");
 	(1 && (w_wi = cube->window->width, w_he = cube->window->height));
 	cube->img = mlx_new_image(cube->window, w_wi, w_he);
 	if (!cube->img)
-		ft_error("Error\nfailed to create image");
-	cube->img2 = mlx_new_image(cube->window, 120, 120);
-	if (!cube->img2)
 		ft_error("Error\nfailed to create image");
 	red_p = mlx_load_png("assets/sprites/point.png");
 	if (!red_p)
@@ -51,8 +48,6 @@ static void	set_up_imgs_pos(t_cube *cube)
 
 	(1 && (i = 0, w_wi = cube->window->width, w_he = cube->window->height));
 	if (mlx_image_to_window(cube->window, cube->img, 0, 0) == -1)
-		ft_error("Error\nfailed to put image to window");
-	if (mlx_image_to_window(cube->window, cube->img2, 0, 0) == -1)
 		ft_error("Error\nfailed to put image to window");
 	if (mlx_image_to_window(cube->window, cube->img3, w_wi / 4, w_he / 2) == -1)
 		ft_error("Error\nfailed to put image to window");
@@ -90,6 +85,7 @@ static void	init_player(t_cube *cube)
 	cube->plyer->walk = STOP;
 	cube->door->is_door_open = 0;
 	cube->door->is_door_closed = 1;
+	cube->mouse_enabled = 0;
 }
 
 void	ft_init_cube(t_cube *cube)

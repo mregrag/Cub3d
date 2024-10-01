@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 18:05:26 by aait-bab          #+#    #+#             */
-/*   Updated: 2024/09/29 07:12:47 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/10/01 17:19:49 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,10 @@ static void	valid_map(char **map2d)
 		{
 			if (map2d[i][j] == '0' || map2d[i][j] == 'S' \
 				|| map2d[i][j] == 'N' || map2d[i][j] == 'E' \
-				|| map2d[i][j] == 'W' || map2d[i][j] == 'D')
+				|| map2d[i][j] == 'W')
 			{
 				if (check_valid(map2d, i, j))
-					ft_error("Error\nplayer or 0 should \
-					not be surrounded by espaces");
+					ft_error("Error\nNo space arround P or 0");
 				if (map2d[i][j] == 'D' && !is_door_valid(map2d, i, j))
 					ft_error("Error: Invalid door placement at position");
 			}

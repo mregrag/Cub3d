@@ -6,7 +6,7 @@
 /*   By: mregrag <mregrag@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 12:15:24 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/29 07:06:41 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/10/01 00:33:45 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	check_collision(t_cube *cube, int x, int y)
 		|| is_wall_or_door(x + COLLISION, y + COLLISION, cube));
 }
 
-static void	toggle_door(double x, double y, t_cube *cube)
+static void	open_the_door(double x, double y, t_cube *cube)
 {
 	t_ipoint	m;
 
@@ -38,14 +38,18 @@ static void	toggle_door(double x, double y, t_cube *cube)
 	}
 }
 
-static void	close_door(t_cube *cube)
+static void	close_the_door(t_cube *cube)
 {
-	t_ipoint	p_m;
+	t_dpoint	player;
+	t_dpoint	door;
+	double		distance;
 
-	p_m.x = floor(cube->plyer->s.x / TILE_SIZE);
-	p_m.y = floor(cube->plyer->s.y / TILE_SIZE);
-	if (abs(p_m.x - cube->door->pos.x) > 1
-		|| abs(p_m.y - cube->door->pos.y) > 1)
+	player.x = cube->plyer->s.x;
+	player.y = cube->plyer->s.y;
+	door.x = (cube->door->pos.x + 0.5) * TILE_SIZE;
+	door.y = (cube->door->pos.y + 0.5) * TILE_SIZE;
+	distance = sqrt(pow(player.x - door.x, 2) + pow(player.y - door.y, 2));
+	if (distance >= TILE_SIZE)
 	{
 		cube->map->map2d[cube->door->pos.y][cube->door->pos.x] = 'D';
 		cube->door->is_door_closed = 1;
@@ -65,9 +69,9 @@ void	walk_player(t_cube *cube, double move_x, double move_y)
 	new_y = round(cube->plyer->s.y + move_y);
 	if (cube->door->is_door_open)
 	{
-		front_x = cube->plyer->s.x + cos(angle) * TILE_SIZE / 2;
-		front_y = cube->plyer->s.y + sin(angle) * TILE_SIZE / 2;
-		toggle_door(front_x, front_y, cube);
+		front_x = cube->plyer->s.x + cos(angle) * TILE_SIZE;
+		front_y = cube->plyer->s.y + sin(angle) * TILE_SIZE;
+		open_the_door(front_x, front_y, cube);
 		cube->door->is_door_open = 0;
 	}
 	if (!check_collision(cube, new_x, cube->plyer->s.y))
@@ -75,5 +79,5 @@ void	walk_player(t_cube *cube, double move_x, double move_y)
 	if (!check_collision(cube, cube->plyer->s.x, new_y))
 		cube->plyer->s.y = new_y;
 	if (!cube->door->is_door_closed)
-		close_door(cube);
+		close_the_door(cube);
 }

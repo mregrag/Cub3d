@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 10:19:54 by aait-bab          #+#    #+#             */
-/*   Updated: 2024/09/29 04:44:43 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/30 23:04:36 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,24 @@
 # include <limits.h>
 # include <fcntl.h>
 
-#define MINIMAP_SIZE 120
-#define WALL_COLOR 0xFFFFFF  // White
-#define FLOOR_COLOR 0x808080 // Gray
-#define PLAYER_COLOR 0xFF0000 // 
-# define WIDTH 1700
-# define HEIGHT 900
+# define MINI_H 	120
+# define MINI_W 	120
+# define MINI_S 15
+# define RADIUS 60
+
+# define PLAYER_SIZE    8
+
+# define BLACK	0x000000FF
+# define WHITE	0xFFFFFFFF
+# define RED	0xFF0000FF
+# define BLUE	0x003366
+
+# define WIDTH 1800
+# define HEIGHT 1000
 # define TILE_SIZE 32
 # define FOV 60
 # define ROTATION_SPEED 0.045
 # define MOVE_SPEED 4
 # define COLLISION  3
-#define MINIMAP_SCALE 0.8
-#define PLAYER_DOT_SIZE 3
 
 #endif

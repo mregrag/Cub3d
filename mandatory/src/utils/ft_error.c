@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 11:57:20 by aait-bab          #+#    #+#             */
-/*   Updated: 2024/09/29 06:51:20 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/29 21:01:03 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	ft_error(char *msg)
 	if (cube->map->fd > -1)
 		close(cube->map->fd);
 	destroy_textrs(cube);
-	mlx_terminate(cube->window);
 	ft_malloc(0, 0);
 	exit(1);
 }

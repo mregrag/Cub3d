@@ -6,87 +6,97 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 21:33:16 by aait-bab          #+#    #+#             */
-/*   Updated: 2024/09/29 01:00:55 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/30 22:22:31 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d_bonus.h"
 
-void	draw_line(t_cube *cube, t_dpoint start, t_dpoint end, uint32_t color)
+void	draw_player_direction(t_cube *cube)
 {
-	t_dpoint	step;
-	t_dpoint	delta;
-	float		steps;
+	t_dpoint	dir;
+	t_ipoint	center;
 	int			i;
+	int			x;
+	int			y;
 
+	center.x = MINI_W / 2;
+	center.y = MINI_H / 2;
 	i = 0;
-	delta.x = end.x - start.x;
-	delta.y = end.y - start.y;
-	if (fabs(delta.x) > fabs(delta.y))
-		steps = fabs(delta.x);
-	else
-		steps = fabs(delta.y);
-	step.x = delta.x / steps;
-	step.y = delta.y / steps;
-	while (i <= steps)
+	dir.x = cos(cube->plyer->derection);
+	dir.y = sin(cube->plyer->derection);
+	while (i < 10)
 	{
-		my_pixel_put(cube->img2, roundf(start.x), roundf(start.y), color);
-		start.x += step.x;
-		start.y += step.y;
+		x = center.x + i * dir.x;
+		y = center.y + i * dir.y;
+		if (pow(x - center.x, 2) + pow(y - center.y, 2) < pow(RADIUS, 2))
+			my_pixel_put(cube->img, x, y, BLUE);
 		i++;
 	}
 }
 
-static void	draw_player_direction(t_cube *cube)
+void	draw_player(t_cube *cube)
 {
-	t_dpoint	start;
-	t_dpoint	end;
+	t_ipoint	center;
+	int			x;
+	int			y;
 
-	start.x = 60;
-	start.y = 60;
-	end.x = start.x + cos(cube->plyer->derection) * 10;
-	end.y = start.y + sin(cube->plyer->derection) * 10;
-	draw_line(cube, start, end, ft_get_color(0, 0, 255, 255));
+	center.x = MINI_W / 2;
+	center.y = MINI_H / 2;
+	y = center.y - PLAYER_SIZE;
+	while (y < center.y + PLAYER_SIZE)
+	{
+		x = center.x - PLAYER_SIZE;
+		while (x < center.x + PLAYER_SIZE)
+		{
+			if (pow(x - center.x, 2) + pow(y - center.y, 2) < 8)
+				my_pixel_put(cube->img, x, y, RED);
+			x++;
+		}
+		y++;
+	}
 }
 
-static void	minimap_put_pixel(t_cube *cube, t_ipoint s, t_ipoint r)
+void	render_minimap(t_cube *cube, t_ipoint *map, int x, int y)
 {
-	if ((0 < s.x && s.x < (cube->map->height * TILE_SIZE)) && \
-		(0 < s.y && s.y < (cube->map->width * TILE_SIZE)))
+	if (map->y >= 0 && map->x >= 0
+		&& map->x < cube->map->height && map->y < cube->map->width)
 	{
-		if (cube->map->map2d[(s.y / TILE_SIZE)][s.x / TILE_SIZE] == '1')
-			my_pixel_put(cube->img2, s.x - r.x, s.y - r.y, \
-				ft_get_color(0, 0, 0, 255));
-
-		else if (cube->map->map2d[(s.y / TILE_SIZE)][s.x / TILE_SIZE] == 'D')
-			my_pixel_put(cube->img2, s.x - r.x, s.y - r.y, \
-				ft_get_color(255, 0, 0, 255));
-		
+		if (cube->map->map2d[map->y][map->x] == '1')
+			my_pixel_put(cube->img, x, y, BLACK);
+		else if (cube->map->map2d[map->y][map->x] == 'D')
+			my_pixel_put(cube->img, x, y, RED);
 		else
-			my_pixel_put(cube->img2, s.x - r.x, s.y - r.y, \
-				ft_get_color(255, 255, 255, 255));
+			my_pixel_put(cube->img, x, y, WHITE);
 	}
+	else
+		my_pixel_put(cube->img, x, y, BLACK);
 }
 
 void	draw_minimap(t_cube *cube)
 {
-	t_ipoint	ref;
-	t_ipoint	start;
+	t_ipoint	player;
+	t_ipoint	map;
+	int			y;
+	int			x;
 
-	ft_clear_img(cube->img2);
-	start.y = cube->plyer->s.y - 60;
-	ref.y = start.y;
-	ref.x = cube->plyer->s.x - 60;
-	while (start.y < cube->plyer->s.y + 60)
+	player.x = (cube->plyer->s.x / TILE_SIZE) * MINI_S - MINI_W / 2;
+	player.y = (cube->plyer->s.y / TILE_SIZE) * MINI_S - MINI_H / 2;
+	y = 0;
+	while (y < MINI_H)
 	{
-		start.x = cube->plyer->s.x - 60;
-		while (start.x < cube->plyer->s.x + 60)
+		x = 0;
+		while (x < MINI_W)
 		{
-			minimap_put_pixel(cube, start, ref);
-			start.x++;
+			map.x = (x + player.x) / MINI_S;
+			map.y = (y + player.y) / MINI_S;
+			if (pow(x - MINI_W / 2, 2)
+				+ pow(y - MINI_H / 2, 2) <= pow(RADIUS, 2))
+				render_minimap(cube, &map, x, y);
+			x++;
 		}
-		start.y++;
+		y++;
 	}
-	draw_player_direction(cube);
 	draw_player(cube);
+	draw_player_direction(cube);
 }

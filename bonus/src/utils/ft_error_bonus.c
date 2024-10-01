@@ -6,12 +6,11 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 11:57:20 by aait-bab          #+#    #+#             */
-/*   Updated: 2024/09/29 06:36:55 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/09/30 22:53:51 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d_bonus.h"
-#include "MLX42.h"
 
 static void	destroy_textrs(t_cube *cube)
 {
@@ -55,15 +54,12 @@ void	ft_error(char *msg)
 		mlx_close_window(cube->window);
 	if (cube->img)
 		mlx_delete_image(cube->window, cube->img);
-	if (cube->img2)
-		mlx_delete_image(cube->window, cube->img2);
 	if (cube->img3)
 		mlx_delete_image(cube->window, cube->img3);
 	if (cube->map->fd > -1)
 		close(cube->map->fd);
 	destroy_textrs(cube);
 	destory_sprites(cube);
-	mlx_terminate(cube->window);
 	ft_malloc(0, 0);
 	exit(1);
 }

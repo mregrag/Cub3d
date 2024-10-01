@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 18:21:10 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/29 06:19:33 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/10/01 16:57:10 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	ft_init_all_null(t_cube *cube)
 {
 	cube->window = NULL;
 	cube->img = NULL;
-	cube->img2 = NULL;
 	cube->img3 = NULL;
 	cube->textur = NULL;
 	cube->sprites[0] = NULL;
@@ -57,7 +56,6 @@ int	main(int argc, char **argv)
 	ft_init_cube(&cube);
 	mlx_loop_hook(cube.window, &rendered, &cube);
 	mlx_key_hook(cube.window, &key_press, &cube);
-	mlx_set_cursor_mode(cube.window, MLX_MOUSE_DISABLED);
 	mlx_cursor_hook(cube.window, (void *)mouse_event, &cube);
 	mlx_loop(cube.window);
 	ft_destroy_all(&cube);

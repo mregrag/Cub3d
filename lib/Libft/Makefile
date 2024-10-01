@@ -6,11 +6,11 @@
 #    By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/07 01:45:00 by mregrag           #+#    #+#              #
-#    Updated: 2024/09/27 22:59:25 by mregrag          ###   ########.fr        #
+#    Updated: 2024/09/29 18:16:15 by mregrag          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS 	= $(shell find ./ -name '*.c')
+SRCS 	= $(shell find . -name '*.c')
 OBJS 	= $(SRCS:.c=.o)
 NAME    = libft.a
 RM	= rm -f
