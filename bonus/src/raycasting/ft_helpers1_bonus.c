@@ -6,7 +6,7 @@
 /*   By: mregrag <mregrag@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 21:18:06 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/28 21:24:31 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/10/03 17:26:22 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ void	check_rayfacing(t_cube *cube, double angle)
 
 int	is_wall_or_door(double x, double y, t_cube *cube)
 {
+	char		map_cell;
 	t_ipoint	m;
-	char	map_cell;
 
 	if (x < 0 || y < 0)
 		return (1);
@@ -57,7 +57,7 @@ int	is_wall_or_door(double x, double y, t_cube *cube)
 	map_cell = cube->map->map2d[m.y][m.x];
 	if (map_cell == 'D')
 		cube->ray->hit_door = 1;
-	else 
+	else
 		cube->ray->hit_door = 0;
 	return (map_cell == '1' || map_cell == 'D');
 }

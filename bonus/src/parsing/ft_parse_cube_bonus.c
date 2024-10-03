@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 11:45:03 by aait-bab          #+#    #+#             */
-/*   Updated: 2024/09/27 21:24:48 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/10/03 17:24:02 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,16 @@ static void	create_lst_lines(int fd, t_list **head)
 		line = get_next_line(fd);
 	}
 	free(line);
+}
+
+int	is_door_valid(char **map2d, int x, int y)
+{
+	int	h_walls;
+	int	v_walls;
+
+	h_walls = (map2d[x][y - 1] == '1' && map2d[x][y + 1] == '1');
+	v_walls = (map2d[x - 1][y] == '1' && map2d[x + 1][y] == '1');
+	return (h_walls || v_walls);
 }
 
 void	ft_parse_cube(char *file, t_cube *cube)

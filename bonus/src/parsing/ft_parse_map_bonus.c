@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 18:05:26 by aait-bab          #+#    #+#             */
-/*   Updated: 2024/10/02 17:54:40 by aait-bab         ###   ########.fr       */
+/*   Updated: 2024/10/03 17:22:39 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,6 @@ static int	check_valid(char **map2d, int i, size_t j)
 		|| map2d[i][j - 1] == ' ' || map2d[i][j + 1] == ' ')
 		return (1);
 	return (0);
-}
-
-static int	is_door_valid(char **map2d, int x, int y)
-{
-	int	h_walls;
-	int	v_walls;
-
-	h_walls = (map2d[x][y - 1] == '1' && map2d[x][y + 1] == '1');
-	v_walls = (map2d[x - 1][y] == '1' && map2d[x + 1][y] == '1');
-	return (h_walls || v_walls);
 }
 
 static void	valid_map(char **map2d)

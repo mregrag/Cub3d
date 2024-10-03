@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 18:20:49 by mregrag           #+#    #+#             */
-/*   Updated: 2024/10/03 15:39:28 by aait-bab         ###   ########.fr       */
+/*   Updated: 2024/10/03 17:24:36 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int				isranged(char **colors, int min, int max);
 int				ft_isnumber(char *str);
 int				empty_line(char *line);
 int				ft_parse_map(t_list *head, t_cube *cube);
+int				is_door_valid(char **map2d, int x, int y);
 
 /* Texture */
 int				get_texture_x(mlx_texture_t *texture, t_cube *cube);
