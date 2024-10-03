@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 18:20:49 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/30 22:48:18 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/10/03 15:39:28 by aait-bab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ void			draw_player(t_cube *cube);
 void			adjust_step(t_cube *cube, t_dpoint *delta, int is_vertical);
 void			check_rayfacing(t_cube *cube, double angle);
 // int				is_wall(double x, double y, t_cube *cube);
-int is_wall_or_door(double x, double y, t_cube *cube);
-void draw_rectangle(t_cube *cube, int x, int y, int width, int height, uint32_t color);
+int				is_wall_or_door(double x, double y, t_cube *cube);
 
 #endif

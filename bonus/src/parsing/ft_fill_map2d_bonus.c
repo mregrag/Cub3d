@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 20:48:45 by aait-bab          #+#    #+#             */
-/*   Updated: 2024/09/19 19:32:01 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/10/03 10:03:34 by aait-bab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,20 @@ static char	*add_spaces(char *line, int max_rows)
 	return (line);
 }
 
+static int	walls_check(char *line)
+{
+	int	i;
+
+	i = 0;
+	if (line[i] != '1')
+		return (1);
+	while (line[i])
+		i++;
+	if (line[i - 1] != '1')
+		return (1);
+	return (0);
+}
+
 void	ft_fill_map2d(char ***map2d, t_list *head, int max_rows)
 {
 	int	i;
@@ -58,6 +72,8 @@ void	ft_fill_map2d(char ***map2d, t_list *head, int max_rows)
 	{
 		if (empty_line(head->content))
 			ft_error("Error\nempty line in the map");
+		if (walls_check(rm_nl(head->content)))
+			ft_error("Error\nmap is not surrounded by walls");
 		(*map2d)[i] = add_spaces(rm_nl(head->content), max_rows);
 		head = head->next;
 		i++;

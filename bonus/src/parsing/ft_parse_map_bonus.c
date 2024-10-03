@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 18:05:26 by aait-bab          #+#    #+#             */
-/*   Updated: 2024/10/01 17:48:43 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/10/02 17:54:40 by aait-bab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ static void	valid_map(char **map2d)
 			{
 				if (check_valid(map2d, i, j))
 					ft_error("Error\nplayer or 0 is not surrounded by walls\n");
-				if (map2d[i][j] == 'D' && !is_door_valid(map2d, i, j))
-					ft_error("Error: Invalid door placement at position");
 			}
+			if (map2d[i][j] == 'D' && !is_door_valid(map2d, i, j))
+				ft_error("Error: Invalid door placement at position");
 			j++;
 		}
 		i++;

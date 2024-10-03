@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mregrag <mregrag@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 13:20:28 by mregrag           #+#    #+#             */
-/*   Updated: 2024/09/30 20:57:51 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/10/02 16:10:57 by aait-bab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,11 @@ void	leaks(void)
 	system("leaks cub3D");
 }
 
-void	check_open_fds(void)
-{
-	system("lsof -c cub3D");
-}
-
 int	main(int argc, char **argv)
 {
 	t_cube	cube;
 
-	atexit(check_open_fds);
+	atexit(leaks);
 	if (argc != 2)
 		return (ft_putendl_fd("Error\nmissing map file", 2), 1);
 	ft_get_cube(&cube);

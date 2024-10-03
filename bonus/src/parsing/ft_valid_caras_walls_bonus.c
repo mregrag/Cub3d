@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:07:15 by aait-bab          #+#    #+#             */
-/*   Updated: 2024/09/30 15:53:18 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/10/03 09:58:32 by aait-bab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 static int	serrounded_by_walls(int i, int j, char **map2d)
 {
-	if (i == 0 || i == strslen(map2d) - 1 || j == 0 \
-				|| j == (int)ft_strlen(map2d[i]) - 1)
+	if (i == 0 || i == strslen(map2d) - 1)
 	{
 		if (map2d[i][j] != '1' && map2d[i][j] != ' ')
 			return (0);

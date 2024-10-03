@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 10:49:25 by mregrag           #+#    #+#             */
-/*   Updated: 2024/10/01 17:05:09 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/10/03 15:40:53 by aait-bab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,11 +115,11 @@ typedef struct s_sprite
 typedef struct s_door
 {
 	t_ipoint	pos;
-	int	hit_door_h;
-	int	hit_door_v;
-	int	hit_door;
-	int	is_door_open;
-	int 	is_door_closed;
+	int			hit_door_h;
+	int			hit_door_v;
+	int			hit_door;
+	int			is_door_open;
+	int			is_door_closed;
 
 }	t_door;
 typedef struct s_cube
@@ -136,7 +136,7 @@ typedef struct s_cube
 	t_colors		*colors[6];
 	t_sprite		*sprites[6];
 	t_door			*door;
-	int			mouse_enabled;
+	int				mouse_enabled;
 
 }	t_cube;
 
