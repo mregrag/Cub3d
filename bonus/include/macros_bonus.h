@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 10:19:54 by aait-bab          #+#    #+#             */
-/*   Updated: 2024/09/30 23:04:36 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/10/02 16:49:32 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <unistd.h>
 # include <math.h>
 # include <stdio.h>
-# include <string.h>
 # include <limits.h>
 # include <fcntl.h>
 
