@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 21:33:16 by aait-bab          #+#    #+#             */
-/*   Updated: 2024/09/30 22:22:31 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/10/02 17:22:18 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	draw_player_direction(t_cube *cube)
 {
-	t_dpoint	dir;
 	t_ipoint	center;
 	int			i;
 	int			x;
@@ -23,14 +22,11 @@ void	draw_player_direction(t_cube *cube)
 	center.x = MINI_W / 2;
 	center.y = MINI_H / 2;
 	i = 0;
-	dir.x = cos(cube->plyer->derection);
-	dir.y = sin(cube->plyer->derection);
 	while (i < 10)
 	{
-		x = center.x + i * dir.x;
-		y = center.y + i * dir.y;
-		if (pow(x - center.x, 2) + pow(y - center.y, 2) < pow(RADIUS, 2))
-			my_pixel_put(cube->img, x, y, BLUE);
+		x = center.x + i * cos(cube->plyer->derection);
+		y = center.y + i * sin(cube->plyer->derection);
+		my_pixel_put(cube->img, x, y, BLUE);
 		i++;
 	}
 }
@@ -60,7 +56,8 @@ void	draw_player(t_cube *cube)
 void	render_minimap(t_cube *cube, t_ipoint *map, int x, int y)
 {
 	if (map->y >= 0 && map->x >= 0
-		&& map->x < cube->map->height && map->y < cube->map->width)
+		&& map->x < cube->map->height
+		&& map->y < cube->map->width)
 	{
 		if (cube->map->map2d[map->y][map->x] == '1')
 			my_pixel_put(cube->img, x, y, BLACK);
@@ -90,8 +87,8 @@ void	draw_minimap(t_cube *cube)
 		{
 			map.x = (x + player.x) / MINI_S;
 			map.y = (y + player.y) / MINI_S;
-			if (pow(x - MINI_W / 2, 2)
-				+ pow(y - MINI_H / 2, 2) <= pow(RADIUS, 2))
+			if (pow(x - RADIUS, 2)
+				+ pow(y - RADIUS, 2) <= pow(RADIUS, 2))
 				render_minimap(cube, &map, x, y);
 			x++;
 		}
