@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 07:08:14 by mregrag           #+#    #+#             */
-/*   Updated: 2024/10/03 17:29:06 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/10/03 21:58:53 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,9 @@ void	raycasting(t_cube *cube)
 {
 	t_dpoint	distance;
 
-	cube->ray->index = -1;
+	cube->ray->index = 0;
 	cube->ray->angl = cube->plyer->derection - (cube->plyer->fov / 2);
-	while (++cube->ray->index < cube->window->width)
+	while (cube->ray->index < cube->window->width)
 	{
 		cube->ray->angl = normalize_angle(cube->ray->angl);
 		check_rayfacing(cube, cube->ray->angl);
@@ -85,6 +85,7 @@ void	raycasting(t_cube *cube)
 			cube->ray->hit_door = cube->door->hit_door_h;
 		}
 		projected_wall(cube);
+		cube->ray->index++;
 		cube->ray->angl += (cube->plyer->fov / cube->window->width);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: aait-bab <aait-bab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 20:48:45 by aait-bab          #+#    #+#             */
-/*   Updated: 2024/10/03 16:00:56 by mregrag          ###   ########.fr       */
+/*   Updated: 2024/10/03 20:52:23 by mregrag          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ static int	walls_check(char *line)
 	int	i;
 
 	i = 0;
+	if (line[i] == '\0')
+		return (0);
 	if (line[i] != '1')
 		return (1);
 	while (line[i])
