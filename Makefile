@@ -6,7 +6,7 @@
 #    By: mregrag <mregrag@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/20 17:26:43 by mregrag           #+#    #+#              #
-#    Updated: 2024/10/03 21:18:49 by mregrag          ###   ########.fr        #
+#    Updated: 2024/10/04 15:11:48 by mregrag          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,12 +66,12 @@ $(LIBFT_A): $(OBJS_LIBFT) $(LIBFT_H)
 clean:
 	$(RM) $(OBJS)
 	$(RM) $(OBJS_B)
-	$(RM) $(OBJS_LIBFT)
+	make clean -C ./lib/Libft
 
 fclean: clean
 	$(RM) $(NAME)
 	$(RM) $(NAME_B)
-	$(RM) $(LIBFT_A)
+	make fclean -C ./lib/Libft
 
 re: fclean all
 
